@@ -76,3 +76,33 @@ li{
     height: auto;
     padding: 10px;
 }
+
+
+.modal-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-subheading{
+    font-style: italic;
+    color: darkgray;
+}
+
+.modal-body img{
+    width:100%;
+    height: auto;
+    padding: 10px;
+}
+
+.modal-footer .tags{
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-footer div{
+    padding: 2px;
+}
+
+.tagAdder input{
+    width: 300px;
+}
