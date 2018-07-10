@@ -42,6 +42,8 @@ li{
 
 #logo{
     font-family: sans-serif;
+    text-decoration: none;
+    color: white;
 }
 
 #sign_up{
