@@ -21,7 +21,7 @@ nav{
 
 nav ul{
     color: whitesmoke;
-    left: 30px;
+    margin: -8px -16px;
 }
 
 nav ul li:first-child{
@@ -43,6 +43,10 @@ li{
     font-family: sans-serif;
 }
 
+#signup{
+    margin: -10px 20px; 
+}
+
 .main{
     position: absolute;
     top: 60px;
@@ -54,6 +58,10 @@ li{
 
 #loginform{
     position: absolute;
+}
+
+#userdiv{
+    margin-bottom: 10px;
 }
 
 #password{
