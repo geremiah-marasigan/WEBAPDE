@@ -111,17 +111,30 @@ li{
 #search button{
     width: 32px;
     height: 32px;
-    background-color: #0e1111;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     margin-left: -4px;
 }
 
-#search button:hover{
-   background-color: #414a4c;
-}
 
 .fa-search{
-    color:white;
+    color: grey;
     font-size: 24px;
+}
+
+/*Styled Search*/
+#search-input{
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid grey;
+    color:white;
+}
+
+#search-input:focus{
+    outline: none;
+}
+
+#search button:hover > .fa-search{
+   color: white;
 }
