@@ -9,7 +9,7 @@ html, body{
 }
 
 nav{
-    background-color: black;
+    background-color: 	#0e1111;
     top: 0;
     left: 0;
     width: 100%;
@@ -106,4 +106,22 @@ li{
 
 .tagAdder input{
     width: 300px;
+}
+
+#search button{
+    width: 32px;
+    height: 32px;
+    background-color: #0e1111;
+    border: none;
+    cursor: pointer;
+    margin-left: -4px;
+}
+
+#search button:hover{
+   background-color: #414a4c;
+}
+
+.fa-search{
+    color:white;
+    font-size: 24px;
 }
