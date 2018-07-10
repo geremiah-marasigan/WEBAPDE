@@ -97,6 +97,7 @@ li{
 .modal-footer .tags{
     float:left;
     display: flex;
+    width:100%;
 }
 
 .modal-footer div{
