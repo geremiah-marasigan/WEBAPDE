@@ -143,3 +143,8 @@ li{
 .shareUpload{
     margin-top: 5px;
 }
+
+/*hide share with if public is ticked*/
+input[type=checkbox]:checked ~ .shareUpload{
+    display:none;
+}

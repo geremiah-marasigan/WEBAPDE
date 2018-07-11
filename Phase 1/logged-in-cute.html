@@ -162,10 +162,10 @@
                   
                 </div>
                 <div class="statusChk">
-                    <input type="checkbox">
+                    <input type="checkbox" id ="publicChk" onclick="isPublic()">
                     <label>Public</label>
                 </div>
-                <div class="shareUpload">
+                <div id="shareUpload">
                     <span>Share With:</span>
                     <input type="text" placeholder="Separate with a comma"/>
                 </div>
@@ -310,6 +310,19 @@
             console.log(memelist)
             
             
+        }
+        
+        //removes share with if meme is public
+         function isPublic(){
+            var checkbox = document.getElementById("publicChk");
+            var share = document.getElementById("shareUpload");
+            
+            if(checkbox.checked == true){
+                share.style.display = "none";
+            }
+            else{
+                share.style.display = "block";
+            }
         }
         
         //Makes sure functions only run when document is ready
