@@ -34,6 +34,7 @@
         </nav>
     </div>
         <div class="main">
+            <h1>Public</h1>
             <div class="images">
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3">
@@ -88,7 +89,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">As pretty as a Cat</h5>
-                <div class="modal-subheading">By Durstnt</div>
+                <div class="modal-subheading">By Durstnt | Private</div>
               </div>
               <div class="modal-body">
                 <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
@@ -103,7 +104,14 @@
                 <div class="editDescription">
                   <span>Edit Description:</span>
                   <input type="text" placeholder="Enter new description here"/>
-                  <button type="button" class="btn btn-default">Update</button>
+                  <button type="button" class="btn btn-default update-description">Update</button>
+                </div>
+                <div class="shareMeme">
+                  <span>Shared With:</span> <br/>
+                  <span>mr_bizcuit</span> <br/>
+                  <span>Jdelbz</span> <br/>
+                  <input type="text" placeholder="Add users to share with"/>
+                  <button type="button" class="btn btn-success share-meme">Add</button>
                 </div>
                 <div class="deleteMeme">
                   <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
@@ -126,12 +134,13 @@
         //meme array
         var memelist = [];
         //json object
-        var Meme = function(title,owner,desc,url,tags){
+        var Meme = function(title,owner,desc,url,tags, status){
             this.title = title;
             this.owner = owner;
             this.desc = desc;
             this.url = url;
             this.tags = tags;
+            this.status = status;
         }
         
         function newMeme(MEME){
@@ -160,13 +169,16 @@
             $(h5Heading).append(memeTitle)
             var modalSubheadDiv = document.createElement("div")
             $(modalSubheadDiv).addClass("modal-subheading")
-            var memeOwner = document.createTextNode("By")
+            var memeOwner = document.createTextNode("By ")
             var memeOwnerLink = document.createElement("a")
             $(memeOwnerLink).attr("href","user.html")
             var ownerName = document.createTextNode(MEME.owner)
+            /*Public or Private*/
+            var memeStatus = document.createTextNode(" | " + MEME.status)
             $(memeOwnerLink).append(ownerName)
             $(modalSubheadDiv).append(memeOwner)
             $(modalSubheadDiv).append(memeOwnerLink)
+            $(modalSubheadDiv).append(memeStatus)
             $(modalHeadDiv).append(h5Heading)
             $(modalHeadDiv).append(modalSubheadDiv)
             
@@ -201,8 +213,22 @@
                 var removeButton = document.createElement("button")
                 $(removeButton).attr("type","button")
                 $(removeButton).attr("style","display: none")
-                var removeHolder = document.createTextNode("x")
-                $(removeButton).append(removeHolder)
+                var removeIcon = document.createElement("i");
+                $(removeIcon).addClass("fa fa-close")
+                //var removeHolder = document.createTextNode("x")
+                $(removeButton).css({
+                    "width": "32px",
+                    "height": "32px",
+                    "background-color": "transparent",
+                    "border": "none",
+                    "cursor": "pointer",
+                    "margin-left": "-4px"
+                })
+                $(".fa-close").css({
+                    "color": "black",
+                    "font-size": "24px"
+                })
+                $(removeButton).append(removeIcon)
                 $(memeTag).append(tagRef)
                 $(memeTag).append(removeButton)
                 
@@ -234,7 +260,7 @@
         
         //Makes sure functions only run when document is ready
         $(document).ready(function () {
-            newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"]))
+            newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"], "Public"))
             
             //Adds remove button on hover and removes on leave
             $(".modal-footer .tags .memetag").on('mouseenter', function () {
