@@ -22,7 +22,7 @@
                             </button>
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
                                 <a class="dropdown-item">Profile</a>
-                                <a class="dropdown-item">Add Meme</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
                                 <a class="dropdown-item" id="sign-out">Sign-Out</a>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="editDescription">
                   <span>Edit Description:</span>
-                  <input type="text" placeholder="Enter new description here"/>
+                    <textarea rows="4" cols="50"></textarea>
                   <button type="button" class="btn btn-default update-description">Update</button>
                 </div>
                 <div class="shareMeme">
@@ -136,6 +136,41 @@
                     <div><a href="">Cat</a></div>
                   </div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!--Uploading a Meme-->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload a Meme</h5>
+              </div>
+              <div class="modal-body">
+                <div class="upload-photo">
+                  <span>Choose a photo: </span>
+                  <input type="file"/>
+                </div>
+                <br/>
+                <div class="tagAdder">
+                    <span>Add Tags:</span>
+                    <input type="text" placeholder="Separate tags with a comma"/>
+                </div>
+                <div class="editDescription">
+                  <span>Set Description:</span>
+                  <textarea rows="4" cols="50"></textarea>
+                  
+                </div>
+                <div class="shareUpload">
+                    <span>Share With:</span>
+                    <input type="text" placeholder="Separate with a comma"/>
+                </div>
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Upload</button>
               </div>
             </div>
           </div>

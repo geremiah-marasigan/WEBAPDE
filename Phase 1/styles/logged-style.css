@@ -143,10 +143,6 @@ li{
     margin-top: 2px;
 }
 
-.editDescription input{
-    width: 250px;
-}
-
 .btnDelete{
     background-color: red;
 }
@@ -155,4 +151,8 @@ li{
     width: 32px;
     height: 32px;
     border-radius: 32px;
+}
+
+.shareUpload{
+    margin-top: 5px;
 }
