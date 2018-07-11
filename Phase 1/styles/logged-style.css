@@ -1,0 +1,158 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-family: sans-serif;
+    background-color: #f7f7f7;
+    
+}
+
+nav{
+    background-color: 	#0e1111;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    display: block;
+    z-index: 99;
+}
+
+nav ul{
+    color: whitesmoke;
+    margin: 0 auto;
+    
+}
+
+nav ul li:first-child{
+    float: left;
+    
+}
+
+nav ul li{
+    margin: 20px 15px;
+    float: right;
+}
+
+li{
+    list-style: none;
+    
+}
+
+#logo{
+    font-family: sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+#sign_up{
+    padding: 15px;
+    border-radius: 3px;
+    font-weight: 700;
+    border-style: solid;
+    border-width: 1px;
+    transition: 0.25s ease;
+    text-decoration: none;
+    color: white;
+}
+
+#sign_up:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.main{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 30px;
+}
+
+.images img{
+    width:100%;
+    height: auto;
+    padding: 10px;
+}
+
+
+.modal-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-subheading{
+    font-style: italic;
+    color: darkgray;
+}
+
+.modal-body img{
+    width:100%;
+    height: auto;
+    padding: 10px;
+}
+
+.modal-footer .tags{
+    float:left;
+    display: flex;
+    width:100%;
+}
+
+.modal-footer div{
+    padding: 2px;
+}
+
+.tagAdder input{
+    width: 300px;
+}
+
+#search button{
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: -4px;
+}
+
+
+.fa-search{
+    color: grey;
+    font-size: 24px;
+}
+
+/*Styled Search*/
+#search-input{
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid grey;
+    color:white;
+}
+
+#search-input:focus{
+    outline: none;
+}
+
+#search button:hover > .fa-search{
+   color: white;
+}
+
+.editDescription{
+    margin-top: 2px;
+}
+
+.editDescription input{
+    width: 250px;
+}
+
+.btnDelete{
+    background-color: red;
+}
+
+#profile-pic{
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+}

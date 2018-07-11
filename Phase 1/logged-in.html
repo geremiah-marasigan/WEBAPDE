@@ -1,0 +1,286 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles/logged-style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+<body>
+    <div>
+        <nav>
+            <div>
+                <ul>
+                    <li>
+                        <a href="main.html" id="logo">4UN</a>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown" >
+                                <img id="profile-pic" src="https://lh3.googleusercontent.com/-rynVhQCyvkY/AAAAAAAAAAI/AAAAAAAAAAY/bNIUWoBt9zk/w360-h203-p/photo.jpg"/>
+                            </button>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
+                                <a class="dropdown-item">Profile</a>
+                                <a class="dropdown-item">Add Meme</a>
+                                <a class="dropdown-item" id="sign-out">Sign-Out</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="search">
+                            <form>
+                                <input id="search-input" type="text" placeholder="Search Tags"/>
+                                <button type="submit" class="submit-button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+        <div class="main">
+            <h1>Shared</h1>
+            <div class="images">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-3">
+                    <img class="meme" src="https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg" data-toggle="modal" data-target="#memeModal"/>
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    
+                    </div>
+                    <div class="col col-lg-3">
+                    <img class="meme" src="http://catsatthestudios.com/wp-content/uploads/2017/12/12920541_1345368955489850_5587934409579916708_n-2-960x410.jpg"/>
+                    <img class="meme" src="https://www.catster.com/wp-content/uploads/2016/05/cats-politics-TN.jpg"/>
+                    </div>
+                    <div class="col col-lg-3">
+                    <img class="meme" src="https://d3jkudlc7u70kh.cloudfront.net/cat-facts.jpg"/>
+                    <img class="meme" src="https://amp.thisisinsider.com/images/5b1040d55e48ec24008b460c-750-562.jpg"/>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Public</h2>
+        </div>
+    
+        <!-- Modal -->
+<!--
+        <div class="modal fade" id="memeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Before and after Jakol</h5>
+                <div class="modal-subheading">By mr_bizcuit</div>
+              </div>
+              <div class="modal-body">
+                <img src="https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg"/>
+                <span class="description">I calm down every time.</span>
+              </div>
+              <div class="modal-footer">
+                  <div class="tags">
+                    <div>Tags:</div>
+                    <div class="memetag"><a href="">NSFW</a><button type="button" style="display: none;">x</button>, </div>
+                    
+                    <div class="memetag"><a href="">Bastos</a><button type="button" style="display: none;">x</button>, </div>
+                    
+                    <div class="memetag"><a href="">Cat</a><button type="button" style="display: none;">x</button></div>
+                    
+                  </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+-->
+        <div class="modal fade" id="memeModalLoggedIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">As pretty as a Cat</h5>
+                <div class="modal-subheading">By Durstnt | Private</div>
+              </div>
+              <div class="modal-body">
+                <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
+                <span class="description">I love pussy</span>
+                <br/>
+                <hr>
+                <div class="tagAdder">
+                    <span>Add Tags:</span>
+                    <input type="text" placeholder="Separate tags with a comma"/>
+                    <button type="button" class="btn btn-default">Add</button>
+                </div>
+                <div class="editDescription">
+                  <span>Edit Description:</span>
+                  <input type="text" placeholder="Enter new description here"/>
+                  <button type="button" class="btn btn-default update-description">Update</button>
+                </div>
+                <div class="shareMeme">
+                  <span>Shared With:</span> <br/>
+                  <span>mr_bizcuit</span> <br/>
+                  <span>Jdelbz</span> <br/>
+                  <input type="text" placeholder="Add users to share with"/>
+                  <button type="button" class="btn btn-success share-meme">Add</button>
+                </div>
+                <div class="deleteMeme">
+                  <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <div class="tags">
+                    <div>Tags: </div>
+                    <div><a href="">Cute</a>, </div>
+                    <div><a href="">Hot</a>, </div>
+                    <div><a href="">Cat</a></div>
+                  </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</body>
+    <script>
+        //meme array
+        var memelist = [];
+        //json object
+        var Meme = function(title,owner,desc,url,tags, status){
+            this.title = title;
+            this.owner = owner;
+            this.desc = desc;
+            this.url = url;
+            this.tags = tags;
+            this.status = status;
+        }
+        
+        function newMeme(MEME){
+            
+            //Main modal
+            var modalDiv = document.createElement("div")
+            $(modalDiv).addClass("modal fade")
+            $(modalDiv).attr("id", "memeModal")
+            $(modalDiv).attr("tabindex","-1")
+            $(modalDiv).attr("role", "dialog")
+            $(modalDiv).attr("aria-labelledby", "exampleModalLabel")
+            $(modalDiv).attr("aria-hidden","true")
+            var modalDiagDiv = document.createElement("div")
+            $(modalDiagDiv).addClass("modal-dialog")
+            $(modalDiagDiv).attr("role","document")
+            var modalContDiv = document.createElement("div")
+            $(modalContDiv).addClass("modal-content")
+            
+            //Modal Head
+            var modalHeadDiv = document.createElement("div")
+            $(modalHeadDiv).addClass("modal-header")
+            var h5Heading = document.createElement("div")
+            $(h5Heading).addClass("modal-title")
+            $(h5Heading).attr("id","exampleModalLabel")
+            var memeTitle = document.createTextNode(MEME.title)
+            $(h5Heading).append(memeTitle)
+            var modalSubheadDiv = document.createElement("div")
+            $(modalSubheadDiv).addClass("modal-subheading")
+            var memeOwner = document.createTextNode("By ")
+            var memeOwnerLink = document.createElement("a")
+            $(memeOwnerLink).attr("href","user.html")
+            var ownerName = document.createTextNode(MEME.owner)
+            /*Public or Private*/
+            var memeStatus = document.createTextNode(" | " + MEME.status)
+            $(memeOwnerLink).append(ownerName)
+            $(modalSubheadDiv).append(memeOwner)
+            $(modalSubheadDiv).append(memeOwnerLink)
+            $(modalSubheadDiv).append(memeStatus)
+            $(modalHeadDiv).append(h5Heading)
+            $(modalHeadDiv).append(modalSubheadDiv)
+            
+            //Modal Body
+            var modalBodyDiv = document.createElement("div")
+            $(modalBodyDiv).addClass("modal-body")
+            var memeImg = document.createElement("img")
+            $(memeImg).attr("src",MEME.url)
+            var descSpan = document.createElement("span")
+            $(descSpan).addClass("description")
+            var memeDesc = document.createTextNode(MEME.desc)
+            $(descSpan).append(memeDesc)
+            $(modalBodyDiv).append(memeImg)
+            $(modalBodyDiv).append(descSpan)
+            
+            //Modal Footer
+            var modalFootDiv = document.createElement("div")
+            $(modalFootDiv).addClass("modal-footer")
+            var memeTagsDiv = document.createElement("div")
+            $(memeTagsDiv).addClass("tags")
+            var tagLabelDiv = document.createElement("div")
+            var tagStng = document.createTextNode("Tags:")
+            $(tagLabelDiv).append(tagStng)
+            $(memeTagsDiv).append(tagLabelDiv)
+            MEME.tags.forEach((tag)=>{
+                var memeTag = document.createElement("div")
+                $(memeTag).addClass("memetag")
+                var tagRef = document.createElement("a")
+                $(tagRef).attr("href","")
+                var tagLabel = document.createTextNode(tag)
+                $(tagRef).append(tagLabel)
+                var removeButton = document.createElement("button")
+                $(removeButton).attr("type","button")
+                $(removeButton).attr("style","display: none")
+                var removeIcon = document.createElement("i");
+                $(removeIcon).addClass("fa fa-close")
+                //var removeHolder = document.createTextNode("x")
+                $(removeButton).css({
+                    "width": "32px",
+                    "height": "32px",
+                    "background-color": "transparent",
+                    "border": "none",
+                    "cursor": "pointer",
+                    "margin-left": "-4px"
+                })
+                $(".fa-close").css({
+                    "color": "black",
+                    "font-size": "24px"
+                })
+                $(removeButton).append(removeIcon)
+                $(memeTag).append(tagRef)
+                $(memeTag).append(removeButton)
+                
+                $(memeTagsDiv).append(memeTag)
+            })
+            var closeButton = document.createElement("button")
+            $(closeButton).addClass("btn btn-secondary")
+            $(closeButton).attr("type","button")
+            $(closeButton).attr("data-dismiss","modal")
+            var closeLabel = document.createTextNode("Close")
+            $(closeButton).append(closeLabel)
+            $(modalFootDiv).append(memeTagsDiv)
+            $(modalFootDiv).append(closeButton)
+            
+            //Adding the modal
+            $(modalContDiv).append(modalHeadDiv)
+            $(modalContDiv).append(modalBodyDiv)
+            $(modalContDiv).append(modalFootDiv)
+            $(modalDiagDiv).append(modalContDiv)
+            $(modalDiv).append(modalDiagDiv)
+            $("body").append(modalDiv)
+            
+            memelist.push(MEME)
+            
+            console.log(memelist)
+            
+            
+        }
+        
+        //Makes sure functions only run when document is ready
+        $(document).ready(function () {
+            newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"], "Public"))
+            
+            //Adds remove button on hover and removes on leave
+            $(".modal-footer .tags .memetag").on('mouseenter', function () {
+                $(this).find(":button").show();
+                console.log("in");
+                }).on('mouseleave', function () {
+                    $(this).find(":button").hide();
+                    console.log("out");
+            });
+        });
+    </script>
+</html>
