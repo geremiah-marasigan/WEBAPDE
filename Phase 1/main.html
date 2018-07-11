@@ -54,6 +54,7 @@
         </div>
     
         <!-- Modal -->
+<!--
         <div class="modal fade" id="memeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -68,9 +69,12 @@
               <div class="modal-footer">
                   <div class="tags">
                     <div>Tags:</div>
-                    <div><a href="">NSFW</a>, </div>
-                    <div><a href="">Bastos</a>, </div>
-                    <div><a href="">Cat</a></div>
+                    <div class="memetag"><a href="">NSFW</a><button type="button" style="display: none;">x</button>, </div>
+                    
+                    <div class="memetag"><a href="">Bastos</a><button type="button" style="display: none;">x</button>, </div>
+                    
+                    <div class="memetag"><a href="">Cat</a><button type="button" style="display: none;">x</button></div>
+                    
                   </div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
@@ -78,6 +82,7 @@
           </div>
         </div>
         
+-->
         <div class="modal fade" id="memeModalLoggedIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -117,10 +122,128 @@
           </div>
         </div>
 </body>
-    <!--<script>
-        $(".meme").on("click",function(){
-            console.log("Clicked " + this);
-            this.requestFullScreen();
-        })
-    </script>-->
+    <script>
+        //meme array
+        var memelist = [];
+        //json object
+        var Meme = function(title,owner,desc,url,tags){
+            this.title = title;
+            this.owner = owner;
+            this.desc = desc;
+            this.url = url;
+            this.tags = tags;
+        }
+        
+        function newMeme(MEME){
+            
+            //Main modal
+            var modalDiv = document.createElement("div")
+            $(modalDiv).addClass("modal fade")
+            $(modalDiv).attr("id", "memeModal")
+            $(modalDiv).attr("tabindex","-1")
+            $(modalDiv).attr("role", "dialog")
+            $(modalDiv).attr("aria-labelledby", "exampleModalLabel")
+            $(modalDiv).attr("aria-hidden","true")
+            var modalDiagDiv = document.createElement("div")
+            $(modalDiagDiv).addClass("modal-dialog")
+            $(modalDiagDiv).attr("role","document")
+            var modalContDiv = document.createElement("div")
+            $(modalContDiv).addClass("modal-content")
+            
+            //Modal Head
+            var modalHeadDiv = document.createElement("div")
+            $(modalHeadDiv).addClass("modal-header")
+            var h5Heading = document.createElement("div")
+            $(h5Heading).addClass("modal-title")
+            $(h5Heading).attr("id","exampleModalLabel")
+            var memeTitle = document.createTextNode(MEME.title)
+            $(h5Heading).append(memeTitle)
+            var modalSubheadDiv = document.createElement("div")
+            $(modalSubheadDiv).addClass("modal-subheading")
+            var memeOwner = document.createTextNode("By")
+            var memeOwnerLink = document.createElement("a")
+            $(memeOwnerLink).attr("href","")
+            var ownerName = document.createTextNode(MEME.owner)
+            $(memeOwnerLink).append(ownerName)
+            $(modalSubheadDiv).append(memeOwner)
+            $(modalSubheadDiv).append(memeOwnerLink)
+            $(modalHeadDiv).append(h5Heading)
+            $(modalHeadDiv).append(modalSubheadDiv)
+            
+            //Modal Body
+            var modalBodyDiv = document.createElement("div")
+            $(modalBodyDiv).addClass("modal-body")
+            var memeImg = document.createElement("img")
+            $(memeImg).attr("src",MEME.url)
+            var descSpan = document.createElement("span")
+            $(descSpan).addClass("description")
+            var memeDesc = document.createTextNode(MEME.desc)
+            $(descSpan).append(memeDesc)
+            $(modalBodyDiv).append(memeImg)
+            $(modalBodyDiv).append(descSpan)
+            
+            //Modal Footer
+            var modalFootDiv = document.createElement("div")
+            $(modalFootDiv).addClass("modal-footer")
+            var memeTagsDiv = document.createElement("div")
+            $(memeTagsDiv).addClass("tags")
+            var tagLabelDiv = document.createElement("div")
+            var tagStng = document.createTextNode("Tags:")
+            $(tagLabelDiv).append(tagStng)
+            $(memeTagsDiv).append(tagLabelDiv)
+            MEME.tags.forEach((tag)=>{
+                var memeTag = document.createElement("div")
+                $(memeTag).addClass("memetag")
+                var tagRef = document.createElement("a")
+                $(tagRef).attr("href","")
+                var tagLabel = document.createTextNode(tag)
+                $(tagRef).append(tagLabel)
+                var removeButton = document.createElement("button")
+                $(removeButton).attr("type","button")
+                $(removeButton).attr("style","display: none")
+                var removeHolder = document.createTextNode("x")
+                $(removeButton).append(removeHolder)
+                $(memeTag).append(tagRef)
+                $(memeTag).append(removeButton)
+                
+                $(memeTagsDiv).append(memeTag)
+            })
+            var closeButton = document.createElement("button")
+            $(closeButton).addClass("btn btn-secondary")
+            $(closeButton).attr("type","button")
+            $(closeButton).attr("data-dismiss","modal")
+            var closeLabel = document.createTextNode("Close")
+            $(closeButton).append(closeLabel)
+            $(modalFootDiv).append(memeTagsDiv)
+            $(modalFootDiv).append(closeButton)
+            
+            //Adding the modal
+            $(modalContDiv).append(modalHeadDiv)
+            $(modalContDiv).append(modalBodyDiv)
+            $(modalContDiv).append(modalFootDiv)
+            $(modalDiagDiv).append(modalContDiv)
+            $(modalDiv).append(modalDiagDiv)
+            $("body").append(modalDiv)
+            
+            memelist.push(MEME)
+            
+            console.log(memelist)
+            
+            
+        }
+        
+        //Makes sure functions only run when document is ready
+        $(document).ready(function () {
+            newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"]))
+            
+            //Adds remove button on hover and removes on leave
+            $(".modal-footer .tags .memetag").on('mouseenter', function () {
+                $(this).find(":button").show();
+                console.log("in");
+                }).on('mouseleave', function () {
+                    $(this).find(":button").hide();
+                    console.log("out");
+            });
+        });
+    </script>
 </html>
