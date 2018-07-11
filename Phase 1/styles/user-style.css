@@ -18,19 +18,19 @@ nav {
     z-index: 99;
 }
 
-    nav ul {
-        color: whitesmoke;
-        margin: -8px -16px;
-    }
+nav ul {
+    color: whitesmoke;
+    margin: 0 auto;
+}
 
-        nav ul li:first-child {
-            float: left;
-        }
+nav ul li:first-child {
+    float: left;
+}
 
-        nav ul li {
-            margin: 20px 15px;
-            float: right;
-        }
+nav ul li {
+    margin: 20px 15px;
+    float: right;
+}
 
 li {
     list-style: none;
@@ -67,4 +67,58 @@ li {
     height: 100%;
     display: flex;
     flex-direction:column;
+}
+
+#search button{
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: -4px;
+}
+
+.fa-search{
+    color: grey;
+    font-size: 24px;
+}
+
+/*Styled Search*/
+#search-input{
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid grey;
+    color:white;
+}
+
+#search-input:focus{
+    outline: none;
+}
+
+#search button:hover > .fa-search{
+   color: white;
+}
+
+.editDescription{
+    margin-top: 2px;
+}
+
+.btnDelete{
+    background-color: red;
+}
+
+.dropdown{
+    width:100%;
+    position:absolute;
+    bottom: 10px;
+}
+
+#profile-pic{
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+}
+
+.shareUpload{
+    margin-top: 5px;
 }
