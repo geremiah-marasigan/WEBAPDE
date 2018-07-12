@@ -147,18 +147,23 @@
                 <h5 class="modal-title" id="exampleModalLabel">Upload a Meme</h5>
               </div>
               <div class="modal-body">
+                <div class="title">
+                    <span>Meme Title: </span>
+                    <input id="memeTitle" type="text">
+                </div>
+                  <br>
                 <div class="upload-photo">
                   <span>Choose a photo: </span>
-                  <input type="file"/>
+                  <input id="memeFile" type="file"/>
                 </div>
                 <br/>
                 <div class="tagAdder">
                     <span>Add Tags:</span>
-                    <input type="text" placeholder="Separate tags with a comma"/>
+                    <input id="memeTags" type="text" placeholder="Separate tags with a comma"/>
                 </div>
                 <div class="editDescription">
                   <span>Set Description:</span>
-                  <textarea rows="4" cols="50"></textarea>
+                  <textarea id="memeDesc" rows="4" cols="50"></textarea>
                   
                 </div>
                 <div class="statusChk">
@@ -167,12 +172,12 @@
                 </div>
                 <div id="shareUpload">
                     <span>Share With:</span>
-                    <input type="text" placeholder="Separate with a comma"/>
+                    <input id="memeShare" type="text" placeholder="Separate with a comma"/>
                 </div>
                 </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Upload</button>
+                <button type="button" class="btn btn-primary" id="uploadBtn" >Upload</button>
               </div>
             </div>
           </div>
@@ -181,8 +186,9 @@
     <script>        
         //Makes sure functions only run when document is ready
         $(document).ready(function () {
+            var x = 0
             var memeURL = "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.15752-9/36941533_2410232395658474_6188230137532645376_n.png?_nc_cat=0&oh=df503d9734abb8be8f61b20df537e59a&oe=5BD0AD1A"
-            for (let x = 0; x < 10; x++){
+            for (x = 0; x < 10; x++){
                 
                 var memeImg = document.createElement("img")
                 $(memeImg).addClass("meme")
@@ -194,6 +200,36 @@
                 
                 newMeme(new Meme("When the class is too noisy", "mr_bizcuit", "*slap* *slap* *slap*", memeURL, ["NSFW","Bastos","Cat"], ["", "", "main-cat.html"], "Public"),x)
             }
+            
+            $(".modal-footer #uploadBtn").on("click",function(){
+                console.log("I have been pressed")
+                var memeTitle = document.getElementById("memeTitle").value
+                var memeFile = "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.15752-9/36941533_2410232395658474_6188230137532645376_n.png?_nc_cat=0&oh=df503d9734abb8be8f61b20df537e59a&oe=5BD0AD1A"
+                var memeTags = document.getElementById("memeTags").value.split(",")
+                var memeDesc = document.getElementById("memeDesc").value
+                var memeStat = document.getElementById("publicChk").checked 
+                var status = ""
+                
+                if(memeStat == true){
+                    status = "Public"
+                }else if(memeStat == false){
+                    status = "Private"
+                }else{
+                    console.log("WTF NO CHECK???")
+                }
+                
+                var memeImg = document.createElement("img")
+                $(memeImg).addClass("meme")
+                $(memeImg).attr("src",memeURL)
+                $(memeImg).attr("data-toggle","modal")
+                $(memeImg).attr("data-target","#meme"+x)
+                
+                $("#column" + x%3).append(memeImg)
+                
+                newMeme(new Meme(memeTitle,"Durstnt",memeDesc,memeFile,memeTags,[],status),x)
+                x++;
+            })
+            
             //Adds remove button on hover and removes on leave
             $(".modal-footer .tags .memetag").on('mouseenter', function () {
                 $(this).find(":button").show();
