@@ -132,3 +132,16 @@ function newMeme(MEME,x){
     console.log(memelist)
 
 }
+
+ //removes share with if meme is public
+function isPublic(){
+            var checkbox = document.getElementById("publicChk");
+            var share = document.getElementById("shareUpload");
+            
+            if(checkbox.checked == true){
+                share.style.display = "none";
+            }
+            else{
+                share.style.display = "block";
+            }
+}

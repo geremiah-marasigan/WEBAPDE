@@ -163,3 +163,9 @@ li {
 .modal-footer div{
     padding: 2px;
 }
+
+#logo{
+    height: 75px;
+    width: 75px;
+    margin-top: -25px;
+}

@@ -150,3 +150,9 @@ li{
 .btnDelete{
     background-color: red;
 }
+
+#logo{
+    height: 75px;
+    width: 75px;
+    margin-top: -25px;
+}
