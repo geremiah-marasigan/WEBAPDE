@@ -263,17 +263,18 @@
         
         //Makes sure functions only run when document is ready
         $(document).ready(function () {
+            var memeURL = "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.15752-9/36941533_2410232395658474_6188230137532645376_n.png?_nc_cat=0&oh=df503d9734abb8be8f61b20df537e59a&oe=5BD0AD1A"
             for (let x = 0; x < 10; x++){
                 
                 var memeImg = document.createElement("img")
                 $(memeImg).addClass("meme")
-                $(memeImg).attr("src","https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg")
+                $(memeImg).attr("src",memeURL)
                 $(memeImg).attr("data-toggle","modal")
                 $(memeImg).attr("data-target","#meme"+x)
                 
                 $("#column" + x%3).append(memeImg)
                 
-                newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"], ["", "", "main-cat.html"], "Public"),x)
+                newMeme(new Meme("When the class is too noisy", "mr_bizcuit", "*slap* *slap* *slap*", memeURL, ["NSFW","Bastos","Cat"], ["", "", "main-cat.html"], "Public"),x)
             }
             
             
