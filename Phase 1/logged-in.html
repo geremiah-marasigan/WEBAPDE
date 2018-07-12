@@ -46,19 +46,15 @@
             <h1>Shared</h1>
             <div class="images">
                 <div class="row justify-content-md-center">
-                    <div class="col col-lg-3">
-                    <img class="meme" src="https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg" data-toggle="modal" data-target="#memeModal"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    
+                    <div class="row justify-content-md-center">
+                    <div class="col col-lg-3" id = "column0">
+                        <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
                     </div>
-                    <div class="col col-lg-3">
-                    <img class="meme" src="https://static.boredpanda.com/blog/wp-content/uploads/2016/09/Offensively-Cute-Greeting-Cards-57db9683a3cc7__605.jpg"/>
-                    <img class="meme" src="https://static.boredpanda.com/blog/wp-content/uploads/2015/05/cute-minimalist-illustrations-jaco-haasbroek-301-605x605.jpg"/>
+                    <div class="col col-lg-3" id = "column1">
                     </div>
-                    <div class="col col-lg-3">
-                    <img class="meme" src="https://d3jkudlc7u70kh.cloudfront.net/cat-facts.jpg"/>
-                    <img class="meme" src="https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/16816464/android/sticker.png"/>
+                    <div class="col col-lg-3" id = "column2">
                     </div>
+                </div>
                 </div>
             </div>
             
@@ -194,12 +190,12 @@
             this.status = status;
         }
         
-        function newMeme(MEME){
+        function newMeme(MEME,x){
             
             //Main modal
             var modalDiv = document.createElement("div")
             $(modalDiv).addClass("modal fade")
-            $(modalDiv).attr("id", "memeModal")
+            $(modalDiv).attr("id", "meme" + x)
             $(modalDiv).attr("tabindex","-1")
             $(modalDiv).attr("role", "dialog")
             $(modalDiv).attr("aria-labelledby", "exampleModalLabel")
@@ -329,8 +325,19 @@
         
         //Makes sure functions only run when document is ready
         $(document).ready(function () {
-            newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"], ["", "", "logged-in-cat.html"], "Public"))
-            
+            var memeURL = "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.15752-9/36941533_2410232395658474_6188230137532645376_n.png?_nc_cat=0&oh=df503d9734abb8be8f61b20df537e59a&oe=5BD0AD1A"
+            for (let x = 0; x < 10; x++){
+                
+                var memeImg = document.createElement("img")
+                $(memeImg).addClass("meme")
+                $(memeImg).attr("src",memeURL)
+                $(memeImg).attr("data-toggle","modal")
+                $(memeImg).attr("data-target","#meme"+x)
+                
+                $("#column" + x%3).append(memeImg)
+                
+                newMeme(new Meme("When the class is too noisy", "mr_bizcuit", "*slap* *slap* *slap*", memeURL, ["NSFW","Bastos","Cat"], ["", "", "main-cat.html"], "Public"),x)
+            }
             //Adds remove button on hover and removes on leave
             $(".modal-footer .tags .memetag").on('mouseenter', function () {
                 $(this).find(":button").show();
