@@ -175,3 +175,14 @@ li {
     flex-direction: row;
     float:left;
 }
+
+#sign_up{
+    padding: 15px;
+    border-radius: 3px;
+    font-weight: 700;
+    border-style: solid;
+    border-width: 1px;
+    transition: 0.25s ease;
+    text-decoration: none;
+    color: white;
+}
