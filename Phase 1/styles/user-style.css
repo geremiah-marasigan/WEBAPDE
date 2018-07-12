@@ -122,3 +122,44 @@ li {
 .shareUpload{
     margin-top: 5px;
 }
+
+.main{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 30px;
+}
+
+.images img{
+    width:100%;
+    height: auto;
+    padding: 10px;
+}
+
+.modal-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-subheading{
+    font-style: italic;
+    color: darkgray;
+}
+
+.modal-body img{
+    width:100%;
+    height: auto;
+    padding: 10px;
+}
+
+.modal-footer .tags{
+    float:left;
+    display: flex;
+    width:100%;
+}
+
+.modal-footer div{
+    padding: 2px;
+}
