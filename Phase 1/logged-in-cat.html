@@ -34,9 +34,9 @@
                         <div id="search">
                             <form>
                                 <input id="search-input" type="text" placeholder="Search Tags"/>
-                                <button type="submit" class="submit-button">
+                                <a href="logged-in-cat.html" class="submit-button">
                                     <i class="fa fa-search"></i>
-                                </button>
+                                </a>
                             </form>
                         </div>
                     </li>
@@ -49,18 +49,24 @@
             <h1>Cat</h1>
             <div class="images">
                 <div class="row justify-content-md-center">
-                     <div class="col col-lg-3">
-                    <img class="meme" src="https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg" data-toggle="modal" data-target="#memeModal"/>
+                     <div class="col col-lg-3" id="column0">
+                    
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                        
+                    </div>
+                    <div class="col col-lg-3" id="column1">
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
                     <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
                     
                     </div>
-                    <div class="col col-lg-3">
-                    <img class="meme" src="http://catsatthestudios.com/wp-content/uploads/2017/12/12920541_1345368955489850_5587934409579916708_n-2-960x410.jpg"/>
-                    <img class="meme" src="https://www.catster.com/wp-content/uploads/2016/05/cats-politics-TN.jpg"/>
-                    </div>
-                    <div class="col col-lg-3">
-                    <img class="meme" src="https://d3jkudlc7u70kh.cloudfront.net/cat-facts.jpg"/>
-                    <img class="meme" src="https://amp.thisisinsider.com/images/5b1040d55e48ec24008b460c-750-562.jpg"/>
+                    <div class="col col-lg-3" id="column2">
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
+                    
                     </div>
                 </div>
             </div>
@@ -101,7 +107,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">As pretty as a Cat</h5>
-                <div class="modal-subheading">By Durstnt | Private</div>
+                <div class="modal-subheading">By <a href="user.html">Durstnt</a> | Private</div>
               </div>
               <div class="modal-body">
                 <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
@@ -180,14 +186,24 @@
             </div>
           </div>
         </div>
-    
-    <button id="view-more" class="btn btn-success">View more</button>
 </body>
     <script>
         
         //Makes sure functions only run when document is ready
         $(document).ready(function () {
-            newMeme(new Meme("Before and after Jakol", "mr_bizcuit", "I calm down every time.", "https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg", ["NSFW","Bastos","Cat"], ["", "", "logged-in-cat.html"], "Public"))
+            var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
+            for (let x = 0; x < 6; x++){
+                
+                var memeImg = document.createElement("img")
+                $(memeImg).addClass("meme")
+                $(memeImg).attr("src",memeURL)
+                $(memeImg).attr("data-toggle","modal")
+                $(memeImg).attr("data-target","#meme"+x)
+                
+                $("#column" + x%3).append(memeImg)
+                
+                newMeme(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["", "", "main-cat.html"], "Public"),x)
+            }
             
             //Adds remove button on hover and removes on leave
             $(".modal-footer .tags .memetag").on('mouseenter', function () {
@@ -197,6 +213,11 @@
                     $(this).find(":button").hide();
                     console.log("out");
             });
+//            var viewmore = document.createElement("button")
+//            $(viewmore).addClass("btn btn-success")
+//            $(viewmore).attr("id", "view-more")
+//            $(viewmore).html("View More")
+//            $("body").append(viewmore)
         });
     </script>
 </html>
