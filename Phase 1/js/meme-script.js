@@ -39,7 +39,7 @@ function newMeme(MEME,x){
     $(modalSubheadDiv).addClass("modal-subheading")
     var memeOwner = document.createTextNode("By ")
     var memeOwnerLink = document.createElement("a")
-    $(memeOwnerLink).attr("href","user-public.html")
+    $(memeOwnerLink).attr("href","user2.html")
     var ownerName = document.createTextNode(MEME.owner)
     /*Public or Private*/
     var memeStatus = document.createTextNode(" | " + MEME.status)
