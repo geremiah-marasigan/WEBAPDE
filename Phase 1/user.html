@@ -35,16 +35,15 @@
                         <div id="search">
                             <form>
                                 <input id="search-input" type="text" placeholder="Search Tags"/>
-                                <a href="logged-in-cat.html" class="submit-button">
+                                <button type="submit" class="submit-button">
                                     <i class="fa fa-search"></i>
-                                </a>
+                                </button>
                             </form>
                         </div>
                     </li>
                 </ul>
                 </div>
             </nav>
-            <button id="view-more" class="btn btn-success">View more</button>
         </div>
         <!--Uploading a Meme-->
         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,24 +96,14 @@
             <h4 class="meme-header">Memes Posted</h4>
             <div class="images">
                 <div class="row-justify-content-md-center">
-                    <div class="col col-lg-3" id="column0">
-                    
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                        
+                    <div class="col col-lg-3" id = "column0">
+                        <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
                     </div>
-                    <div class="col col-lg-3" id="column1">
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    
+                    <div class="col col-lg-3" id = "column1">
+                        <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
                     </div>
-                    <div class="col col-lg-3" id="column2">
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
-                    
+                    <div class="col col-lg-3" id = "column2">
+                        <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" data-toggle="modal" data-target="#memeModalLoggedIn"/>
                     </div>
                 </div>
             </div>
@@ -125,7 +114,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">As pretty as a Cat</h5>
-                <div class="modal-subheading">By <a href="user.html">Durstnt</a> | Private</div>
+                <div class="modal-subheading">By Durstnt | Private</div>
               </div>
               <div class="modal-body">
                 <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
@@ -166,7 +155,7 @@
           </div>
         </div>
         
-        
+        <button id="view-more" class="btn btn-success">View more</button>
     </body>
     
     <script>
@@ -184,6 +173,21 @@
         }
         
         $(document).ready(function () {
+            var memeURL = "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.15752-9/36941533_2410232395658474_6188230137532645376_n.png?_nc_cat=0&oh=df503d9734abb8be8f61b20df537e59a&oe=5BD0AD1A"
+            for (let x = 0; x < 10; x++){
+                
+                var memeImg = document.createElement("img")
+                $(memeImg).addClass("meme")
+                $(memeImg).attr("src",memeURL)
+                $(memeImg).attr("data-toggle","modal")
+                $(memeImg).attr("data-target","#meme"+x)
+                
+                $("#column" + x%3).append(memeImg)
+                
+                newMeme(new Meme("When the class is too noisy", "mr_bizcuit", "*slap* *slap* *slap*", memeURL, ["NSFW","Bastos","Cat"], ["", "", "logged-in-cat.html"], "Public"),x)
+            }
+            
+            
             
             //Adds remove button on hover and removes on leave
             $(".modal-footer .tags .memetag").on('mouseenter', function () {
