@@ -265,3 +265,32 @@ function isPublic(){
                 share.style.display = "block";
             }
 }
+
+//removes tags and shared users
+function removeMe() {
+    console.log($(this).parent().remove())
+    console.log($(this).hasClass("removeBtn"))
+}
+
+function addShareMeme() {
+    console.log("PRESSED")
+    var input = document.getElementById("sharedUser").value
+    var shareDiv = document.createElement("div")
+    $(shareDiv).addClass("memeShare")
+    var nameSpan = document.createElement("span")
+    var nameText = document.createTextNode(input)
+    $(nameSpan).append(nameText)
+    var removeButton = document.createElement("button")
+    $(removeButton).addClass("removeBtn")
+    $(removeButton).attr("type", "button")
+    $(removeButton).attr("style", "display: none")
+    var removeLabel = document.createTextNode("x")
+    $(removeButton).append(removeLabel)
+    $(shareDiv).append(nameSpan)
+    $(shareDiv).append(removeButton)
+    $(".shareMemeSection").append(shareDiv)
+
+    console.log($(removeButton).hasClass("removeBtn"))
+
+    document.getElementById("sharedUser").value = ""
+}
