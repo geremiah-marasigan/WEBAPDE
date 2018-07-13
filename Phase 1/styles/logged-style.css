@@ -1,14 +1,15 @@
-html, body{
+html,
+body {
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     font-family: sans-serif;
-    background-color: #f7f7f7; 
+    background-color: #f7f7f7;
 }
 
-nav{
-    background-color: 	#0e1111;
+nav {
+    background-color: #0e1111;
     top: 0;
     left: 0;
     width: 100%;
@@ -18,32 +19,32 @@ nav{
     z-index: 99;
 }
 
-nav ul{
+nav ul {
     color: whitesmoke;
     margin: 0 auto;
 }
 
-nav ul li:first-child{
+nav ul li:first-child {
     float: left;
 }
 
-nav ul li{
+nav ul li {
     margin: 20px 15px;
     float: right;
 }
 
-li{
+li {
     list-style: none;
 }
 
-#logo{
+#logo {
     font-family: sans-serif;
     text-decoration: none;
     color: white;
 }
 
 
-.main{
+.main {
     position: absolute;
     top: 60px;
     left: 0;
@@ -52,44 +53,36 @@ li{
     margin: 30px;
 }
 
-.images img{
-    width:100%;
+.images img {
+    width: 100%;
     height: auto;
     padding: 10px;
 }
 
 
-.modal-header{
+.modal-header {
     display: flex;
     flex-direction: column;
 }
 
-.modal-subheading{
+.modal-subheading {
     font-style: italic;
     color: darkgray;
 }
 
-.modal-body img{
-    width:100%;
+.modal-body img {
+    width: 100%;
     height: auto;
     padding: 10px;
 }
 
-.modal-footer .tags{
-    float:left;
+.modal-footer .tags {
+    float: left;
     display: flex;
-    width:100%;
+    width: 100%;
 }
 
-.modal-footer div{
-    padding: 2px;
-}
-
-.tagAdder input{
-    width: 300px;
-}
-
-#search button{
+.removeBtn {
     width: 32px;
     height: 32px;
     background-color: transparent;
@@ -98,70 +91,92 @@ li{
     margin-left: -4px;
 }
 
+.modal-footer div {
+    padding: 2px;
+}
 
-.fa-search{
+.tagAdder input {
+    width: 300px;
+}
+
+#search button {
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: -4px;
+    outline: none;
+    text-decoration: none;
+}
+
+
+.fa-search {
     color: grey;
     font-size: 24px;
+    outline: none;
+    text-decoration: none;
 }
 
 /*Styled Search*/
-#search-input{
+
+#search-input {
     background: transparent;
     border: none;
     border-bottom: 2px solid grey;
-    color:white;
+    color: white;
 }
 
-#search-input:focus{
+#search-input:focus {
     outline: none;
 }
 
-#search button:hover > .fa-search{
-   color: white;
+#search button:hover > .fa-search {
+    color: white;
 }
 
-.editDescription{
+.editDescription {
     margin-top: 2px;
 }
 
-.btnDelete{
+.btnDelete {
     background-color: red;
 }
 
-.dropdown{
-    width:100%;
-    position:absolute;
+.dropdown {
+    width: 100%;
+    position: absolute;
     bottom: 10px;
     text-decoration: none;
 }
 
-.dropdown:hover{
+.dropdown:hover {
     background-color: #323232;
 }
 
-#user-menu{
+#user-menu {
     color: white;
     text-decoration: none;
 }
 
-#profile-pic{
+#profile-pic {
     width: 32px;
     height: 32px;
     border-radius: 32px;
 }
 
-.shareUpload{
+.shareUpload {
     margin-top: 5px;
 }
 
 /*hide share with if public is ticked*/
-input[type=checkbox]:checked ~ .shareUpload{
-    display:none;
+
+input[type=checkbox]:checked ~ .shareUpload {
+    display: none;
 }
 
-#logo{
+#logo {
     height: 75px;
     width: 75px;
     margin-top: -25px;
 }
-

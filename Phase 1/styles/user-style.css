@@ -191,6 +191,20 @@ li {
     color: white;
 }
 
+.editProfile{
+    position: absolute;
+    top: 330px;
+    left: 100px;
+}
+
+.editProfile a{
+    color: black
+}
+
+.editProfile a:hover{
+    color: black;
+}
+
 #view-more{
     position: relative;
     left: 50%;
