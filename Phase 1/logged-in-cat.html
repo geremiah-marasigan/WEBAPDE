@@ -125,10 +125,15 @@
                         <textarea rows="4" cols="50"></textarea>
                         <button type="button" class="btn btn-default update-description">Update</button>
                     </div>
+                    <div class="shareMemeSection">
+                        <div class="memeShare">
+                            <span>mr_bizcuit</span><button class="removeBtn" type="button" style="display: none;">x</button>
+                        </div>
+                        <div class="memeShare">
+                            <span>Jdelbz</span><button class="removeBtn" type="button" style="display: none;">x</button>
+                        </div>
+                    </div>
                     <div class="shareMeme">
-                        <span>Shared With:</span> <br/>
-                        <span>mr_bizcuit</span> <br/>
-                        <span>Jdelbz</span> <br/>
                         <input type="text" placeholder="Add users to share with" />
                         <button type="button" class="btn btn-success share-meme">Add</button>
                     </div>
@@ -211,6 +216,13 @@
 
         //Adds remove button on hover and removes on leave
         $(".modal-footer .tags .memetag").on('mouseenter', function() {
+            $(this).find(":button").show();
+            console.log("in");
+        }).on('mouseleave', function() {
+            $(this).find(":button").hide();
+            console.log("out");
+        });
+        $(".modal-body .shareMemeSection .memeShare").on('mouseenter', function() {
             $(this).find(":button").show();
             console.log("in");
         }).on('mouseleave', function() {

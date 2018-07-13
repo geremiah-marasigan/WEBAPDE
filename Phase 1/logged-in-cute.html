@@ -123,10 +123,16 @@
                         <textarea rows="4" cols="50"></textarea>
                         <button type="button" class="btn btn-default update-description">Update</button>
                     </div>
-                    <div class="shareMeme">
+                    <div class="shareMemeSection">
                         <span>Shared With:</span> <br/>
-                        <span>mr_bizcuit</span> <br/>
-                        <span>Jdelbz</span> <br/>
+                        <div class="memeShare">
+                            <span>mr_bizcuit</span><button class="removeBtn" type="button" style="display: none;">x</button>
+                        </div>
+                        <div class="memeShare">
+                            <span>Jdelbz</span><button class="removeBtn" type="button" style="display: none;">x</button>
+                        </div>
+                    </div>
+                    <div class="shareMeme">
                         <input type="text" placeholder="Add users to share with" />
                         <button type="button" class="btn btn-success share-meme">Add</button>
                     </div>
@@ -137,9 +143,8 @@
                 <div class="modal-footer">
                     <div class="tags">
                         <div>Tags: </div>
-                        <div><a href="logged-in-cute.html">Cute</a>, </div>
-                        <div><a href="">Hot</a>, </div>
-                        <div><a href="logged-in-cat.html">Cat</a></div>
+                        <div class="memetag"><a href="logged-in-cute.html">Cute</a><button class="removeBtn" type="button" style="display: none;">x</button>, </div>
+                        <div class="memetag"><a href="logged-in-cat.html">Cat</a><button class="removeBtn" type="button" style="display: none;">x</button></div>
                     </div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -350,5 +355,20 @@
             console.log("out");
         });
     });
+    
+    $(".modal-footer .tags .memetag").on('mouseenter', function() {
+            $(this).find(":button").show();
+            console.log("in");
+        }).on('mouseleave', function() {
+            $(this).find(":button").hide();
+            console.log("out");
+        });
+        $(".modal-body .shareMemeSection .memeShare").on('mouseenter', function() {
+            $(this).find(":button").show();
+            console.log("in");
+        }).on('mouseleave', function() {
+            $(this).find(":button").hide();
+            console.log("out");
+        });
 </script>
 </html>
