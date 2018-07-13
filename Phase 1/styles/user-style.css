@@ -111,8 +111,12 @@ li {
     width:100%;
     position:absolute;
     bottom: 10px;
+    text-decoration: none;
 }
 
+.dropdown:hover{
+    background-color: #323232;
+}
 #profile-pic{
     width: 32px;
     height: 32px;
@@ -186,3 +190,4 @@ li {
     text-decoration: none;
     color: white;
 }
+

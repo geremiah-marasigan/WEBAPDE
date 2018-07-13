@@ -132,6 +132,16 @@ li{
     width:100%;
     position:absolute;
     bottom: 10px;
+    text-decoration: none;
+}
+
+.dropdown:hover{
+    background-color: #323232;
+}
+
+#user-menu{
+    color: white;
+    text-decoration: none;
 }
 
 #profile-pic{
@@ -154,3 +164,4 @@ input[type=checkbox]:checked ~ .shareUpload{
     width: 75px;
     margin-top: -25px;
 }
+
