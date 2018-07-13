@@ -27,8 +27,7 @@
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
                                 <a class="dropdown-item" href="user.html">Profile</a>
                                 <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
-                                <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
+                                <a class="dropdown-item" id="sign-out" href="main.html">Sign-Out</a>
                             </div>
                         </div>
                     </li>
@@ -253,7 +252,7 @@
 
             $("#column" + x % 3).append(memeImg)
 
-            newMeme(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["logged-in-cat.html"], "Public"),x)
+            newMeme(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["", "", "main-cat.html"], "Public"),x)
         }
 
         $(".modal-footer #uploadBtn").on("click", function() {
