@@ -4,3 +4,8 @@
     margin-top: 85%;
     z-index: 98;
 }
+
+.submit-button{
+    background-color: transparent;
+    border: none;
+}
