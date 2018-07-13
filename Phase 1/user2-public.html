@@ -176,7 +176,8 @@
         }
         
         $(document).ready(function () {
-            var memeURL = "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.15752-9/36941533_2410232395658474_6188230137532645376_n.png?_nc_cat=0&oh=df503d9734abb8be8f61b20df537e59a&oe=5BD0AD1A"
+            var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
+
             for (let x = 0; x < 10; x++){
                 
                 var memeImg = document.createElement("img")
@@ -187,7 +188,7 @@
                 
                 $("#column" + x%3).append(memeImg)
                 
-                newMeme(new Meme("When the class is too noisy", "mr_bizcuit", "*slap* *slap* *slap*", memeURL, ["NSFW","Bastos","Cat"], ["", "", "logged-in-cat.html"], "Public"),x)
+                newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["", "", "main-cat.html"], "Public"),x)
             }
             
             
