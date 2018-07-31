@@ -1,0 +1,19 @@
+{
+  "name": "webapde",
+  "version": "1.0.0",
+  "description": "Zach Marasigan\r Kyle Santiago\r Josh Del Barrio",
+  "main": "jquery-3.3.1.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrbizcuit/WEBAPDE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrbizcuit/WEBAPDE/issues"
+  },
+  "homepage": "https://github.com/mrbizcuit/WEBAPDE#readme"
+}
