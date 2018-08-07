@@ -13,9 +13,12 @@
             <div>
                 <ul>
                     <li>
-                        <a href="index.html" id="logo">
+                        <!--<a href="index.html" id="logo">
                             <img id="logo" src="resources/logo.png"/>
-                        </a>
+                        </a>-->
+                        <form method = post action = home>
+                            <input type = "image" id = logo src = resources/logo.png>
+                        </form>
                     </li>
                     <li>
                         {{#if user}}
@@ -30,8 +33,11 @@
                                 </div>
                             </div>
                         {{else}}
-                            <a id="sign_up" href="login.html">
-                            LOGIN</a>
+                            <!--<a id="sign_up" href="login.html">
+                            LOGIN</a>-->
+                        <form method = post action = login>
+                            <input type = submit id = sign_up value = LOGIN>
+                        </form>
                         {{/if}}
                     </li>
                     <li>

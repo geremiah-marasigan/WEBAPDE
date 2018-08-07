@@ -37,6 +37,28 @@ app.get("/", (req, resp)=>{
 //    });
 });
 
+app.post("/home", urlencoder, (req, resp)=>{
+    console.log("GET /home")
+    
+    resp.render("index.hbs")
+})
+
+app.post("/login", urlencoder, (req, resp)=>{
+    console.log("GET /login")
+    
+    resp.render("login.hbs")
+})
+
+app.post("/signup", urlencoder, (req, resp)=>{
+    console.log("GET /signup")
+    
+    resp.render("signup.hbs")
+})
+
+app.post("registered", urlencoder, (req, resp)=>{
+    //when they send their info
+})
+
 //app.post("/addticket", urlencoder, (req, resp)=>{
 //    //add ticket user inputted to database
 //    //input

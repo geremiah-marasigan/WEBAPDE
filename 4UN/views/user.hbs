@@ -17,27 +17,38 @@
             <div>
                 <ul>
                     <li>
-                        <a href="logged-in.html" id="logo"><img id="logo" src="resources/logo.png"/></a>
+                        <!--<a href="index.html" id="logo">
+                            <img id="logo" src="resources/logo.png"/>
+                        </a>-->
+                        <form method = post action = home>
+                            <input type = "image" id = logo src = resources/logo.png>
+                        </form>
                     </li>
                     <li>
-                        <div class="dropdown">
-                            <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
-                            <img id="profile-pic" src="https://lh3.googleusercontent.com/-rynVhQCyvkY/AAAAAAAAAAI/AAAAAAAAAAY/bNIUWoBt9zk/w360-h203-p/photo.jpg"/>
-                            </button>
-                            <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                <a class="dropdown-item" href="user.html">Profile</a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
+                         {{#if user}}
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
+                                <img id="profile-pic" src="{{profile-pic}}">
+                                </button>
+                                <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
+                                    <a class="dropdown-item" href="user.html">Profile</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
+                                    <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
+                                </div>
                             </div>
-                        </div>
+                        {{else}}
+                            <a id="sign_up" href="">
+                            LOGIN</a>
+                        {{/if}}
                     </li>
                     <li>
                         <div id="search">
-                            <form>
+                            <form method="post" action="search">
                                 <input id="search-input" type="text" placeholder="Search Tags" />
-                                <a href="logged-in-cat.html" class="submit-button">
+                                <!--<a href="logged-in-cat.html" class="submit-button">
                                     <i class="fa fa-search"></i>
-                                </a>
+                                </a>-->
+                                <input class="submit-button"  type = "submit" value ="Search">
                             </form>
                         </div>
                     </li>
@@ -93,12 +104,12 @@
     <div class="avatar-div">
         <img class="user-avatar" alt="Card image cap" src="https://lh3.googleusercontent.com/-rynVhQCyvkY/AAAAAAAAAAI/AAAAAAAAAAY/bNIUWoBt9zk/w360-h203-p/photo.jpg">
     </div>
-    <div class=e ditProfile>
+    <div class = editProfile>
         <a href="">Edit Profile</a>
     </div>
     <div class="user-body">
-        <h2 class="username">Durstnt</h2><br />
-        <p class="user-description">Hello I am Kyle and my favorite letter is K</p>
+        <h2 class="username">{{user}}</h2><br />
+        <p class="user-description">{{user-desc}}</p>
         <h4 class="meme-header">Memes Posted</h4>
         <div class="images">
             <div class="row-justify-content-md-center">

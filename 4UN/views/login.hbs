@@ -8,17 +8,20 @@
         <nav>
             <div class="navbar">
                 <ul>
-                    <li><a href="index.html" id="logo"><img id="logo" src="resources/logo.png"/></a></li>
-                    <!--<li>
+                    <!--<li><a href="index.html" id="logo"><img id="logo" src="resources/logo.png"/></a></li>
+                    <li>
                         <a id="sign_up" href="signup.html">
                         SIGN UP</a>
                     </li>-->
+                    <form method = post action = home>
+                        <input type = "image" id = logo src = resources/logo.png>
+                    </form>
                 </ul>
             </div>
         </nav>
     </div>
         <div class="main">
-            <form id = "loginform" action="logged-in.html">
+            <form id = "loginform" action="">
                 <div id = "loginFormDiv">
                     Username:
                     <input id="username" type="text" required/><br/>
@@ -27,15 +30,19 @@
                     Password:   
                     <input id ="password" type="password" required/><br/>
                 </div>
-                <input id = "loginSubmit" type="submit" value="Login" ><br/><br/>
-                <div id = "signup">
-                    Don't have an account?
-                    <a href = "signup.html">Sign Up!</a> 
-                </div>
-                
+                <input id = "loginSubmit" type="submit" value="Login">
             </form>
             
+            <form id = "signup" method=post action=signup>
+                <div id = "signup">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    Don't have an account?
+                    <!--<a href = "signup.html">Sign Up!</a>-->
+                    <button type = submit name = signup class = btn_hyperlink>Sign Up!</button>
+                </div>
+            </form>
         </div>
+            
 </body>
     <script>
     </script>

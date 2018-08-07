@@ -39,12 +39,6 @@ li{
     
 }
 
-#logo{
-    font-family: sans-serif;
-    text-decoration: none;
-    color: white;
-}
-
 #signup{
     margin: -10px 20px; 
 }
@@ -59,6 +53,7 @@ li{
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -84,5 +79,18 @@ li{
 #logo{
     height: 75px;
     width: 75px;
-    margin-top: -25px;
+    margin-top: -5px;
+    margin-left: 15px;
+}
+
+.btn_hyperlink{
+  border:none;
+  outline:none;
+  background:none;
+  cursor:pointer;
+  color:#0000EE;
+  padding:0;
+  text-decoration:underline;
+  font-family:inherit;
+  font-size:inherit;
 }
