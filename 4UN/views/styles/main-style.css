@@ -71,6 +71,10 @@ li{
     margin: 30px;
 }
 
+.main h1{
+    text-align: center
+}
+
 .images img{
     width:100%;
     height: auto;

@@ -9,7 +9,7 @@ const app = express();
 //makes forms readabel as request.body/request.query
 const urlencoder = bodyparser.urlencoded({extended : false});
 //sets view engine to handlebars
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 app.set("view-engine", "hbs");
 
 // connecting to our mongodb server
