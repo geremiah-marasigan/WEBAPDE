@@ -168,8 +168,13 @@ app.post("/signup", urlencoder, (req, resp)=>{
     }
 })
 
-app.post("registered", urlencoder, (req, resp)=>{
+app.post("/registered", urlencoder, (req, resp)=>{
     //when they send their info
+})
+
+app.get("/signout", urlencoder, (req, resp)=>{
+    resp.clearCookie("userpicture")
+    resp.render("index.hbs")
 })
 
 app.listen(3000,()=>{
