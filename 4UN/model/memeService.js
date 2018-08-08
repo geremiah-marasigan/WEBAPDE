@@ -7,6 +7,13 @@ exports.getAll = function(){
     return query
 }
 
+exports.deleteMe = function(memeid){
+    var query = Meme.remove({
+        _id:memeid
+    })
+    return query
+}
+
 exports.updateOne = function(meme,updated){
     var query = Meme.findOneAndUpdate({
         "_id":meme

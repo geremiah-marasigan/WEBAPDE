@@ -182,7 +182,6 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
         username,
         password,
         desc,
-        profilepicture: "LOLOLOLOLOL",
         posts: [],
         shared: []
     })
