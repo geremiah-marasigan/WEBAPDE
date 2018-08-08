@@ -2,10 +2,15 @@ const bodyparser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
-const Meme = require("./model/meme.js");
-const User = require("./model/user.js");
-const Tag = require("./model/tag.js");
 const fs = require("fs");
+
+const MemeModel = require("./model/meme.js");
+const UserModel = require("./model/user.js");
+const TagModel = require("./model/tag.js");
+
+const Meme = require("./model/memeService.js");
+const User = require("./model/userService.js");
+const Tag = require("./model/tagService.js");
 
 //app creates server
 const app = express();

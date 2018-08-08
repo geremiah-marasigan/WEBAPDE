@@ -10,7 +10,10 @@ function getAll(){
     });
 }
 
+//Find specific user
+function findSpecific()
+
 //Get the memes uploaded by a specific user
-function getMemes(){
-    
+function getMemes(user){
+    User.findOne("owner" : user.username)
 }
