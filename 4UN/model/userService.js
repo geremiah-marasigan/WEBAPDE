@@ -55,4 +55,14 @@ exports.updateShared = function(user, meme){
     return query
 }
 
+exports.removePost = function(user, meme){
+    var query = User.findOne({username : user}).update({}, {$pull: {posts: meme}}, {multi: true})
+    return query
+}
+
+exports.addPost = function(user, meme){
+    var query = User.findOne({username : user}).update({}, {$addToSet: {posts: meme}}, {multi: true})
+    return query
+}
+
 //add User in 
