@@ -9,7 +9,7 @@ html, body{
 }
 
 nav{
-    background-color: black;
+    background-color: #0e1111;
     top: 0;
     left: 0;
     width: 100%;
@@ -80,9 +80,9 @@ li{
     height: 100%;
     margin-top: 10px;
 }
+
 #logo{
     height: 75px;
     width: 75px;
-    margin-top: -5px;
-    margin-left: 15px;
+    margin-top: -25px;
 }
