@@ -2,30 +2,30 @@ const mongoose = require("mongoose");
 var Tag = require("mongoose").model("Tag")
 var TagSchema = Tag.schema
 
-export function getAll(){
+function getAll(){
     var query = Tag.find({})
     return query
 }
 
 //Because our tags are made by us (no custom tags)
-export function getAllNames(){
+function getAllNames(){
     var query = Tag.find({}, {name: 1})
     return query
 }
 
 
-export function getTag(tag){
+function getTag(tag){
     var query = Tag.findOne({"name": tag})
     return query
 }
 
 //Get the memes of a specific tag name
-export function getMemes(query){
+function getMemes(query){
     return getTag(query).memes
 }
 
 //Adds a meme to the specified tag
-export function addMeme(name, newMeme){
+function addMeme(name, newMeme){
     var schema = newMeme.schema
     
     var t = this.getTag(name)

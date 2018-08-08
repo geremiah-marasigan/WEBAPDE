@@ -1,9 +1,13 @@
-class User{const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+
+var exports = module.exports = {};
+
+
 var User = require("mongoose").model("User")
 var UserSchema = User.schema
 
 //Going to use Mongoose Queries, to be called in server by exec() function
-function getAll(){
+exports.getAll = function(){
     var query = User.find()
     
     return query
@@ -11,7 +15,7 @@ function getAll(){
 
 //Find specific user given his username, to be used when you click a users name from a meme since meme only stores his username
 //Also used in authentication
-function findSpecific(user){
+exports.findSpecific = function (user){
     var query = User.findOne({"username": user})/*.then((user)=>{
         console.log("User " + query + " Found")
         return user
@@ -22,36 +26,33 @@ function findSpecific(user){
     return query
 }
 
-function getHashedPasword(user){
+exports.getHashedPasword = function(user){
     var query = User.findOne({"username": user}, {password: 1})
     return query
 }
 
 //Get the memes uploaded by a specific user, for profile page
 //only shows latest 12 memes
-function getMemes(user){
+exports.getMemes = function(user){
     var query = User.findOne({username : user}, {posts: 1}).sort({_id:-1}).limit(12)
     return query
 }
 
 //Get the memes shared to a specific user, for profile page
 //only shows latest 12 memes
-function sharedMemes(user){
+exports.sharedMemes = function(user){
     var query = User.findOne({username : user}, {shared: 1}).sort({_id:-1}).limit(12)
     return query
 }
 
-function removedShared(user, meme){
+exports.removedShared = function(user, meme){
     var query = User.findOne({username : user}).update({}, {$pull: {shared: meme}}, {multi: true})
     return query
 }
 
-function updateShared(user, meme){
+exports.updateShared = function(user, meme){
     var query = User.findOne({username : user}).update({}, {$addToSet: {shared: meme}}, {multi: true})
     return query
 }
 
 //add User in 
-}
-
-module.exports = User
