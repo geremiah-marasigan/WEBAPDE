@@ -52,8 +52,24 @@ app.post("/login", urlencoder, (req, resp)=>{
 })
 
 app.post("/signup", urlencoder, (req, resp)=>{
-    console.log("GET /signup")
+    console.log("POST /signup")
     
+    var username = request.body.uname 
+    var email = request.body.email
+    var password = request.body.pword 
+    var desc = request.body.sdesc 
+    var profile = request.files.ppic.path
+    
+    console.log(username)
+    console.log(email)
+    console.log(password)
+    console.log(desc)
+    console.log(profile)
+    
+    var user = new User({
+        
+    })
+
     resp.render("signup.hbs")
 })
 

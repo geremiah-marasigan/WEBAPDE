@@ -8,36 +8,39 @@
         <nav>
             <div class="navbar">
                 <ul>
-                    <!--<a href="index.html" id="logo">
-                            <img id="logo" src="resources/logo.png"/>
-                        </a>-->
-                        <form method = post action = home>
-                            <input type = "image" id = logo src = resources/logo.png>
-                        </form>
+                    <li><a href="index.html" id="logo"><img id="logo" src="resources/logo.png"/></a></li>
+                    <!--<li>
+                        <a id="sign_up" href="signup.html">
+                        SIGN UP</a>
+                    </li>-->
                 </ul>
             </div>
         </nav>
     </div>
         <div class="main">
-            <form id = "signupform" method = post action="registered">
-                <div id = "signupFormDiv">
+            <form id = "signupform" action="/signup" method="post">
+                <div class = "signupFormDiv">
+                    Profile Picture: <br>
+                    <input id="profilepic" type="file" name="ppic" required /><br/>
+                </div>
+                <div class = "signupFormDiv">
                     Username:
-                    <input id="username" name = "username" type="text" required /><br/>
+                    <input id="username" type="text" name="uname" required /><br/>
                 </div>
-                <div id = "signupFormDiv">
+                <div class = "signupFormDiv">
                     Email:
-                    <input id="email" name = "email" type="email" required /><br/>
+                    <input id="email" type="email" name="email" required /><br/>
                 </div>
-                <div id = "signupFormDiv">
+                <div class = "signupFormDiv">
                     Password:   
-                    <input id ="password" name = "password" type="password" required /><br/>
+                    <input id ="password" type="password" name="pword" required /><br/>
                 </div>
                 <div id = "signupDescription">
                     Short Description: <br/>
-                    <textarea rows="4" cols="50">
+                    <textarea rows="4" cols="50" name = "sdesc">
                     </textarea>
                 </div>
-                <input id = "signupSubmit" name = "register" type="submit" value="Register"><br/><br/>
+                <input id = "signupSubmit" type="submit" value="Register"><br/><br/>
             </form>
             
         </div>
