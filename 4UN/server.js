@@ -105,28 +105,16 @@ app.get("/userPage", (req, resp)=>{
     console.log("GET /user")
     
     var uname = req.cookies.username
-    var query = User.getAll()
-    
-    query.exec(function(err, users){
+    var query = User.findSpecific(uname)
+    query.exec(function(err, user){
         if(err){
             
         }
             //error
         else{
-            var matchinguser = users.filter((user)=>{
-                if(user.username == uname){
-                    return true
-                }
-                return false
-            })
-            
-            if (matchinguser.length == 1){
-                var user = matchinguser
-                
-                resp.render("userPage.hbs", {
+            resp.render("user.hbs", {
                     user
-                })
-            }
+            })
         }
     })
     
@@ -210,8 +198,6 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
     var user = new UserModel({
         username,
         password,
-        desc,
-        profilepicture,
         posts: [],
         shared: []
     })
