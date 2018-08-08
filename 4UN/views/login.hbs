@@ -25,10 +25,13 @@
                 </div>
                 <input id = "loginSubmit" type="submit" value="Login">
             </form>
-            
+            <br/><br/><br/><br/><br/><br/><br/><br/>
+            {{#if message}}
+            <p class = message>{{message}}<br/></p>
+            {{/if}}
             <form id = "signup" method=post action=signup>
                 <div id = "signup">
-                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    
                     Don't have an account?
                     <a href = "signupPage">Sign Up!</a>
 <!--                    <button type = submit name = signup class = btn_hyperlink>Sign Up!</button>-->
