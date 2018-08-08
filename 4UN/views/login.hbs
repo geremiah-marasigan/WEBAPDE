@@ -9,30 +9,19 @@
             <div class="navbar">
                 <ul>
                     <li><a href="/" id="logo"><img id="logo" src="resources/logo.png"/></a></li>
-<!--
-                    <li>
-                        <a id="sign_up" href="signup.html">
-                        SIGN UP</a>
-                    </li>
--->
-<!--
-                    <form method = post action = home>
-                        <input type = "image" id = logo src = resources/logo.png>
-                    </form>
--->
                 </ul>
             </div>
         </nav>
     </div>
         <div class="main">
-            <form id = "loginform" action="">
+            <form id = "loginform" action="/login" method="post">
                 <div id = "loginFormDiv">
                     Username:
-                    <input id="username" type="text" required/><br/>
+                    <input id="username" type="text" name="uname" required/><br/>
                 </div>
                 <div id = "loginFormDiv">
                     Password:   
-                    <input id ="password" type="password" required/><br/>
+                    <input id ="password" type="password" name="pword" required/><br/>
                 </div>
                 <input id = "loginSubmit" type="submit" value="Login">
             </form>

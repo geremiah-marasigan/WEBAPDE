@@ -52,6 +52,17 @@ app.get("/loginPage", (req, resp)=>{
     resp.render("login.hbs")
 })
 
+app.post("/login", urlencoder, (req,resp)=>{
+    console.log("POST /login")
+    
+    var username = req.body.uname 
+    var password = req.body.pword 
+    
+    //put user check here
+    
+    
+})
+
 app.get("/signupPage", (req,resp)=>{
     console.log("GET /signup")
     resp.render("signup.hbs")
