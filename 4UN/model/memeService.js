@@ -10,3 +10,14 @@ function getAll(){
     });
 }
 
+function getPublic(){
+    var Memes = Meme.find({"status" : "public"}).then((public)=>{
+        console.log("PUBLIC SUCCESS")
+        return public
+    }, (err)=>{
+        console.log(err)
+        return false
+    })
+    
+    
+}
