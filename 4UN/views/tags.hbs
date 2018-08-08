@@ -14,19 +14,43 @@
             <div>
                 <ul>
                     <li>
-                        <a href="index.html" id="logo"><img id="logo" src="resources/logo.png"/></a>
+                        <a href="/" id="logo">
+                            <img id="logo" src="resources/logo.png"/>
+                        </a>
+                        <!--<form method = post action = home>
+                            <input type = "image" id = logo src = resources/logo.png>
+                        </form>-->
                     </li>
                     <li>
-                        <a id="sign_up" href="login.html">
-                        LOGIN</a>
+                        {{#if user}}
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
+                                <img id="profile-pic" src="{{user.profilepic}}">
+                                </button>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
+                                <a class="dropdown-item" href="user.html">Profile</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
+                                <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
+                            </div>
+                        </div>
+                        {{else}}
+                        <a id="sign_up" href="loginPage">
+                            LOGIN</a>
+                        <!--
+                        <form method = post action = login>
+                            <input type = submit id = sign_up value = LOGIN>
+                        </form>
+-->
+                        {{/if}}
                     </li>
                     <li>
                         <div id="search">
-                            <form>
-                                <input id="search-input" type="text" placeholder="Search Tags"/>
-                                <button type="submit" class="submit-button">
+                            <form id = search action = search method = get>
+                                <input id="search-input" type="text" placeholder="Search Tags" />
+                                <!--<a href="main-cat.html" class="submit-button">
                                     <i class="fa fa-search"></i>
-                                </button>
+                                </a>-->
+                                <input class = submit-button type = submit>
                             </form>
                         </div>
                     </li>
@@ -36,7 +60,7 @@
         </nav>
     </div>
         <div class="main">
-            <h1>Cats</h1>
+            <h1>{{tag}}</h1>
             <div class="images">
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3" id = "column0">

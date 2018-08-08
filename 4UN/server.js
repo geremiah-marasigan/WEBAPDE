@@ -48,9 +48,14 @@ app.get("/", (req, resp)=>{
     })
 });
 
-app.get("/tagPage", (req,resp)=>{
+app.get("/search", (req,resp)=>{
     console.log("GET /tags")
-    resp.render("tags.hbs")
+    
+    var tag = req.body.searchinput
+
+    resp.render("tags.hbs", {
+        tag
+    })
 })
 
 app.get("/userPage", (req, resp)=>{
@@ -111,7 +116,7 @@ app.post("/signup", urlencoder, (req, resp)=>{
         desc,
         profile
     }
-}
+})
 
 app.post("registered", urlencoder, (req, resp)=>{
     //when they send their info
