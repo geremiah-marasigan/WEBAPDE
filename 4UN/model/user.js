@@ -8,7 +8,8 @@ var UserSchema = mongoose.Schema({
     password: String,
     description: {type: String, default: "No Description"},
     profilepicture: Buffer,
-    posts: [MemeSchema]
+    posts: [MemeSchema],
+    shared: [MemeSchema]
 });
 
 var User = mongoose.model("User", UserSchema);

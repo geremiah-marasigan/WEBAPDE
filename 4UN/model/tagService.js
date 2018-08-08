@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-var Meme = require("mongoose").model("Meme")
-var MemeSchema = Meme.schema
+var Tag = require("mongoose").model("Tag")
+var TagSchema = Tag.schema
 
 function getAll(){
     var Memes = Meme.find().then((memes)=>{
@@ -9,4 +9,3 @@ function getAll(){
         return false  
     });
 }
-
