@@ -35,20 +35,16 @@ app.get("/", (req, resp)=>{
     console.log("GET /");
     
     resp.render("index.hbs")
-    //get all ticket data
-//    var Tickets = Ticket.find().then((tickets)=>{
-//        resp.render("index.hbs", {
-//            tickets
-//        });
-//    },()=>{
-//        resp.render("index.hbs");  
-//    });
 });
 
-app.post("/home", urlencoder, (req, resp)=>{
-    console.log("GET /home")
-    
-    resp.render("index.hbs")
+app.get("/tagPage", (req,resp)=>{
+    console.log("GET /tags")
+    resp.render("tags.hbs")
+})
+
+app.get("/userPage", (req, resp)=>{
+    console.log("GET /user")
+    resp.render("user.hbs")
 })
 
 app.get("/loginPage", (req, resp)=>{
@@ -75,74 +71,12 @@ app.post("/signup", urlencoder, (req, resp)=>{
     console.log(password)
     console.log(desc)
     console.log(profile)
-    
-    var user = new User({
-        
-    })
 
 })
 
 app.post("registered", urlencoder, (req, resp)=>{
     //when they send their info
 })
-
-//app.post("/addticket", urlencoder, (req, resp)=>{
-//    //add ticket user inputted to database
-//    //input
-//    var event = req.body.event
-//    var price = req.body.price
-//    var category = req.body.category
-//    var t = new Ticket({
-//        event, category, price
-//    })
-//    //processing
-//    t.save().then(()=>{
-//        //successfully added ticket
-//        resp.render("index.hbs", {
-//            message : "Ticket was added successfully"
-//        })
-//    }, (err)=>{
-//        resp.render("index.hbs", {
-//            message : "something went wrong" + err
-//        })
-//    });
-//    //output
-//});
-//
-//app.post("/deleteticket", urlencoder, (req, resp)=>{
-//    console.log(req.body.id);
-//    //removing the ticket
-//    Ticket.remove({
-//        _id: req.body.id
-//    }).then(()=>{
-//        resp.redirect("/");
-//    })
-//    
-//});
-//
-//app.get("/viewticket", urlencoder, (req, resp)=>{
-//    Ticket.findOne({
-//        _id: req.body.id
-//    }).then((ticket)=>{
-//        resp.render("edit.hbs", {
-//            ticket
-//        })
-//    })
-//})
-//
-//app.post("/editticket",urlencoder, (req, resp)=>{
-//    var updatedTicket = {
-//        event : req.query.event,
-//        category : req.query.category,
-//        price : req.query.price
-//    };
-//    
-//    Ticket.findOneAndUpdate({
-//        _id: req.query.id
-//    }, updatedTicket).then(()=>{
-//        resp.redirect("/");
-//    })
-//})
 
 app.listen(3000,()=>{
     console.log("Listening to port 3000")
