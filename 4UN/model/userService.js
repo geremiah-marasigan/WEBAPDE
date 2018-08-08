@@ -22,6 +22,11 @@ function findSpecific(user){
     return query
 }
 
+function getHashedPasword(user){
+    var query = User.findOne({"username": user}, {password: 1})
+    return query
+}
+
 //Get the memes uploaded by a specific user, for profile page
 //only shows latest 12 memes
 function getMemes(user){
@@ -35,3 +40,15 @@ function sharedMemes(user){
     var query = User.findOne({username : user}, {shared: 1}).sort({_id:-1}).limit(12)
     return query
 }
+
+function removedShared(user, meme){
+    var query = User.findOne({username : user}).update({}, {$pull: {shared: meme}}, {multi: true})
+    return query
+}
+
+function updateShared(user, meme){
+    var query = User.findOne({username : user}).update({}, {$addToSet: {shared: meme}}, {multi: true})
+    return query
+}
+
+//add User in 
