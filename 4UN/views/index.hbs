@@ -1,13 +1,15 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="styles/main-style.css">
-        <link rel="stylesheet" href="styles/logged-style.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="jquery-3.3.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-        <script src="js/meme-script.js"></script>
-    </head>
+
+<head>
+    <link rel="stylesheet" href="styles/main-style.css">
+    <link rel="stylesheet" href="styles/logged-style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="js/meme-script.js"></script>
+</head>
+
 <body>
     <div>
         <nav>
@@ -16,27 +18,27 @@
                     <li>
                         <a href="/" id="logo">
                             <img id="logo" src="resources/logo.png"/>
-                        </a>                
+                        </a>
                         <!--<form method = post action = home>
                             <input type = "image" id = logo src = resources/logo.png>
                         </form>-->
                     </li>
                     <li>
                         {{#if user}}
-                            <div class="dropdown">
-                                <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
                                 <img id="profile-pic" src="{{user.profilepic}}">
                                 </button>
-                                <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                    <a class="dropdown-item" href="user.html">Profile</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                    <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
-                                </div>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
+                                <a class="dropdown-item" href="user.html">Profile</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
+                                <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
                             </div>
+                        </div>
                         {{else}}
-                            <a id="sign_up" href="loginPage">
+                        <a id="sign_up" href="loginPage">
                             LOGIN</a>
-<!--
+                        <!--
                         <form method = post action = login>
                             <input type = submit id = sign_up value = LOGIN>
                         </form>
@@ -46,7 +48,7 @@
                     <li>
                         <div id="search">
                             <form>
-                                <input id="search-input" type="text" placeholder="Search Tags"/>
+                                <input id="search-input" type="text" placeholder="Search Tags" />
                                 <a href="main-cat.html" class="submit-button">
                                     <i class="fa fa-search"></i>
                                 </a>
@@ -58,37 +60,59 @@
             </div>
         </nav>
     </div>
-        <div class="main">
-            <h1>Public</h1>
-            <div class="images">
-                <div class="row justify-content-md-center">
-                    <div class="col col-lg-3" id = "column0">
-                        {{#each col1}}
-                            
-<!--                            // this is where to place the meme-->
-                            <img src="{{this}}">
-                            
-
-                        {{/each}}
+    <div class="main">
+        <h1>Public</h1>
+        <div class="images">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-3" id="column0">
+                    {{#each col1}}
+                    <!--                            // this is where to place the meme-->
+                    <button data-toggle="modal" data-target="#modal{{@index}}">
+                        <img src="{{this.source}}">
+                    </button>
+                    <div class="modal fade" id="modal{{@index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
+                                    <div class="modal-subheading">{{this.author}}</div>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{this.source}}" />
+                                    <span class="description">{{this.desc}}</span>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="tags">
+                                        <div>Tags:</div>
+                                        {{#each this.tags}}
+                                        <div class="memetag"><a href="">{{this.tags}}</a><button type="button" style="display: none;">x</button>, </div>
+                                        {{/each}}
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col col-lg-3" id = "column1">
-                        {{#each col2}}
-                        <img src="{{this}}">
-<!--                        // this is where to place the meme -->
-                        {{/each}}
-                    </div>
-                    <div class="col col-lg-3" id = "column2">
-                        {{#each col3}}
-                        <img src="{{this}}">
-<!--                        // this is where to place the meme -->
-                        {{/each}}
-                    </div>
+                    {{/each}}
+                </div>
+                <div class="col col-lg-3" id="column1">
+                    {{#each col2}}
+                    <img src="{{this}}">
+                    <!--                        // this is where to place the meme -->
+                    {{/each}}
+                </div>
+                <div class="col col-lg-3" id="column2">
+                    {{#each col3}}
+                    <img src="{{this}}">
+                    <!--                        // this is where to place the meme -->
+                    {{/each}}
                 </div>
             </div>
         </div>
-    
-        <!-- Modal -->
-<!--
+    </div>
+
+    <!-- Modal -->
+    <!--
         <div class="modal fade" id="memeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -117,7 +141,7 @@
         </div>
         
 -->
-<!--
+    <!--
         <div class="modal fade" id="memeModalLoggedIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -166,33 +190,35 @@
         <button id="view-more" class="btn btn-success">View more</button>
 -->
 </body>
-    <script>    
-        //Makes sure functions only run when document is ready
-        $(document).ready(function () {
-            var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
-            for (let x = 0; x < 15; x++){
-                
-                var memeImg = document.createElement("img")
-                $(memeImg).addClass("meme")
-                $(memeImg).attr("src",memeURL)
-                $(memeImg).attr("data-toggle","modal")
-                $(memeImg).attr("data-target","#meme"+x)
-                
-                $("#column" + x%3).append(memeImg)
-                
-                newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["main-cat.html"], "Public"),x)
-            }
-            
-            
-            
-            //Adds remove button on hover and removes on leave
-            $(".modal-footer .tags .memetag").on('mouseenter', function () {
-                $(this).find(":button").show();
-                console.log("in");
-                }).on('mouseleave', function () {
-                    $(this).find(":button").hide();
-                    console.log("out");
-            });
+<script>
+    //Makes sure functions only run when document is ready
+    $(document).ready(function() {
+        var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
+        for (let x = 0; x < 15; x++) {
+
+            var memeImg = document.createElement("img")
+            $(memeImg).addClass("meme")
+            $(memeImg).attr("src", memeURL)
+            $(memeImg).attr("data-toggle", "modal")
+            $(memeImg).attr("data-target", "#meme" + x)
+
+            $("#column" + x % 3).append(memeImg)
+
+            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["main-cat.html"], "Public"), x)
+        }
+
+
+
+        //Adds remove button on hover and removes on leave
+        $(".modal-footer .tags .memetag").on('mouseenter', function() {
+            $(this).find(":button").show();
+            console.log("in");
+        }).on('mouseleave', function() {
+            $(this).find(":button").hide();
+            console.log("out");
         });
-    </script>
+    });
+
+</script>
+
 </html>
