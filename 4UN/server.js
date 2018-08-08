@@ -46,11 +46,32 @@ app.get("/", (req, resp)=>{
     var uname = req.cookies.username
     
     if (uname) {
-        resp.render("index.hbs", {
-            user: {
-                uname: uname
-            },
-            col1: [
+        var query = User.findSpecific(uname)
+        query.exec(function(err, user){
+            if(err){
+
+            }
+                //error
+            else{
+                resp.render("index.hbs", {
+                        user,
+                        col1: [     
+    //            {
+    //            title: "lololol",
+    //            author: "bacon",
+    //            source: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A",
+    //            desc: "lololololololololol",
+    //            tags: ["girl","twice"]
+    //            }
+            ],
+                col2: [],
+                col3: []
+                    })
+                }
+        })
+        //resp.render("index.hbs", {
+            //user,
+            //col1: [
 //            {
 //            title: "lololol",
 //            author: "bacon",
@@ -58,10 +79,10 @@ app.get("/", (req, resp)=>{
 //            desc: "lololololololololol",
 //            tags: ["girl","twice"]
 //            }
-        ],
-            col2: [],
-            col3: []
-        })
+        //],
+            //col2: [],
+            //col3: []
+       // })
     } else {
         resp.render("index.hbs", {
             col1: [
@@ -83,16 +104,32 @@ app.get("/search", urlencoder, (req,resp)=>{
     console.log("GET /tags")
     
     var tag = req.query.searchinput
+    var uname = req.cookies.username
     console.log("Tag: " + tag)
     
-    var uname = req.cookies.username
+    //var uname = req.cookies.username
+   
     if (uname) {
-        resp.render("tags.hbs", {
+        var query = User.findSpecific(uname)
+        query.exec(function(err, user){
+            if(err){
+
+            }
+                //error
+            else{
+                resp.render("tags.hbs", {
+                    tag,    
+                    user
+                })
+            }
+        })
+        
+        /*resp.render("tags.hbs", {
             tag,
             user: {
                 uname: uname
             }
-        })
+        })*/
     } else {
         resp.render("tags.hbs", {
             tag
@@ -151,27 +188,32 @@ app.post("/login", urlencoder, (req,resp)=>{
         else{
             var matchinguser = users.filter((user)=>{
                 if(user.username == username && user.password == password){
-                    return true
+                    
+                    resp.cookie("username", username, {
+                        maxAge: 1000 * 60 * 60 * 2
+                    })
+
+                    resp.render("index.hbs", {
+                        user
+                    })
                 }
-                return false
-            })
+                //return false
+           // })
             
-            if (matchinguser.length == 1){
-                resp.cookie("username", username, {
-                    maxAge: 1000 * 60 * 60 * 2
-                })
+           // if (matchinguser.length == 1){
+              //  resp.cookie("username", username, {
+                 //   maxAge: 1000 * 60 * 60 * 2
+             //   })
                 
-                var user = matchinguser
-                
-                resp.render("index.hbs", {
-                    user
-                })
-            }
-            else{
-                resp.render("login.hbs", {
-                    message: "Invalid username or password"
-                })
-            }
+              //  resp.render("index.hbs", {
+                 //   user
+              //  })
+           // }
+            //else{
+           //     resp.render("login.hbs", {
+                 //   message: "Invalid username or password"
+                //})
+            })
         }
     })
 })
@@ -207,6 +249,9 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
 //        response.render("index.hbs", {
 //            message: "Ticket was added successfully"
 //        })
+        resp.cookie("username", username, {
+                        maxAge: 1000 * 60 * 60 * 2
+                    })
         console.log("Successful")
         resp.render("index.hbs", {
             user
@@ -225,7 +270,7 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
 //})
 
 app.get("/signout", urlencoder, (req, resp)=>{
-    resp.clearCookie("userpicture")
+    resp.clearCookie("username")
     resp.render("index.hbs")
 })
 
