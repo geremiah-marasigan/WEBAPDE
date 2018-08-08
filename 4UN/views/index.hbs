@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="styles/main-style.css">
     <link rel="stylesheet" href="styles/logged-style.css">
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="jquery-3.3.1.min.js"></script>
@@ -33,16 +33,16 @@
                     </li>
                     <li>
                         {{#if user}}
-                            <div class="dropdown">
-                                <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
                                     <img id="profile-pic" src="{{user.profilepic}}">
                                 </button>
-                                <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                    <a class="dropdown-item" href="userPage">Profile</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                    <a class="dropdown-item" id="sign-out" href="/">Sign-Out</a>
-                                </div>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
+                                <a class="dropdown-item" href="userPage">Profile</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
+                                <a class="dropdown-item" id="sign-out" href="signout">Sign-Out</a>
                             </div>
+                        </div>
                         {{else}}
                         <a id="sign_up" href="loginPage">
                             LOGIN</a>
@@ -55,12 +55,12 @@
                     </li>
                     <li>
                         <div id="search">
-                            <form id = search action = search method = get>
-                                <input id="search-input" type="text" placeholder="Search Tags" name = "searchinput" />
+                            <form id=s earch action=s earch method=g et>
+                                <input id="search-input" type="text" placeholder="Search Tags" name="searchinput" />
                                 <!--<a href="main-cat.html" class="submit-button">
                                     <i class="fa fa-search"></i>
                                 </a>-->
-                                <input class = submit-button type = submit value = Search>
+                                <input class=s ubmit-button type=s ubmit value=S earch>
                             </form>
                         </div>
                     </li>
@@ -118,6 +118,66 @@
                 </div>
             </div>
         </div>
+        {{#if user}}
+        <h1>Private</h1>
+        <div class="images">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-3" id="column0">
+                    <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/365/839/24d.png" data-toggle="modal" data-target="#memeModalLoggedIn">
+                    <div class="modal fade" id="memeModalLoggedIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">I agree</h5>
+                                    <div class="modal-subheading">By <a href="user.html">admin</a> | Private</div>
+                                </div>
+                                <div class="modal-body">
+                                    <img class="meme" src="https://i.kym-cdn.com/photos/images/newsfeed/001/365/839/24d.png" />
+                                    <span class="description">I love pussy</span>
+                                    <br/>
+                                    <hr>
+                                    <div class="tagAdder">
+                                        <span>Add Tags:</span>
+                                        <input type="text" placeholder="Separate tags with a comma" />
+                                        <button type="button" class="btn btn-default">Add</button>
+                                    </div>
+                                    <div class="editDescription">
+                                        <span>Edit Description:</span>
+                                        <input type="text" placeholder="Enter new description here" />
+                                        <button type="button" class="btn btn-default update-description">Update</button>
+                                    </div>
+                                    <div class="shareMeme">
+                                        <span>Shared With:</span> <br/>
+                                        <span>mr_bizcuit</span> <br/>
+                                        <span>Jdelbz</span> <br/>
+                                        <input type="text" placeholder="Add users to share with" />
+                                        <button type="button" class="btn btn-success share-meme">Add</button>
+                                    </div>
+                                    <div class="deleteMeme">
+                                        <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="tags">
+                                        <div>Tags: </div>
+                                        <div><a href="main-cute.html">Cute</a>, </div>
+                                        <div><a href="">Hot</a>, </div>
+                                        <div><a href="main-cat.html">Cat</a></div>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-3" id="column1">
+
+                </div>
+                <div class="col col-lg-3" id="column2">
+                </div>
+            </div>
+        </div>
+        {{/if}}
     </div>
 
     <!-- Modal -->
