@@ -48,7 +48,7 @@ app.get("/", (req, resp)=>{
     if (uname) {
         resp.render("index.hbs", {
             user: {
-                profilepic: userpic
+                uname: uname
             },
             col1: [
 //            {
@@ -105,16 +105,41 @@ app.get("/userPage", (req, resp)=>{
     console.log("GET /user")
     
     var uname = req.cookies.username
-    if (uname) {
+    var query = User.getAll()
+    
+    query.exec(function(err, users){
+        if(err){
+            
+        }
+            //error
+        else{
+            var matchinguser = users.filter((user)=>{
+                if(user.username == uname){
+                    return true
+                }
+                return false
+            })
+            
+            if (matchinguser.length == 1){
+                var user = matchinguser
+                
+                resp.render("userPage.hbs", {
+                    user
+                })
+            }
+        }
+    })
+    
+    /*if (uname) {
         resp.render("user.hbs", {
             user: {
-                profilepic: userpic
+                username:uname
             }
         })
     } else {
         resp.render("user.hbs", {
         })
-    }
+    }*/
 })
 
 app.get("/loginPage", (req, resp)=>{
@@ -126,7 +151,8 @@ app.post("/login", urlencoder, (req,resp)=>{
     console.log("POST /login")
     
     var username = req.body.uname 
-    var password = req.body.pword 
+    var unhashedpassword = req.body.pword 
+    var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
     
     var query = User.getAll()
     query.exec(function(err, users){
@@ -142,10 +168,13 @@ app.post("/login", urlencoder, (req,resp)=>{
                 return false
             })
             
-            if (matchinguser == 1){
+            if (matchinguser.length == 1){
                 resp.cookie("username", username, {
                     maxAge: 1000 * 60 * 60 * 2
                 })
+                
+                var user = matchinguser
+                
                 resp.render("index.hbs", {
                     user
                 })
@@ -182,7 +211,7 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
         username,
         password,
         desc,
-        profilepicture: "LOLOLOLOLOL",
+        profilepicture,
         posts: [],
         shared: []
     })
@@ -193,6 +222,10 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
 //            message: "Ticket was added successfully"
 //        })
         console.log("Successful")
+        resp.render("index.hbs", {
+            user
+        })
+        
     }, (err) => {
 //        response.render("index.hbs", {
 //            message: "Ticket was not added" + err
