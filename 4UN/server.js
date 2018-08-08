@@ -57,15 +57,17 @@ app.post("/login", urlencoder, (req,resp)=>{
     
     var username = req.body.uname 
     var password = req.body.pword 
-    var user = new user{
-        profile-pic: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A"
+    var user = {
+        profilepic: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A"
     }
     //put user check here
-    if(username == "admin" && password == "password"){
+    if(username == "admin" && password == "1234"){
+        console.log("SUCCESS")
         resp.render("index.hbs", {
             user
         })
     } else {
+        console.log(username + " " + password)
         resp.render("login.hbs", {
             message: "Invalid username or password"
         })
