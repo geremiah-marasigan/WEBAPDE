@@ -25,16 +25,16 @@
                     </li>
                     <li>
                         {{#if user}}
-                        <div class="dropdown">
-                            <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
-                                <img id="profile-pic" src="{{user.profilepic}}">
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
+                                    <img id="profile-pic" src="{{user.profilepic}}">
                                 </button>
-                            <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                <a class="dropdown-item" href="user.html">Profile</a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
+                                <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
+                                    <a class="dropdown-item" href="userPage">Profile</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
+                                    <a class="dropdown-item" id="sign-out" href="/">Sign-Out</a>
+                                </div>
                             </div>
-                        </div>
                         {{else}}
                         <a id="sign_up" href="loginPage">
                             LOGIN</a>
