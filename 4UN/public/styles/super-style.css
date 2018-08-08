@@ -194,3 +194,13 @@ input[type=checkbox]:checked ~ .shareUpload {
     bottom: 30px;
     z-index: 98;
 }
+
+.privatestamp{
+    background-color: transparent;
+    border: 1px solid black;
+    font-style: normal;
+    font-size: 15;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 3px;
+}
