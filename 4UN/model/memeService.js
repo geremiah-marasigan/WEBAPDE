@@ -2,28 +2,30 @@ const mongoose = require("mongoose");
 var Meme = require("mongoose").model("Meme")
 var MemeSchema = Meme.schema
 
-function getAll(){
+export function getAll(){
     var query = Meme.find().sort({_id:-1}).limit(12)
     return query
 }
 
 //only show 12
-function getPublic(){
+export function getPublic(){
     var query = Meme.find({"status" : "public"}).sort({_id:-1}).limit(12)
     return query
     
 }
 
 //n is the number of times view more was clicked
-function viewMoreAll(n){
+export function viewMoreAll(n){
     var x = n*12
     var query = Meme.find().sort({_id:-1}).limit(12).skip(x)
     return query
 }
 
-function viewMorePublic(n){
+export function viewMorePublic(n){
     var x = n*12
     var query = Meme.find({"status" : "public"}).sort({_id:-1}).limit(12).skip(x)
     return query
 }
+
+
 
