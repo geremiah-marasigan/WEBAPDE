@@ -43,20 +43,9 @@ mongoose.connect("mongodb://localhost:27017/memedata", {
 
 app.get("/", (req, resp)=>{
     console.log("GET /");
-    var userpic = req.cookies.userpicture
+    var uname = req.cookies.username
     
-    var query = User.getAll()
-    query.exec(function(err, users){
-        if(err){
-            
-        }
-            //error
-        else{
-            console.log(users)
-        }
-    })
-    
-    if (userpic) {
+    if (uname) {
         resp.render("index.hbs", {
             user: {
                 profilepic: userpic
@@ -96,8 +85,8 @@ app.get("/search", urlencoder, (req,resp)=>{
     var tag = req.query.searchinput
     console.log("Tag: " + tag)
     
-    var userpic = req.cookies.userpicture
-    if (userpic) {
+    var uname = req.cookies.username
+    if (uname) {
         resp.render("tags.hbs", {
             tag,
             user: {
@@ -115,8 +104,8 @@ app.get("/search", urlencoder, (req,resp)=>{
 app.get("/userPage", (req, resp)=>{
     console.log("GET /user")
     
-    var userpic = req.cookies.userpicture
-    if (userpic) {
+    var uname = req.cookies.username
+    if (uname) {
         resp.render("user.hbs", {
             user: {
                 profilepic: userpic
@@ -138,26 +127,36 @@ app.post("/login", urlencoder, (req,resp)=>{
     
     var username = req.body.uname 
     var password = req.body.pword 
-    var user = {
-        profilepic: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A"
-    }
-    //put user check here
-    if(username == "admin" && password == "1234"){
-        console.log("SUCCESS")
-         resp.cookie("userpicture", user.profilepic, {
-            maxAge: 1000 * 60 * 60 * 2
-        })
-
-        resp.render("index.hbs", {
-            user
-        })
-    } else {
-        console.log(username + " " + password)
-        resp.render("login.hbs", {
-            message: "Invalid username or password"
-        })
-    }
     
+    var query = User.getAll()
+    query.exec(function(err, users){
+        if(err){
+            
+        }
+            //error
+        else{
+            var matchinguser = users.filter((user)=>{
+                if(user.username == username && user.password == password){
+                    return true
+                }
+                return false
+            })
+            
+            if (matchinguser == 1){
+                resp.cookie("username", username, {
+                    maxAge: 1000 * 60 * 60 * 2
+                })
+                resp.render("index.hbs", {
+                    user
+                })
+            }
+            else{
+                resp.render("login.hbs", {
+                    message: "Invalid username or password"
+                })
+            }
+        }
+    })
 })
 
 app.get("/signupPage", (req,resp)=>{
