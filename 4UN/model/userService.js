@@ -11,7 +11,7 @@ function getAll(){
     });
 }
 
-////Find specific user given his username
+//Find specific user given his username, to be used when you click a users name from a meme since meme only stores his username
 function findSpecific(query){
     User.findOne({"username": query}).then((user)=>{
         console.log("User " + query + " Found")
