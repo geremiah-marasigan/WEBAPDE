@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
 const fs = require("fs");
+const cookieparser = require("cookie-parser")
 
 const MemeModel = require("./model/meme.js");
 const UserModel = require("./model/user.js");
@@ -34,40 +35,61 @@ mongoose.connect("mongodb://localhost:27017/memedata", {
 
 app.get("/", (req, resp)=>{
     console.log("GET /");
-    
-    resp.render("index.hbs",{
-        col1:[{
-            title: "lololol",
-            author: "bacon",
-            source: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A",
-            desc: "lololololololololol",
-            tags: ["girl","twice"]
-        }],
-        col2:["https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A","https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A","https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A"],
-        col3:["https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A","https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A","https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A"]
-    })
+    var userpic = req.cookies.userpicture
+    if (userpic) {
+        resp.render("index.hbs", {
+            user: {
+                profilepic: userpic
+            },
+            col1: [
+//            {
+//            title: "lololol",
+//            author: "bacon",
+//            source: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A",
+//            desc: "lololololololololol",
+//            tags: ["girl","twice"]
+//            }
+        ],
+            col2: [],
+            col3: []
+        })
+    } else {
+        resp.render("index.hbs", {
+            col1: [
+    //            {
+    //            title: "lololol",
+    //            author: "bacon",
+    //            source: "https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/23518934_146331502660485_6251669915140632690_n.jpg?_nc_cat=0&oh=e2928920827b2d448baa598f14ff8eb0&oe=5BCD344A",
+    //            desc: "lololololololololol",
+    //            tags: ["girl","twice"]
+    //            }
+            ],
+            col2: [],
+            col3: []
+        })
+    }
 });
 
 app.get("/search", urlencoder, (req,resp)=>{
     console.log("GET /tags")
-    console.log(req.body.searchinput)
     
     var tag = req.query.searchinput
-    var user = req.query.user
-    
     console.log("Tag: " + tag)
     
-    if(user){
+    var userpic = req.cookies.userpicture
+    if (userpic) {
         resp.render("tags.hbs", {
             tag,
-            user
+            user: {
+                profilepic: userpic
+            }
         })
-    }
-    else{
+    } else {
         resp.render("tags.hbs", {
             tag
         })
     }
+
 })
 
 app.get("/userPage", (req, resp)=>{
@@ -91,6 +113,10 @@ app.post("/login", urlencoder, (req,resp)=>{
     //put user check here
     if(username == "admin" && password == "1234"){
         console.log("SUCCESS")
+         resp.cookie("userpicture", user.profilepic, {
+            maxAge: 1000 * 60 * 60 * 2
+        })
+
         resp.render("index.hbs", {
             user
         })
