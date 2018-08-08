@@ -3,21 +3,13 @@ var Meme = require("mongoose").model("Meme")
 var MemeSchema = Meme.schema
 
 function getAll(){
-    var Memes = Meme.find().then((memes)=>{
-        return memes
-    },(err)=>{
-        return false  
-    });
+    var query = Meme.find().sort({_id:-1}).limit(12)
+    return query
 }
 
+//only show 12
 function getPublic(){
-    var Memes = Meme.find({"status" : "public"}).then((public)=>{
-        console.log("PUBLIC SUCCESS")
-        return public
-    }, (err)=>{
-        console.log(err)
-        return false
-    })
-    
+    var query = Meme.find({"status" : "public"}).sort({_id:-1}).limit(12)
+    return query
     
 }

@@ -7,7 +7,7 @@ var UserSchema = mongoose.Schema({
     username: String,
     password: String,
     description: {type: String, default: "No Description"},
-    profilepicture: Buffer,
+    profilepicture: String,
     posts: [MemeSchema],
     shared: [MemeSchema]
 });

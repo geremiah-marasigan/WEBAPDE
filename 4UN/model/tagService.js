@@ -3,30 +3,20 @@ var Tag = require("mongoose").model("Tag")
 var TagSchema = Tag.schema
 
 function getAll(){
-    var Tags = Tag.find().then((tags)=>{
-        return tags
-    },(err)=>{
-        return false  
-    });
+    var query = Tag.find({})
+    return query
 }
 
 //Because our tags are made by us (no custom tags)
 function getAllNames(){
-    var Tags = this.getAll()
-    var tagNames = []
-    for(let x of Tags){
-        tagNames.push(x.name)
-    }
-    return tagNames
+    var query = Tag.find({}, {name: 1})
+    return query
 }
 
 
-function getTag(query){
-    Tag.findOne({"name": query}).then((tag)=>{
-        return tag
-    }, (err)=>{
-      console.log("Error getting Tag: " + err)  
-    })
+function getTag(tag){
+    var query = Tag.findOne({"name": tag})
+    return query
 }
 
 //Get the memes of a specific tag name
@@ -43,19 +33,19 @@ function addMeme(name, newMeme){
 }
 
 //just in case
-function newTag(name){
-    var t = new Tag({
-        name
-    })
-    
-    t.save().then(()=>{
-        //successfully added ticket
-        resp.render("index.hbs", {
-            message : "Ticket was added successfully"
-        })
-    }, (err)=>{
-        resp.render("index.hbs", {
-            message : "something went wrong" + err
-        })
-    });
-}
+//function newTag(name){
+//    var t = new Tag({
+//        name
+//    })
+//    
+//    t.save().then(()=>{
+//        //successfully added ticket
+//        resp.render("index.hbs", {
+//            message : "Ticket was added successfully"
+//        })
+//    }, (err)=>{
+//        resp.render("index.hbs", {
+//            message : "something went wrong" + err
+//        })
+//    });
+//}

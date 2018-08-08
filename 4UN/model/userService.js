@@ -25,13 +25,13 @@ function findSpecific(user){
 //Get the memes uploaded by a specific user, for profile page
 //only shows latest 12 memes
 function getMemes(user){
-    var query = User.findOne({username : user}, {posts: 1}).sort("_id":-1).limit(12)
+    var query = User.findOne({username : user}, {posts: 1}).sort({_id:-1}).limit(12)
     return query
 }
 
 //Get the memes shared to a specific user, for profile page
 //only shows latest 12 memes
 function sharedMemes(user){
-    var query = User.findOne({username : user}, {shared: 1}).sort("_id":-1).limit(12)
+    var query = User.findOne({username : user}, {shared: 1}).sort({_id:-1}).limit(12)
     return query
 }
