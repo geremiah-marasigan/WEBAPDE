@@ -52,14 +52,22 @@ app.get("/search", urlencoder, (req,resp)=>{
     console.log("GET /tags")
     console.log(req.body.searchinput)
     
-    var tag = req.body.searchinput
+    var tag = req.query.searchinput
     var user = req.query.user
     
     console.log("Tag: " + tag)
     
-    resp.render("tags.hbs", {
-        tag, user
-    })
+    if(user){
+        resp.render("tags.hbs", {
+            tag,
+            user
+        })
+    }
+    else{
+        resp.render("tags.hbs", {
+            tag
+        })
+    }
 })
 
 app.get("/userPage", (req, resp)=>{
