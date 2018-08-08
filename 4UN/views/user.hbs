@@ -28,12 +28,12 @@
                          {{#if user}}
                             <div class="dropdown">
                                 <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
-                                <img id="profile-pic" src="{{profile-pic}}">
+                                <img id="profile-pic" src="{{user.profilepic}}">
                                 </button>
                                 <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                    <a class="dropdown-item" href="user.html">Profile</a>
+                                    <a class="dropdown-item" href="userPage">Profile</a>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                    <a class="dropdown-item" id="sign-out" href="index.html">Sign-Out</a>
+                                    <a class="dropdown-item" id="sign-out" href="/">Sign-Out</a>
                                 </div>
                             </div>
                         {{else}}
@@ -112,7 +112,7 @@
         </div>
     {{/if}}
     <div class="user-body">
-        <h2 class="username">{{user}}</h2><br />
+        <h2 class="username">{{user.username}}</h2><br />
         <p class="user-description">{{user-desc}}</p>
         <h4 class="meme-header">Memes Posted</h4>
         <div class="images">
