@@ -90,7 +90,7 @@ app.get("/search", urlencoder, (req,resp)=>{
         resp.render("tags.hbs", {
             tag,
             user: {
-                profilepic: userpic
+                uname: uname
             }
         })
     } else {
@@ -211,10 +211,7 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
         username,
         password,
         desc,
-<<<<<<< HEAD
         profilepicture,
-=======
->>>>>>> 483e012d7ddda30d49dc5f19c6ab6092d1692779
         posts: [],
         shared: []
     })
