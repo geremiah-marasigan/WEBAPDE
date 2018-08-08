@@ -44,9 +44,9 @@ function addMeme(name, newMeme){
 
 //just in case
 function newTag(name){
-    var t = new Tag{
+    var t = new Tag({
         name
-    }
+    })
     
     t.save().then(()=>{
         //successfully added ticket
