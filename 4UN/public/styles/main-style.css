@@ -160,3 +160,9 @@ li{
     width: 75px;
     margin-top: -25px;
 }
+
+.submit-button{
+    background-color: transparent;
+    border: none;
+    color: white;
+}

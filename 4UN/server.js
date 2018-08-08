@@ -21,6 +21,7 @@ const urlencoder = bodyparser.urlencoded({extended : false});
 //sets view engine to handlebars
 app.use(express.static(__dirname + "/public"));
 app.set("view-engine", "hbs");
+app.use(cookieparser())
 
 // connecting to our mongodb server
 //Promise Library

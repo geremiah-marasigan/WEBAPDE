@@ -185,6 +185,7 @@ input[type=checkbox]:checked ~ .shareUpload {
 .submit-button{
     background-color: transparent;
     border: none;
+    color: white;
 }
 
 #view-more{
