@@ -5,6 +5,7 @@ const hbs = require("hbs");
 const Meme = require("./model/meme.js");
 const User = require("./model/user.js");
 const Tag = require("./model/tag.js");
+const fs = require("fs");
 
 //app creates server
 const app = express();
@@ -45,20 +46,24 @@ app.post("/home", urlencoder, (req, resp)=>{
     resp.render("index.hbs")
 })
 
-app.post("/login", urlencoder, (req, resp)=>{
+app.get("/loginPage", (req, resp)=>{
     console.log("GET /login")
-    
     resp.render("login.hbs")
+})
+
+app.get("/signupPage", (req,resp)=>{
+    console.log("GET /signup")
+    resp.render("signup.hbs")
 })
 
 app.post("/signup", urlencoder, (req, resp)=>{
     console.log("POST /signup")
     
-    var username = request.body.uname 
-    var email = request.body.email
-    var password = request.body.pword 
-    var desc = request.body.sdesc 
-    var profile = request.files.ppic.path
+    var username = req.body.uname 
+    var email = req.body.email
+    var password = req.body.pword 
+    var desc = req.body.sdesc 
+    var profile = req.body.ppic
     
     console.log(username)
     console.log(email)
@@ -70,7 +75,6 @@ app.post("/signup", urlencoder, (req, resp)=>{
         
     })
 
-    resp.render("signup.hbs")
 })
 
 app.post("registered", urlencoder, (req, resp)=>{
@@ -135,4 +139,6 @@ app.post("registered", urlencoder, (req, resp)=>{
 //    })
 //})
 
-app.listen(3000);
+app.listen(3000,()=>{
+    console.log("Listening to port 3000")
+});
