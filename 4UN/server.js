@@ -95,7 +95,18 @@ app.get("/search", urlencoder, (req,resp)=>{
 
 app.get("/userPage", (req, resp)=>{
     console.log("GET /user")
-    resp.render("user.hbs")
+    
+    var userpic = req.cookies.userpicture
+    if (userpic) {
+        resp.render("user.hbs", {
+            user: {
+                profilepic: userpic
+            }
+        })
+    } else {
+        resp.render("user.hbs", {
+        })
+    }
 })
 
 app.get("/loginPage", (req, resp)=>{
