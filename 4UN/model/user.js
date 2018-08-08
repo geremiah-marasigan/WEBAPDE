@@ -1,16 +1,16 @@
 // create mongoose document ticket
 const mongoose = require("mongoose");
+var Meme = require("mongoose").model("Meme")
+var MemeSchema = Meme.schema
 
 var UserSchema = mongoose.Schema({
     username: String,
     password: String,
-    description: String,
-    profilepicture: Buffer
-    
+    description: {type: String, default: "No Description"},
+    profilepicture: Buffer,
+    posts: [MemeSchema]
 });
 
-var User = mongoose.model("user", UserSchema);
+var User = mongoose.model("User", UserSchema);
 
-module.exports = {
-    User
-}
+module.exports = User

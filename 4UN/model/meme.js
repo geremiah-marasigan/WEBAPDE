@@ -1,20 +1,16 @@
 // create mongoose document ticket
 const mongoose = require("mongoose");
-var UserSchema = require("mongoose").model("User").schema
-
 
 var MemeSchema = mongoose.Schema({
-    owner: UserSchema,
+    owner: String,
     description: String,
     status: String, //public or private
-    shared: [UserSchema],
+    shared: [String],
     tags: [String],
     image: Buffer
     
 });
 
-var Meme = mongoose.model("meme", MemeSchema);
+var Meme = mongoose.model("Meme", MemeSchema);
 
-module.exports = {
-    Meme
-}
+module.exports = Meme
