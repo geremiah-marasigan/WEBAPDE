@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const hbs = require("hbs");
 const fs = require("fs");
 const cookieparser = require("cookie-parser")
+const multer = require("multer");
+const path = require("path");
 
 const MemeModel = require("./model/meme.js");
 const UserModel = require("./model/user.js");
@@ -20,8 +22,13 @@ const app = express();
 const urlencoder = bodyparser.urlencoded({extended : false});
 //sets view engine to handlebars
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public.Memes"));
 app.set("view-engine", "hbs");
 app.use(cookieparser())
+
+const upload = multer({
+  dest: "/public/Memes"
+});
 
 // connecting to our mongodb server
 //Promise Library
@@ -37,6 +44,18 @@ mongoose.connect("mongodb://localhost:27017/memedata", {
 app.get("/", (req, resp)=>{
     console.log("GET /");
     var userpic = req.cookies.userpicture
+    
+    var query = User.getAll()
+    query.exec(function(err, users){
+        if(err){
+            
+        }
+            //error
+        else{
+            console.log(users)
+        }
+    })
+    
     if (userpic) {
         resp.render("index.hbs", {
             user: {
@@ -146,7 +165,7 @@ app.get("/signupPage", (req,resp)=>{
     resp.render("signup.hbs")
 })
 
-app.post("/signup", urlencoder, (req, resp)=>{
+app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
     console.log("POST /signup")
     
     
@@ -154,23 +173,38 @@ app.post("/signup", urlencoder, (req, resp)=>{
     var email = req.body.email
     var unhashedpassword = req.body.pword 
     var desc = req.body.sdesc 
-    var profile = req.body.ppic
-    
-    var password = crypt.createHash("md5").update(unhashedpassword).digest("hex")
+    //var profile = req.ppic.path
+    //console.log(profile)
+    var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
     
     //if you can make the profile a proper picture, it would be greatly appreciated
     
-    user = {
+    var user = new UserModel({
         username,
         password,
         desc,
-        profile
-    }
+        profilepicture: "LOLOLOLOLOL",
+        posts: [],
+        shared: []
+    })
+    
+    user.save().then((newdoc) => {
+        //successful 
+//        response.render("index.hbs", {
+//            message: "Ticket was added successfully"
+//        })
+        console.log("Successful")
+    }, (err) => {
+//        response.render("index.hbs", {
+//            message: "Ticket was not added" + err
+//        })
+        console.log("Not")
+    })
 })
 
-app.post("/registered", urlencoder, (req, resp)=>{
-    //when they send their info
-})
+//app.post("/registered", urlencoder, (req, resp)=>{
+//    //when they send their info
+//})
 
 app.get("/signout", urlencoder, (req, resp)=>{
     resp.clearCookie("userpicture")
