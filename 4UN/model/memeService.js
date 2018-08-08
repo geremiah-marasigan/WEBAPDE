@@ -7,16 +7,22 @@ exports.getAll = function(){
     return query
 }
 
+exports.updateOne = function(meme,updated){
+    var query = Meme.findOneAndUpdate({
+        "_id":meme
+    }, updated)
+    return query
+}
+
 exports.findSpecific = function (meme){
-    var query = Meme.findOne({"title": meme})
+    var query = Meme.findOne({"_id": meme})
     return query
 }
 
 //only show 12
 exports.getPublic = function(){
     var query = Meme.find({"status" : "public"}).sort({_id:-1}).limit(12)
-    return query
-    
+    return query    
 }
 
 //n is the number of times view more was clicked
