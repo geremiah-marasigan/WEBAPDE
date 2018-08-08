@@ -18,7 +18,7 @@ const app = express();
 //makes forms readabel as request.body/request.query
 const urlencoder = bodyparser.urlencoded({extended : false});
 //sets view engine to handlebars
-app.use(express.static(__dirname + "/views"));
+app.use(express.static(__dirname + "/public"));
 app.set("view-engine", "hbs");
 
 // connecting to our mongodb server
@@ -48,11 +48,14 @@ app.get("/", (req, resp)=>{
     })
 });
 
-app.get("/search", (req,resp)=>{
+app.get("/search", urlencoder, (req,resp)=>{
     console.log("GET /tags")
+    console.log(req.body.searchinput)
     
     var tag = req.body.searchinput
-
+    
+    console.log("Tag: " + tag)
+    
     resp.render("tags.hbs", {
         tag
     })

@@ -22,7 +22,7 @@ function findSpecific(query){
     })
 }
 
-//Get the memes uploaded by a specific user
+//Get the memes uploaded by a specific user, for profile page
 function getMemes(user){
     return user.posts
 }
