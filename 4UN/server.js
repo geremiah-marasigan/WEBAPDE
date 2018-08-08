@@ -1,4 +1,5 @@
 const bodyparser = require("body-parser");
+const crypto = require("crypto")
 const express = require("express");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
@@ -93,19 +94,24 @@ app.get("/signupPage", (req,resp)=>{
 app.post("/signup", urlencoder, (req, resp)=>{
     console.log("POST /signup")
     
+    
     var username = req.body.uname 
     var email = req.body.email
-    var password = req.body.pword 
+    var unhashedpassword = req.body.pword 
     var desc = req.body.sdesc 
     var profile = req.body.ppic
     
-    console.log(username)
-    console.log(email)
-    console.log(password)
-    console.log(desc)
-    console.log(profile)
-
-})
+    var password = crypt.createHash("md5").update(unhashedpassword).digest("hex")
+    
+    //if you can make the profile a proper picture, it would be greatly appreciated
+    
+    user = {
+        username,
+        password,
+        desc,
+        profile
+    }
+}
 
 app.post("registered", urlencoder, (req, resp)=>{
     //when they send their info
