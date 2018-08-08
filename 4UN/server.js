@@ -53,11 +53,12 @@ app.get("/search", urlencoder, (req,resp)=>{
     console.log(req.body.searchinput)
     
     var tag = req.body.searchinput
+    var user = req.query.user
     
     console.log("Tag: " + tag)
     
     resp.render("tags.hbs", {
-        tag
+        tag, user
     })
 })
 

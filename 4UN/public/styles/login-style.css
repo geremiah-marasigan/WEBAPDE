@@ -83,14 +83,6 @@ li{
     margin-left: 15px;
 }
 
-.btn_hyperlink{
-  border:none;
-  outline:none;
-  background:none;
-  cursor:pointer;
-  color:#0000EE;
-  padding:0;
-  text-decoration:underline;
-  font-family:inherit;
-  font-size:inherit;
+.message{
+    color: red;
 }
