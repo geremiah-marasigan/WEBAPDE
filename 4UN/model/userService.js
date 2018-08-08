@@ -12,15 +12,15 @@ function getAll(){
 }
 
 ////Find specific user given his username
-//function findSpecific(query){
-//    User.findOne("username": query).then((user)=>{
-//        console.log("User " + query + " Found")
-//        return user
-//    }, (err)=>{
-//        console.log("User not found")
-//        return false
-//    })
-//}
+function findSpecific(query){
+    User.findOne({"username": query}).then((user)=>{
+        console.log("User " + query + " Found")
+        return user
+    }, (err)=>{
+        console.log("User not found")
+        return false
+    })
+}
 
 //Get the memes uploaded by a specific user
 function getMemes(user){

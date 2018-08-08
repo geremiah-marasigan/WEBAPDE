@@ -4,6 +4,7 @@ var Meme = require("mongoose").model("Meme")
 var MemeSchema = Meme.schema
 
 var TagSchema = mongoose.Schema({
+    name: String,
     memes: [MemeSchema]
 });
 
