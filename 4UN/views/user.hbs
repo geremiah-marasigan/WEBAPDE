@@ -104,7 +104,7 @@
     </div>
 
     <div class="avatar-div">
-        <img class="user-avatar" alt="Card image cap" src="https://lh3.googleusercontent.com/-rynVhQCyvkY/AAAAAAAAAAI/AAAAAAAAAAY/bNIUWoBt9zk/w360-h203-p/photo.jpg">
+        <img class="user-avatar" alt="Card image cap" src="{{user.profilepic}}">
     </div>
     {{#if user}}
         <div class = editProfile>
@@ -112,8 +112,8 @@
         </div>
     {{/if}}
     <div class="user-body">
-        <h2 class="username">{{user.username}}</h2><br />
-        <p class="user-description">{{user-desc}}</p>
+        <h2 class="username"><!--{{user.username}}-->Admin</h2><br/>
+        <p class="user-description"><!--{{user.desc}}-->I own this place.</p>
         <h4 class="meme-header">Memes Posted</h4>
         <div class="images">
             <div class="row-justify-content-md-center">

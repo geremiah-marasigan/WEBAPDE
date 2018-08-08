@@ -160,14 +160,14 @@ function newMemeLoggedOff(MEME,x){
     $(modalSubheadDiv).addClass("modal-subheading")
     var memeOwner = document.createTextNode("By ")
     var memeOwnerLink = document.createElement("a")
-    $(memeOwnerLink).attr("href","user2-public.html")
+    $(memeOwnerLink).attr("href","userPage")
     var ownerName = document.createTextNode(MEME.owner)
     /*Public or Private*/
-    var memeStatus = document.createTextNode(" | " + MEME.status)
+    //var memeStatus = document.createTextNode(" | " + MEME.status)
     $(memeOwnerLink).append(ownerName)
     $(modalSubheadDiv).append(memeOwner)
     $(modalSubheadDiv).append(memeOwnerLink)
-    $(modalSubheadDiv).append(memeStatus)
+    //$(modalSubheadDiv).append(memeStatus)
     $(modalHeadDiv).append(h5Heading)
     $(modalHeadDiv).append(modalSubheadDiv)
 

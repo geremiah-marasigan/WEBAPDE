@@ -10,12 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="js/meme-script.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".dropdown-toggle").dropdown();
-        });
-
-    </script>
 </head>
 
 <body>
@@ -117,9 +111,10 @@
                     {{/each}}
                 </div>
             </div>
-        </div>
+        </div><br/><br/><br/>
+        
         {{#if user}}
-        <h1>Private</h1>
+        <h1>Shared with you</h1>
         <div class="images">
             <div class="row justify-content-md-center">
                 <div class="col col-lg-3" id="column0">
@@ -269,7 +264,7 @@
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
         var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
-        for (let x = 0; x < 15; x++) {
+        for (let x = 0; x < 3; x++) {
 
             var memeImg = document.createElement("img")
             $(memeImg).addClass("meme")
@@ -279,7 +274,7 @@
 
             $("#column" + x % 3).append(memeImg)
 
-            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["search"], "Public"), x)
+            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["search"], ""), x)
         }
 
 
