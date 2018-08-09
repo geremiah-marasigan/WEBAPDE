@@ -22,16 +22,20 @@ exports.getTag = function(tag){
 }
 
 //Get the memes of a specific tag name
-exports.getMemes = function(query){
-    return getTag(query).memes
+exports.getMemes = function(tag){
+    var query = Tag.findOne({"name": tag}, {memes: 1})
+    return query
 }
 
 //Adds a meme to the specified tag
-exports.addMeme = function(name, newMeme){
-    var schema = newMeme.schema
-    
-    var t = this.getTag(name)
-    t.memes.push(schema)
+exports.addMeme = function(name, meme){
+    var query = User.findOne({name : name}).update({}, {$addToSet: {memes: meme}}, {multi: true})
+    return query
+}
+
+exports.removeMeme = function(name, meme){
+    var query = User.findOne({name : name}).update({}, {$pull: {memes: meme}}, {multi: true})
+    return query  
 }
 
 //just in case
