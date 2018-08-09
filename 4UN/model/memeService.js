@@ -46,5 +46,7 @@ exports.viewMorePublic = function(n){
     return query
 }
 
-
-
+exports.addNewMeme = function(meme){
+    var query = meme.save()
+    return query
+}

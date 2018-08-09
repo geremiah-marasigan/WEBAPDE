@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 
 var MemeSchema = mongoose.Schema({
+    title: String,
     owner: String,
     description: String,
     status: String, //public or private

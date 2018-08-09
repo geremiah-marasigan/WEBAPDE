@@ -65,4 +65,9 @@ exports.addPost = function(user, meme){
     return query
 }
 
+exports.addNewUser = function(user){
+    var query = user.save()
+    return query
+}
+
 //add User in 

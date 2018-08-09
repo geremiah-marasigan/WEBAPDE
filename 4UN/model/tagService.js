@@ -22,6 +22,7 @@ exports.getTag = function(tag){
 }
 
 //Get the memes of a specific tag name
+//First 12
 exports.getMemes = function(tag){
     var query = Tag.findOne({"name": tag}, {memes: 1})
     return query
@@ -39,19 +40,8 @@ exports.removeMeme = function(name, meme){
 }
 
 //just in case
-//function newTag(name){
-//    var t = new Tag({
-//        name
-//    })
-//    
-//    t.save().then(()=>{
-//        //successfully added ticket
-//        resp.render("index.hbs", {
-//            message : "Ticket was added successfully"
-//        })
-//    }, (err)=>{
-//        resp.render("index.hbs", {
-//            message : "something went wrong" + err
-//        })
-//    });
-//}
+exports.addTag = function(tag){
+    var query = tag.save()
+    return query
+    
+}
