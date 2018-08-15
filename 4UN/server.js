@@ -21,13 +21,12 @@ const app = express();
 //makes forms readabel as request.body/request.query
 const urlencoder = bodyparser.urlencoded({extended : false});
 //sets view engine to handlebars
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/public.Memes"));
+app.use(express.static(path.join(__dirname + "/public")));
 app.set("view-engine", "hbs");
 app.use(cookieparser())
 
 const upload = multer({
-  dest: "/public/Memes"
+  dest: "Memes/"
 });
 
 // connecting to our mongodb server
@@ -44,6 +43,17 @@ mongoose.connect("mongodb://localhost:27017/memedata", {
 app.get("/", (req, resp)=>{
     console.log("GET /");
     var uname = req.cookies.username
+    
+    var query = User.getAll()
+    query.exec(function(err, users){
+        if(err){
+            
+        }
+            //error
+        else{
+            console.log(users)
+        }
+    })
     
     if (uname) {
         var query = User.findSpecific(uname)
@@ -179,15 +189,17 @@ app.post("/login", urlencoder, (req,resp)=>{
     var unhashedpassword = req.body.pword 
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
     
-    var query = User.getAll()
-    query.exec(function(err, users){
+    var query = User.findSpecific(username)
+    query.exec(function(err, user){
         if(err){
-            
+            console.log(err)
+            resp.render("login.hbs", {
+                    message: "Invalid username or password"
+                    })
         }
             //error
         else{
-            var matchinguser = users.filter((user)=>{
-                if(user.username == username && user.password == password){
+                if(user.password == password){
                     
                     resp.cookie("username", username, {
                         maxAge: 1000 * 60 * 60 * 2
@@ -195,6 +207,11 @@ app.post("/login", urlencoder, (req,resp)=>{
 
                     resp.render("index.hbs", {
                         user
+                    })
+                }
+                else{
+                    resp.render("login.hbs", {
+                    message: "Invalid username or password"
                     })
                 }
                 //return false
@@ -213,26 +230,27 @@ app.post("/login", urlencoder, (req,resp)=>{
            //     resp.render("login.hbs", {
                  //   message: "Invalid username or password"
                 //})
-            })
-        }
+            }
+        })
     })
-})
+
 
 app.get("/signupPage", (req,resp)=>{
     console.log("GET /signup")
     resp.render("signup.hbs")
 })
 
-app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
+app.post("/signup", upload.single("profile"), urlencoder, (req, resp)=>{
     console.log("POST /signup")
     
-    
+    console.log(req.file)
     var username = req.body.uname 
     var email = req.body.email
     var unhashedpassword = req.body.pword 
-    var desc = req.body.sdesc 
-    //var profile = req.ppic.path
-    //console.log(profile)
+    var desc = req.body.sdesc
+    var source = req.body.profile
+    var profilepic = ("Memes/"+source) 
+    console.log(profilepic)
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
     
     //if you can make the profile a proper picture, it would be greatly appreciated
@@ -240,9 +258,12 @@ app.post("/signup",upload.single("body.ppic"), urlencoder, (req, resp)=>{
     var user = new UserModel({
         username,
         password,
+        profilepicture: profilepic,
         posts: [],
         shared: []
     })
+    
+    console.log(user.profilepicture)
     
     user.save().then((newdoc) => {
         //successful 
