@@ -1,7 +1,6 @@
 // create mongoose document ticket
 const mongoose = require("mongoose");
 const Meme = require("meme.js");
-var Meme = require("mongoose").model("Meme")
 var MemeSchema = Meme.schema
 
 var exports = module.exports = {};
@@ -38,61 +37,143 @@ exports.getAll = function(){
 
 //Find specific user given his username, to be used when you click a users name from a meme since meme only stores his username
 //Also used in authentication
-exports.findSpecific = function (user){
+exports.login = function (user){
     return new Promise(function(res, rej){
-        User.findOne({"username": user}).then((user)=>{
+        User.findOne(
+            {"username": user,
+             "password": user
+            }
+        ).then((founduser)=>{
             console.log("User " + query + " Found")
-            res(user)
+            res(founduser)
         }, (err)=>{
             console.log("User not found")
             rej(err)
-        })
-        
+        })  
     }) 
 }
 
-exports.getHashedPasword = function(user){
-    var query = User.findOne({"username": user}, {password: 1})
-    return query
+exports.findSpecific = function (user){
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            }
+        ).then((founduser)=>{
+            console.log("User " + founduser.username + " Found")
+            res(founduser)
+        }, (err)=>{
+            console.log("User not found")
+            rej(err)
+        })  
+    }) 
 }
 
 //Get the memes uploaded by a specific user, for profile page
 //only shows latest 12 memes
 exports.getMemes = function(user){
-    var query = User.findOne({username : user}, {posts: 1}).sort({_id:-1}).limit(12)
-    return query
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            },
+            {posts: 1}
+        ).sort({_id:-1}).limit(12).then((memes)=>{
+            console.log("Memes Found")
+            res(memes)
+        }, (err)=>{
+            console.log("User not found")
+            rej(err)
+        })  
+    })
 }
 
 //Get the memes shared to a specific user, for profile page
 //only shows latest 12 memes
 exports.sharedMemes = function(user){
-    var query = User.findOne({username : user}, {shared: 1}).sort({_id:-1}).limit(12)
-    return query
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            },
+            {shared: 1}
+        ).sort({_id:-1}).limit(12).then((memes)=>{
+            console.log("Memes Found")
+            res(memes)
+        }, (err)=>{
+            console.log("Memes not found" + err)
+            rej(err)
+        })  
+    })
 }
 
+//Remove a selected shared meme
 exports.removedShared = function(user, meme){
-    var query = User.findOne({username : user}).update({}, {$pull: {shared: meme}}, {multi: true})
-    return query
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            } 
+        ).update({}, {$pull: {shared: meme}}, {multi: true}).then((succ)=>{
+            console.log("Remove Successful" + succ)
+            res(succ)
+        }, (err)=>{
+            console.log("Remove Failed")
+            rej(err)
+        })  
+    })
 }
 
 exports.updateShared = function(user, meme){
-    var query = User.findOne({username : user}).update({}, {$addToSet: {shared: meme}}, {multi: true})
-    return query
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            } 
+        ).update({}, {$addToSet: {shared: meme}}, {multi: true}).then((succ)=>{
+            console.log("Added Shared successful")
+            res(succ)
+        }, (err)=>{
+            console.log("User not found")
+            rej(err)
+        })  
+    })
+    
 }
 
 exports.removePost = function(user, meme){
-    var query = User.findOne({username : user}).update({}, {$pull: {posts: meme}}, {multi: true})
-    return query
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            } 
+        ).update({}, {$pull: {posts: meme}}, {multi: true}).then((succ)=>{
+            console.log("Remove Successful" + succ)
+            res(succ)
+        }, (err)=>{
+            console.log("Remove Failed")
+            rej(err)
+        })  
+    })
 }
 
 exports.addPost = function(user, meme){
-    var query = User.findOne({username : user}).update({}, {$addToSet: {posts: meme}}, {multi: true})
-    return query
+    return new Promise(function(res, rej){
+        User.findOne(
+            {"username": user
+            } 
+        ).update({}, {$addToSet: {posts: meme}}, {multi: true}).then((succ)=>{
+            console.log("Added Post successful")
+            res(succ)
+        }, (err)=>{
+            console.log("Post Error: " + err )
+            rej(err)
+        })  
+    })
 }
 
 exports.addNewUser = function(user){
-    var query = user.save()
-    return query
+    return new Promise(function(resolve, reject){
+    var u = new User(user)
+    u.save().then((newUser)=>{
+      resolve(newUser)
+    }, (err)=>{
+      reject(err)
+    })
+  })
 }
 
-module.exports = User

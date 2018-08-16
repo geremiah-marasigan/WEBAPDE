@@ -14,4 +14,6 @@ var MemeSchema = mongoose.Schema({
 
 var Meme = mongoose.model("Meme", MemeSchema);
 
-module.exports = Meme
+var exports = module.exports = {}
+
+exports.schema = MemeSchema
