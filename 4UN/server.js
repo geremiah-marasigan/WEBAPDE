@@ -42,7 +42,7 @@ mongoose.connect("mongodb://localhost:27017/memedata", {
 
 app.get("/", (req, resp)=>{
     console.log("GET /");
-    var uname = req.cookies.username
+    var user = req.cookies.user
     
     var query = User.getAll()
     query.exec(function(err, users){
@@ -55,7 +55,7 @@ app.get("/", (req, resp)=>{
         }
     })
     
-    if (uname) {
+    if (user) {
         var query = User.findSpecific(uname)
         query.exec(function(err, user){
             if(err){
@@ -114,14 +114,16 @@ app.get("/search", urlencoder, (req,resp)=>{
     console.log("GET /tags")
     
     var tag = req.query.searchinput
-    var uname = req.cookies.username
+    var user = req.cookies.user
+    var userParsed = JSON.parse(user)
+    
     console.log("Tag: " + tag)
     
     //var uname = req.cookies.username
    
-    if (uname) {
-        var query = User.findSpecific(uname)
-        query.exec(function(err, user){
+    if (user) {
+        var query = User.findSpecific(userParsed['username'])
+        query.exec(function(err, specificuser){
             if(err){
 
             }
@@ -129,7 +131,7 @@ app.get("/search", urlencoder, (req,resp)=>{
             else{
                 resp.render("tags.hbs", {
                     tag,    
-                    user
+                    specificuser
                 })
             }
         })
@@ -151,16 +153,18 @@ app.get("/search", urlencoder, (req,resp)=>{
 app.get("/userPage", (req, resp)=>{
     console.log("GET /user")
     
-    var uname = req.cookies.username
-    var query = User.findSpecific(uname)
-    query.exec(function(err, user){
+    var user = req.cookies.user
+    var userParsed = JSON.parse(user)
+    
+    var query = User.findSpecific(userParsed['username'])
+    query.exec(function(err, specificuser){
         if(err){
             
         }
             //error
         else{
             resp.render("user.hbs", {
-                    user
+                    specificuser
             })
         }
     })
@@ -185,12 +189,18 @@ app.get("/loginPage", (req, resp)=>{
 app.post("/login", urlencoder, (req,resp)=>{
     console.log("POST /login")
     
+    
     var username = req.body.uname 
     var unhashedpassword = req.body.pword 
+//    var user = req.cookies.user
+//    var userParsed = JSON.stringify(user)
+//    
+//    var username = userParsed['username']
+//    var unhashedpassword = userParsed ['password']
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
     
     var query = User.findSpecific(username)
-    query.exec(function(err, user){
+    query.exec(function(err, specificuser){
         if(err){
             console.log(err)
             resp.render("login.hbs", {
@@ -200,8 +210,9 @@ app.post("/login", urlencoder, (req,resp)=>{
             //error
         else{
                 if(user.password == password){
+                    var temp = JSON.stringify(specificuser)
                     
-                    resp.cookie("username", username, {
+                    resp.cookie("user", temp, {
                         maxAge: 1000 * 60 * 60 * 2
                     })
 
@@ -270,7 +281,9 @@ app.post("/signup", upload.single("profile"), urlencoder, (req, resp)=>{
 //        response.render("index.hbs", {
 //            message: "Ticket was added successfully"
 //        })
-        resp.cookie("username", username, {
+        var temp = JSON.stringify(user)
+        
+        resp.cookie("user", temp, {
                         maxAge: 1000 * 60 * 60 * 2
                     })
         console.log("Successful")
@@ -291,7 +304,7 @@ app.post("/signup", upload.single("profile"), urlencoder, (req, resp)=>{
 //})
 
 app.get("/signout", urlencoder, (req, resp)=>{
-    resp.clearCookie("username")
+    resp.clearCookie("user")
     resp.render("index.hbs")
 })
 
