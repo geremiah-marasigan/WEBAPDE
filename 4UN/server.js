@@ -8,13 +8,9 @@ const cookieparser = require("cookie-parser")
 const multer = require("multer");
 const path = require("path");
 
-const MemeModel = require("./model/meme.js");
-const UserModel = require("./model/user.js");
-const TagModel = require("./model/tag.js");
-
-const Meme = require("./model/memeService.js");
-const User = require("./model/userService.js");
-const Tag = require("./model/tagService.js");
+const Meme = require("./model/meme.js");
+const User = require("./model/user.js");
+const Tag = require("./model/tag.js");
 
 //app creates server
 const app = express();

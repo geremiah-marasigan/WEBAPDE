@@ -1,7 +1,9 @@
 // create mongoose document ticket
 const mongoose = require("mongoose");
-var Meme = require("mongoose").model("Meme")
+const Meme = require("meme.js");
 var MemeSchema = Meme.schema
+
+var exports = module.exports = {};
 
 var TagSchema = mongoose.Schema({
     name: {type : String,
