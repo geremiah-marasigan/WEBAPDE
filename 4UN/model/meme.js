@@ -8,8 +8,8 @@ var MemeSchema = mongoose.Schema({
     status: String, //public or private
     shared: [String],
     tags: [String],
-    image: Buffer
-    
+    image: String,
+    originalfilename: {type: String},
 });
 
 var Meme = mongoose.model("Meme", MemeSchema);

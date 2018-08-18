@@ -74,16 +74,23 @@ exports.getMemes = function (tag) {
 
 //Adds a meme to the specified tag
 exports.addMeme = function (name, meme) {
-    var query = User.findOne({
-        name: name
-    }).update({}, {
-        $addToSet: {
-            memes: meme
-        }
-    }, {
-        multi: true
+    return new Promise(function (res, rej) {
+        Tag.findOne({
+            name: name
+        }).update({}, {
+            $addToSet: {
+                memes: meme
+            }
+        }, {
+            multi: true
+    }).then((succ) => {
+            console.log("Get All successful" + memeid)
+            res(succ)
+        }, (err) => {
+            console.log("Get All Failed")
+            rej(err)
+        })
     })
-    return query
 }
 
 exports.removeMeme = function (name, meme) {
