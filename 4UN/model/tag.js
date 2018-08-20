@@ -94,21 +94,30 @@ exports.addMeme = function (name, meme) {
 }
 
 exports.removeMeme = function (name, meme) {
-    var query = User.findOne({
-        name: name
-    }).update({}, {
-        $pull: {
-            memes: meme
-        }
-    }, {
-        multi: true
+    return new Promise(function(res, rej){
+        Tag.findOne({
+            name: name
+        }).update({}, {
+            $pull: {
+                memes: meme
+            }
+        }, {
+            multi: true
+        })
+        
     })
-    return query
+    
+    
 }
 
 //just in case
 exports.addTag = function (tag) {
-    var query = tag.save()
-    return query
-
+    return new Promise(function(res, rej){
+    var t = new Tag(tag)
+    t.save().then((newUser)=>{
+      res(newUser)
+    }, (err)=>{
+      rej(err)
+    })
+  })
 }
