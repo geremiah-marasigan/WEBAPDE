@@ -20,9 +20,36 @@ router.use(cookieparser())
 
 router.get("/", (req, resp) => {
     console.log("GET /");
-    var uname = req.cookies.username
-
-    if (uname) {
+    // var uname = req.cookies.username
+    // 
+    // if (uname) {
+    //     var query = User.findSpecific(uname)
+    //     query.exec(function (err, user) {
+    //         if (err) {
+    // 
+    //         }
+    //         //error
+    //         else {
+    //             resp.render("index.hbs", {
+    //                 user,
+    //                 col1: [],
+    //                 col2: [],
+    //                 col3: []
+    //             })
+    //         }
+    //     })
+    // } else {
+    //     resp.render("index.hbs", {
+    //         col1: [],
+    //         col2: [],
+    //         col3: []
+    //     })
+    // }
+    var user_cookie = req.cookies.user
+    var user_parsed = JSON.parse(user_cookie)
+    var uname = user_parsed['username']
+    
+    if (user_cookie) {
         var query = User.findSpecific(uname)
         query.exec(function (err, user) {
             if (err) {

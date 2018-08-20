@@ -36,9 +36,14 @@ router.get("/search", urlencoder, (req, resp) => {
     console.log("GET /tags")
 
     var tag = req.query.searchinput
-    var uname = req.cookies.username
+    // var uname = req.cookies.username
+    var user_cookie = req.cookies.user
+    var user_parsed = JSON.parse(user_cookie)
+    var uname = user_parsed['username']
+    
     console.log("Tag: " + tag)
-    if (uname) {
+    // if (uname) {
+    if(user_cookie){
         var query = User.findSpecific(uname)
         query.exec(function (err, user) {
             if (err) {
@@ -57,7 +62,6 @@ router.get("/search", urlencoder, (req, resp) => {
             tag
         })
     }
-
 })
 
 // always remember to export the router for index.js

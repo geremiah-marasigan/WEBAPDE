@@ -34,9 +34,15 @@ router.use(cookieparser())
 
 router.get("/userPage", (req, resp) => {
     console.log("GET /user")
-
-    var uname = req.cookies.username
+    
+    // var user_parsed = req.cookies.user
+    // var uname = req.cookies.username
+    var user_cookie = req.cookies.user
+    var user_parsed = JSON.parse(user_cookie)
+    var uname = user_parsed['username']
+    
     var query = User.findSpecific(uname)
+    
     query.exec(function (err, user) {
         if (err) {
 
@@ -57,7 +63,7 @@ router.get("/loginPage", (req, resp) => {
 
 router.post("/login", urlencoder, (req, resp) => {
     console.log("POST user/login")
-
+    
     var username = req.body.uname
     var unhashedpassword = req.body.pword
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
@@ -71,8 +77,9 @@ router.post("/login", urlencoder, (req, resp) => {
         else {
             var matchinguser = users.filter((user) => {
                 if (user.username == username && user.password == password) {
-
-                    resp.cookie("username", username, {
+                    var string_user = JSON.stringify(user)
+                    
+                    resp.cookie("user", string_user, {
                         maxAge: 1000 * 60 * 60 * 2
                     })
 
@@ -108,9 +115,11 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         posts: [],
         shared: []
     })
-
+    
+    var string_user = JSON.stringify(user)
+    
     user.save().then((newdoc) => {
-        resp.cookie("username", username, {
+          resp.cookie("user", string_user, {
             maxAge: 1000 * 60 * 60 * 2
         })
         console.log("Successful")
@@ -124,7 +133,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
 })
 
 router.get("/signout", urlencoder, (req, resp) => {
-    resp.clearCookie("username")
+    resp.clearCookie("user")
     resp.render("index.hbs")
 })
 
