@@ -1,20 +1,23 @@
 <html>
 <head>
-    <link rel="stylesheet" href="styles/login-style.css">
+    <link rel="stylesheet" href="../styles/login-style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script>
+        
+    </script>
 </head>
 <body>
     <div>
         <nav>
             <div class="navbar">
                 <ul>
-                    <li><a href="/" id="logo"><img id="logo" src="resources/logo.png"/></a></li>
+                    <li><a href="/" id="logo"><img id="logo" src="../resources/logo.png"/></a></li>
                 </ul>
             </div>
         </nav>
     </div>
         <div class="main">
-            <form id = "loginform" action="/login" method="post">
+            <form id = "loginform" action="../user/login" method="post">
                 <div id = "loginFormDiv">
                     Username:
                     <input id="username" type="text" name="uname" required/><br/>
@@ -29,17 +32,13 @@
             {{#if message}}
             <p class = message>{{message}}<br/></p>
             {{/if}}
-            <form id = "signup" method=post action=signup>
                 <div id = "signup">
                     
                     Don't have an account?
                     <a href = "signupPage">Sign Up!</a>
 <!--                    <button type = submit name = signup class = btn_hyperlink>Sign Up!</button>-->
                 </div>
-            </form>
         </div>
             
 </body>
-    <script>
-    </script>
 </html>

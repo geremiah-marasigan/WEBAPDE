@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="styles/signup-style.css">
+    <link rel="stylesheet" href="../styles/signup-style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 </head>
 <body>
@@ -8,17 +8,13 @@
         <nav>
             <div class="navbar">
                 <ul>
-                    <li><a href="/" id="logo"><img id="logo" src="resources/logo.png"/></a></li>
-                    <!--<li>
-                        <a id="sign_up" href="signup.html">
-                        SIGN UP</a>
-                    </li>-->
+                    <li><a href="/" id="logo"><img id="logo" src="../resources/logo.png"/></a></li>
                 </ul>
             </div>
         </nav>
     </div>
         <div class="main">
-            <form id = "signupform" action="/signup" method="post">
+            <form id = "signupform" action="../user/signup" enctype="multipart/form-data" method="post">
                 <div class = "signupFormDiv">
                     Profile Picture: <br>
                     <input id="profilepic" type="file" name="ppic" /><br/>

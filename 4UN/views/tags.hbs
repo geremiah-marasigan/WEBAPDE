@@ -1,13 +1,13 @@
 <html>
     <head>
-        <link rel="stylesheet" href="styles/super-style.css">
-        <link rel="stylesheet" href="styles/main-style.css">
+        <link rel="stylesheet" href="../styles/super-style.css">
+        <link rel="stylesheet" href="../styles/main-style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="jquery-3.3.1.min.js"></script>
+        <script src="../jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-        <script src="js/meme-script.js"></script>
+        <script src="../js/meme-script.js"></script>
     </head>
 <body>
     <div>
@@ -16,7 +16,7 @@
                 <ul>
                     <li>
                         <a href="/" id="logo">
-                            <img id="logo" src="resources/logo.png"/>
+                            <img id="logo" src="../resources/logo.png"/>
                         </a>
                         <!--<form method = post action = home>
                             <input type = "image" id = logo src = resources/logo.png>
@@ -26,16 +26,16 @@
                         {{#if user}}
                         <div class="dropdown">
                             <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
-                                <img id="profile-pic" src="{{user.profilepicture}}">
+                                <img id="profile-pic" src="../user/photo/{{user.profilepicture}}">
                                 </button>
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                <a class="dropdown-item" href="userPage">Profile</a>
+                                <a class="dropdown-item" href="../user/userPage">Profile</a>
                                 <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
-                                <a class="dropdown-item" id="sign-out" href="signout">Sign-Out</a>
+                                <a class="dropdown-item" id="sign-out" href="../user/signout">Sign-Out</a>
                             </div>
                         </div>
                         {{else}}
-                        <a id="sign_up" href="loginPage">
+                        <a id="sign_up" href="../user/loginPage">
                             LOGIN</a>
                         <!--
                         <form method = post action = login>
@@ -46,7 +46,7 @@
                     </li>
                     <li>
                         <div id="search">
-                            <form id = search action = search method = get>
+                            <form id = search action = ../tags/search method = get>
                                <input id="search-input" type="text" placeholder="Search Tags" name = "searchinput" />
                                 <!--<a href="main-cat.html" class="submit-button">
                                     <i class="fa fa-search"></i>
