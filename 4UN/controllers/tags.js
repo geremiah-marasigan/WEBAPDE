@@ -13,13 +13,9 @@ const urlencoder = bodyparser.urlencoded({
     extended: false
 });
 
-const MemeModel = require("../model/meme.js");
-const UserModel = require("../model/user.js");
-const TagModel = require("../model/tag.js");
-
-const Meme = require("../model/memeService.js");
-const User = require("../model/userService.js");
-const Tag = require("../model/tagService.js");
+const Meme = require("../model/meme.js");
+const User = require("../model/user.js");
+const Tag = require("../model/tag.js");
 
 const UPLOAD_PATH = path.resolve(__dirname, "../Memes")
 const upload = multer({
@@ -38,25 +34,25 @@ router.get("/search", urlencoder, (req, resp) => {
     var tag = req.query.searchinput
     var uname = req.cookies.username
     console.log("Tag: " + tag)
-    if (uname) {
-        var query = User.findSpecific(uname)
-        query.exec(function (err, user) {
-            if (err) {
-
-            }
-            //error
-            else {
-                resp.render("tags.hbs", {
-                    tag,
-                    user
-                })
-            }
-        })
-    } else {
+//    if (uname) {
+//        var query = User.findSpecific(uname)
+//        query.exec(function (err, user) {
+//            if (err) {
+//
+//            }
+//            //error
+//            else {
+//                resp.render("tags.hbs", {
+//                    tag,
+//                    user
+//                })
+//            }
+//        })
+//    } else {
         resp.render("tags.hbs", {
             tag
         })
-    }
+//    }
 
 })
 

@@ -1,6 +1,6 @@
 // create mongoose document ticket
 const mongoose = require("mongoose");
-const Meme = require("meme.js");
+const Meme = require("../model/meme.js");
 var MemeSchema = Meme.schema
 
 var exports = module.exports = {};

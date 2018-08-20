@@ -31,8 +31,11 @@ router.use(cookieparser())
 router.get("/userPage", (req, resp) => {
     console.log("GET /user")
 
-    var uname = req.cookies.username
-    User.login(user).then((newUser)=>{
+    var username = req.cookies.username
+    var user = {
+        username
+    }
+    User.findSpecific(user).then((foundUser)=>{
         console.log("login " + newUser)
         if(newUser){
             resp.cookie("username", username, {
