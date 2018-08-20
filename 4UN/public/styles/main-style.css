@@ -37,7 +37,6 @@ nav ul li{
 
 li{
     list-style: none;
-    
 }
 
 #logo{
@@ -133,15 +132,27 @@ li{
     border: none;
     border-bottom: 2px solid grey;
     color:white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #search-input:focus{
     outline: none;
 }
 
-#search button:hover > .fa-search{
-   color: white;
+.searchicon{
+  position: absolute;
+   height: 20px;
+   width: 20px;
+   padding-top: 5px;
+   margin-left: 164px;
+   margin-top: -25px;
 }
+
+/* #search button:hover > .fa-search{
+   color: white;
+} */
 
 .editDescription{
     margin-top: 2px;
