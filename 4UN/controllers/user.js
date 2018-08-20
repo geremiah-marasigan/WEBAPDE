@@ -36,13 +36,10 @@ router.get("/userPage", (req, resp) => {
         username
     }
     User.findSpecific(user).then((foundUser)=>{
-        console.log("login " + newUser)
-        if(newUser){
-            resp.cookie("username", username, {
-                maxAge: 1000 * 60 * 60 * 2
-            })
-            resp.render("index.hbs", {
-                user
+        if(foundUser){
+            console.log("userpage " + foundUser)
+            resp.render("user.hbs", {
+                user: foundUser
             })
         }
         
