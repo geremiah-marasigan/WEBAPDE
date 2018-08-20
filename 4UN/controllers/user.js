@@ -109,13 +109,15 @@ router.get("/signupPage", (req, resp) => {
 
 router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     console.log("POST user/signup")
-
-    console.log(req.file.filename)
+    
+    var profilepicture
     var username = req.body.uname
     var email = req.body.email
     var unhashedpassword = req.body.pword
     var desc = req.body.sdesc
-    var profilepicture = req.file.filename
+    if(req.file){
+        profilepicture = req.file.filename
+    }
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
 
     var user = ({

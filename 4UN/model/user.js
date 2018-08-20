@@ -17,7 +17,7 @@ var UserSchema = mongoose.Schema({
         trim: true
               },
     description: {type: String, default: "No Description"},
-    profilepicture: {type: String, default: "https://www.ienglishstatus.com/wp-content/uploads/2018/04/Anonymous-Whatsapp-profile-picture.jpg"},
+    profilepicture: {type: String, default: "f2ee3b7289cbc831ffbef1903402f831"},
     originalprofilename: {type: String},
     posts: [MemeSchema],
     shared: [MemeSchema]
