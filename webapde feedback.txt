@@ -1,0 +1,34 @@
+title: too small
+tags: {} or #tags
+inconsitencies by and tags
+emphasized lines
+
+Edit:
+UI is different for users
+Button changes the 
+update feedback
+edit desrciption gross
+autocomplete add users
+delete (upper right maybe)
+no public
+login  button too big
+
+Login:
+button style
+
+Register:
+Description has places
+
+
+Public or private:
+Mark
+
+Add meme not in drop down, but button
+
+/viewMeme na AJAX
+
+OKAY! Schema
+
+Edit is extremely confusing
+Text is weird (italicized)
+
