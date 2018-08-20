@@ -13,13 +13,9 @@ const urlencoder = bodyparser.urlencoded({
     extended: false
 });
 
-const MemeModel = require("../model/meme.js");
-const UserModel = require("../model/user.js");
-const TagModel = require("../model/tag.js");
-
-const Meme = require("../model/memeService.js");
-const User = require("../model/userService.js");
-const Tag = require("../model/tagService.js");
+const Meme = require("../model/meme.js");
+const User = require("../model/user.js");
+const Tag = require("../model/tag.js");
 
 const UPLOAD_PATH = path.resolve(__dirname, "../Profiles")
 const upload = multer({
@@ -36,17 +32,17 @@ router.get("/userPage", (req, resp) => {
     console.log("GET /user")
 
     var uname = req.cookies.username
-    var query = User.findSpecific(uname)
-    query.exec(function (err, user) {
-        if (err) {
-
-        }
-        //error
-        else {
-            resp.render("user.hbs", {
+    User.login(user).then((newUser)=>{
+        console.log("login " + newUser)
+        if(newUser){
+            resp.cookie("username", username, {
+                maxAge: 1000 * 60 * 60 * 2
+            })
+            resp.render("index.hbs", {
                 user
             })
         }
+        
     })
 })
 
@@ -61,28 +57,46 @@ router.post("/login", urlencoder, (req, resp) => {
     var username = req.body.uname
     var unhashedpassword = req.body.pword
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
-
-    var query = User.getAll()
-    query.exec(function (err, users) {
-        if (err) {
-
-        }
-        //error
-        else {
-            var matchinguser = users.filter((user) => {
-                if (user.username == username && user.password == password) {
-
-                    resp.cookie("username", username, {
-                        maxAge: 1000 * 60 * 60 * 2
-                    })
-
-                    resp.render("index.hbs", {
-                        user
-                    })
-                }
+    
+    var user = {
+        username,
+        password
+    }
+    
+    User.login(user).then((newUser)=>{
+        console.log("login " + newUser)
+        if(newUser){
+            resp.cookie("username", username, {
+                maxAge: 1000 * 60 * 60 * 2
+            })
+            resp.render("index.hbs", {
+                user
             })
         }
+        
     })
+
+//    var query = User.getAll()
+//    query.exec(function (err, users) {
+//        if (err) {
+//
+//        }
+//        //error
+//        else {
+//            var matchinguser = users.filter((user) => {
+//                if (user.username == username && user.password == password) {
+//
+//                    resp.cookie("username", username, {
+//                        maxAge: 1000 * 60 * 60 * 2
+//                    })
+//
+//                    resp.render("index.hbs", {
+//                        user
+//                    })
+//                }
+//            })
+//        }
+//    })
 })
 
 router.get("/signupPage", (req, resp) => {
@@ -101,7 +115,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     var profilepicture = req.file.filename
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
 
-    var user = new UserModel({
+    var user = ({
         username,
         password,
         profilepicture,
@@ -109,18 +123,31 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         shared: []
     })
 
-    user.save().then((newdoc) => {
+    User.addNewUser(user).then((newUser)=>{
+        console.log("add " + newUser)
         resp.cookie("username", username, {
             maxAge: 1000 * 60 * 60 * 2
         })
-        console.log("Successful")
         resp.render("index.hbs", {
             user
         })
-
-    }, (err) => {
-        console.log("Not")
+        
+    }, (err)=>{
+        console.log("add fail")
     })
+    
+//    user.save().then((newdoc) => {
+//        resp.cookie("username", username, {
+//            maxAge: 1000 * 60 * 60 * 2
+//        })
+//        console.log("Successful")
+//        resp.render("index.hbs", {
+//            user
+//        })
+//
+//    }, (err) => {
+//        console.log("Not")
+//    })
 })
 
 router.get("/signout", urlencoder, (req, resp) => {
