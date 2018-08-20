@@ -35,6 +35,7 @@ router.get("/userPage", (req, resp) => {
     var user = {
         username
     }
+    console.log("Username is " + username)
     User.findSpecific(user).then((foundUser)=>{
         if(foundUser){
             console.log("userpage " + foundUser)
