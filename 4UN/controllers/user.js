@@ -31,12 +31,20 @@ router.use(cookieparser())
 router.get("/userPage", (req, resp) => {
     console.log("GET /user")
 
-    var username = req.cookies.username
-    var user = {
-        username
-    }
-    console.log("Username is " + username)
-    User.findSpecific(user).then((foundUser)=>{
+    // var username = req.cookies.username
+    // var user = {
+    //     username
+    // }
+    var user_cookie = req.cookies.user
+    var user_parsed = JSON.parse(user_cookie)
+    var uname = user_parsed['username']
+    
+    // var query = User.findSpecific(uname)
+    
+    console.log("Username is " + uname)
+    
+    // User.findSpecific(user).then((foundUser)=>{
+     User.findSpecific(user_parsed).then((foundUser)=>{
         if(foundUser){
             console.log("userpage " + foundUser)
             resp.render("user.hbs", {
@@ -67,11 +75,16 @@ router.post("/login", urlencoder, (req, resp) => {
     User.login(user).then((newUser)=>{
         console.log("login " + newUser)
         if(newUser){
-            resp.cookie("username", username, {
+          
+          var user_string = JSON.stringify(newUser)
+          
+            // resp.cookie("username", username, {
+            resp.cookie("user", user_string, {
                 maxAge: 1000 * 60 * 60 * 2
             })
             resp.render("index.hbs", {
-                user
+                // user
+                newUser
             })
         }
         
@@ -128,7 +141,11 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
 
     User.addNewUser(user).then((newUser)=>{
         console.log("add " + newUser)
-        resp.cookie("username", username, {
+        
+        var user_string = JSON.stringify(user)
+        
+        // resp.cookie("username", username, {
+        resp.cookie("user", user_string, {
             maxAge: 1000 * 60 * 60 * 2
         })
         resp.render("index.hbs", {
@@ -154,7 +171,8 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
 })
 
 router.get("/signout", urlencoder, (req, resp) => {
-    resp.clearCookie("username")
+    // resp.clearCookie("username")
+    resp.clearCookie("user")
     resp.render("index.hbs")
 })
 

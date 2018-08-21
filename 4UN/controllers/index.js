@@ -16,12 +16,16 @@ router.use(cookieparser())
 
 router.get("/", (req, resp) => {
     console.log("GET /");
-    var username = req.cookies.username
-    var user = {
-        username
-    }
+    // var username = req.cookies.username
+    // var user = {
+    //     username
+    // }
+    var user_cookie = req.cookies.user
+    var user_parsed = JSON.parse(user_cookie)
+    // var uname = user_parsed['username']
     
-    User.findSpecific(user).then((foundUser)=>{
+    
+    User.findSpecific(user_parsed).then((foundUser)=>{
         if(foundUser){
             resp.render("index.hbs", {
                 user: foundUser,
