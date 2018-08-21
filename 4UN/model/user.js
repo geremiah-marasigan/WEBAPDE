@@ -60,10 +60,9 @@ exports.findSpecific = function (user){
             {username: user.username
             }
         ).then((founduser)=>{
-            console.log("User " + founduser.username + " Found")
             res(founduser)
         }, (err)=>{
-            console.log("User not found")
+            console.log("ERROR")
             rej(err)
         })  
     }) 
