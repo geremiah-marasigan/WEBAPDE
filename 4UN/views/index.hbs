@@ -23,19 +23,21 @@
                         <a href="/" id="logo">
                             <img id="logo" src="../resources/logo.png"/>
                         </a>
+                        
                         <!--<form method = post action = home>
                             <input type = "image" id = logo src = resources/logo.png>
                         </form>-->
                     </li>
                     <li>
                         {{#if user}}
+                        <button id = "add_meme" data-toggle="modal" data-target="#uploadModal">ADD A MEME</button>
                         <div class="dropdown">
                             <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
                                     <img id="profile-pic" src="../user/photo/{{user.profilepicture}}">
                                 </button>
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
                                 <a class="dropdown-item" href="../user/userPage">Profile</a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a>
+                                <!-- <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a> -->
                                 <a class="dropdown-item" id="sign-out" href="../user/signout">Sign-Out</a>
                             </div>
                         </div>

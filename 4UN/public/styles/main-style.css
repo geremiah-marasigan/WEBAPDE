@@ -61,6 +61,27 @@ li{
     color: black;
 }
 
+#add_meme{
+    padding: 15px;
+    border-radius: 3px;
+    font-weight: 700;
+    border-style: solid;
+    border-width: 1px;
+    transition: 0.25s ease;
+    text-decoration: none;
+    color: white;
+    background-color: #0e1111;
+    position: absolute;
+    height:50px;
+    top: 5px;
+    right: 350px;
+}
+
+#add_meme:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
 .main{
     position: absolute;
     top: 60px;
