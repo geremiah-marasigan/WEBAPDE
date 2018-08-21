@@ -31,20 +31,24 @@ router.use(cookieparser())
 router.get("/userPage", (req, resp) => {
     console.log("GET /user")
 
-    // var username = req.cookies.username
-    // var user = {
-    //     username
-    // }
-    var user_cookie = req.cookies.user
-    var user_parsed = JSON.parse(user_cookie)
-    var uname = user_parsed['username']
+    var username = req.cookies.username
+    var user = {
+        username
+    }
     
+    // var user_cookie = req.cookies.user
+    // var user_parsed
+    // 
+    // if(user_cookie){
+    //   user_parsed = JSON.parse(user_cookie)
+    //   var uname = user_parsed['username']
+    // }
     // var query = User.findSpecific(uname)
     
-    console.log("Username is " + uname)
+    console.log("Username is " + user)
     
-    // User.findSpecific(user).then((foundUser)=>{
-     User.findSpecific(user_parsed).then((foundUser)=>{
+    User.findSpecific(user).then((foundUser)=>{
+     // User.findSpecific(user_parsed).then((foundUser)=>{
         if(foundUser){
             console.log("userpage " + foundUser)
             resp.render("user.hbs", {
@@ -76,15 +80,15 @@ router.post("/login", urlencoder, (req, resp) => {
         console.log("login " + newUser)
         if(newUser){
           
-          var user_string = JSON.stringify(newUser)
+          // var user_string = JSON.stringify(newUser)
           
-            // resp.cookie("username", username, {
-            resp.cookie("user", user_string, {
+            resp.cookie("username", username, {
+            // resp.cookie("user", user_string, {
                 maxAge: 1000 * 60 * 60 * 2
             })
             resp.render("index.hbs", {
-                // user
-                newUser
+                user
+                // newUser
             })
         }
         
@@ -142,10 +146,10 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     User.addNewUser(user).then((newUser)=>{
         console.log("add " + newUser)
         
-        var user_string = JSON.stringify(user)
+        // var user_string = JSON.stringify(user)
         
-        // resp.cookie("username", username, {
-        resp.cookie("user", user_string, {
+        resp.cookie("username", username, {
+        // resp.cookie("user", user_string, {
             maxAge: 1000 * 60 * 60 * 2
         })
         resp.render("index.hbs", {
@@ -171,8 +175,8 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
 })
 
 router.get("/signout", urlencoder, (req, resp) => {
-    // resp.clearCookie("username")
-    resp.clearCookie("user")
+    resp.clearCookie("username")
+    // resp.clearCookie("user")
     resp.render("index.hbs")
 })
 

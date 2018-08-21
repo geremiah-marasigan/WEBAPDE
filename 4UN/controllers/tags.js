@@ -32,10 +32,11 @@ router.get("/search", urlencoder, (req, resp) => {
     console.log("GET /tags")
 
     var tag = req.query.searchinput
-    // var uname = req.cookies.username
-    var user_cookie = req.cookies.user
-    var user_parsed = JSON.parse(user_cookie)
-    
+    var uname = req.cookies.username
+    // var user_cookie = req.cookies.user
+    // if(user_cookie){
+    // var user_parsed = JSON.parse(user_cookie)
+    // }
     console.log("Tag: " + tag)
 //    if (uname) {
 //        var query = User.findSpecific(uname)
