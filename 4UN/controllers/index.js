@@ -48,6 +48,22 @@ router.get("/", (req, resp) => {
     })
 });
 
+//for kyle
+var meme = {
+    title:"Test Meme",
+    owner:"admin",
+    description:"this is a meme",
+    status:"Public",
+    image:"ZiRK.png",
+    originalfilename: "ZiRK.png"
+}
+
+Meme.addNewMeme(meme).then(()=>{
+    console.log("Added Meme to database")
+}, (err)=>{
+    console.log("Adding Fail: " + err)
+})
+
 //app.post("/registered", urlencoder, (req, resp)=>{
 //    //when they send their info
 //})
