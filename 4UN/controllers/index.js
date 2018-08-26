@@ -27,13 +27,12 @@ router.get("/", (req, resp) => {
     // }
     // var uname = user_parsed['username']
     
-    
     // User.findSpecific(user_parsed).then((foundUser)=>{
     User.findSpecific(user).then((foundUser)=>{
         if(foundUser){
             resp.render("index.hbs", {
                 user: foundUser,
-                col1: [],
+                col1: ,
                 col2: [],
                 col3: []
             })
@@ -48,21 +47,6 @@ router.get("/", (req, resp) => {
     })
 });
 
-//for kyle
-var meme = {
-    title:"Test Meme",
-    owner:"admin",
-    description:"this is a meme",
-    status:"Public",
-    image:"ZiRK.png",
-    originalfilename: "ZiRK.png"
-}
-
-Meme.addNewMeme(meme).then(()=>{
-    console.log("Added Meme to database")
-}, (err)=>{
-    console.log("Adding Fail: " + err)
-})
 
 //app.post("/registered", urlencoder, (req, resp)=>{
 //    //when they send their info
