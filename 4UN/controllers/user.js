@@ -28,7 +28,7 @@ const upload = multer({
 
 router.use(cookieparser())
 
-router.get("/userProfile", urlencoder, (req, resp)=>{
+router.post("/userProfile", urlencoder, (req, resp)=>{
     var username = req.body.owner
     console.log(username)
 })
