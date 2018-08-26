@@ -54,7 +54,8 @@ router.get("/search", urlencoder, (req, resp) => {
 //        })
 //    } else {
         resp.render("tags.hbs", {
-            tag
+            tag,
+            uname
         })
 //    }
 
