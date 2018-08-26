@@ -76,31 +76,8 @@
                     {{#each col1}}
                     <!--                            // this is where to place the meme-->
                     <button data-toggle="modal" data-target="#modal{{@index}}">
-                        <img src="{{this.source}}">
+                        <img src="../user/photo/{{this}}">
                     </button>
-                    <div class="modal fade" id="modal{{@index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
-                                    <div class="modal-subheading">{{this.author}}</div>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="{{this.source}}" />
-                                    <span class="description">{{this.desc}}</span>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="tags">
-                                        <div>Tags:</div>
-                                        {{#each this.tags}}
-                                        <div class="memetag"><a href="">{{this.tags}}</a><button type="button" style="display: none;">x</button>, </div>
-                                        {{/each}}
-                                    </div>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     {{/each}}
                 </div>
                 <div class="col col-lg-3" id="column1">
@@ -185,113 +162,77 @@
         </div>
         {{/if}}
     </div>
+    <!--Uploading a Meme-->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload a Meme</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="title">
+                        <span>Meme Title: </span>
+                        <input id="memeTitle" type="text">
+                    </div>
+                    <br>
+                    <div class="upload-photo">
+                        <span>Choose a photo: </span>
+                        <input type="file" />
+                    </div>
+                    <br/>
+                    <div class="tagAdder">
+                        <span>Add Tags:</span>
+                        <input type="text" placeholder="Separate tags with a comma" />
+                    </div>
+                    <div class="editDescription">
+                        <span>Set Description:</span>
+                        <textarea rows="4" cols="50"></textarea>
 
-    <!-- Modal -->
-    <!--
-        <div class="modal fade" id="memeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Before and after Jakol</h5>
-                <div class="modal-subheading">By mr_bizcuit</div>
-              </div>
-              <div class="modal-body">
-                <img src="https://static.boredpanda.com/blog/wp-content/uploads/2018/04/5acb63d83493f__700-png.jpg"/>
-                <span class="description">I calm down every time.</span>
-              </div>
-              <div class="modal-footer">
-                  <div class="tags">
-                    <div>Tags:</div>
-                    <div class="memetag"><a href="">NSFW</a><button type="button" style="display: none;">x</button>, </div>
-                    
-                    <div class="memetag"><a href="">Bastos</a><button type="button" style="display: none;">x</button>, </div>
-                    
-                    <div class="memetag"><a href="">Cat</a><button type="button" style="display: none;">x</button></div>
-                    
-                  </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
+                    </div>
+                    <div class="statusChk">
+                        <input type="checkbox" id="publicChk" onclick="isPublic()">
+                        <label>Public</label>
+                    </div>
+                    <div id="shareUpload">
+                        <span>Share With:</span>
+                        <input type="text" placeholder="Separate with a comma" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Upload</button>
+                </div>
             </div>
-          </div>
         </div>
-        
--->
-    <!--
-        <div class="modal fade" id="memeModalLoggedIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">As pretty as a Cat</h5>
-                <div class="modal-subheading">By <a href="user.html">Durstnt</a> | Private</div>
-              </div>
-              <div class="modal-body">
-                <img class="meme" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
-                <span class="description">I love pussy</span>
-                <br/>
-                <hr>
-                <div class="tagAdder">
-                    <span>Add Tags:</span>
-                    <input type="text" placeholder="Separate tags with a comma"/>
-                    <button type="button" class="btn btn-default">Add</button>
-                </div>
-                <div class="editDescription">
-                  <span>Edit Description:</span>
-                  <input type="text" placeholder="Enter new description here"/>
-                  <button type="button" class="btn btn-default update-description">Update</button>
-                </div>
-                <div class="shareMeme">
-                  <span>Shared With:</span> <br/>
-                  <span>mr_bizcuit</span> <br/>
-                  <span>Jdelbz</span> <br/>
-                  <input type="text" placeholder="Add users to share with"/>
-                  <button type="button" class="btn btn-success share-meme">Add</button>
-                </div>
-                <div class="deleteMeme">
-                  <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
-                </div>
-              </div>
-              <div class="modal-footer">
-                  <div class="tags">
-                    <div>Tags: </div>
-                    <div><a href="main-cute.html">Cute</a>, </div>
-                    <div><a href="">Hot</a>, </div>
-                    <div><a href="main-cat.html">Cat</a></div>
-                  </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button id="view-more" class="btn btn-success">View more</button>
--->
-</body>
+    </div>
+</body> 
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
-        var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
-        for (let x = 0; x < 3; x++) {
-
-            var memeImg = document.createElement("img")
-            $(memeImg).addClass("meme")
-            $(memeImg).attr("src", memeURL)
-            $(memeImg).attr("data-toggle", "modal")
-            $(memeImg).attr("data-target", "#meme" + x)
-
-            $("#column" + x % 3).append(memeImg)
-
-            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["search"], ""), x)
-        }
-
-
-
-        //Adds remove button on hover and removes on leave
-        $(".modal-footer .tags .memetag").on('mouseenter', function() {
-            $(this).find(":button").show();
-            console.log("in");
-        }).on('mouseleave', function() {
-            $(this).find(":button").hide();
-            console.log("out");
-        });
+//        var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
+//        for (let x = 0; x < 3; x++) {
+//
+//            var memeImg = document.createElement("img")
+//            $(memeImg).addClass("meme")
+//            $(memeImg).attr("src", memeURL)
+//            $(memeImg).attr("data-toggle", "modal")
+//            $(memeImg).attr("data-target", "#meme" + x)
+//
+//            $("#column" + x % 3).append(memeImg)
+//
+//            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["search"], ""), x)
+//        }
+//
+//
+//
+//        //Adds remove button on hover and removes on leave
+//        $(".modal-footer .tags .memetag").on('mouseenter', function() {
+//            $(this).find(":button").show();
+//            console.log("in");
+//        }).on('mouseleave', function() {
+//            $(this).find(":button").hide();
+//            console.log("out");
+//        });
     });
 
 </script>

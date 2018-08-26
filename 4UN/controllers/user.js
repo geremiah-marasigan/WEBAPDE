@@ -45,7 +45,7 @@ router.get("/userPage", (req, resp) => {
     // }
     // var query = User.findSpecific(uname)
     
-    console.log("Username is " + user)
+    console.log("Username is " + username)
     
     User.findSpecific(user).then((foundUser)=>{
      // User.findSpecific(user_parsed).then((foundUser)=>{
@@ -87,11 +87,9 @@ router.post("/login", urlencoder, (req, resp) => {
                 maxAge: 1000 * 60 * 60 * 2
             })
             resp.render("index.hbs", {
-                user
-                // newUser
+                newUser
             })
         }
-        
     })
 
 //    var query = User.getAll()
