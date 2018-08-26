@@ -61,7 +61,7 @@ li{
     color: black;
 }
 
-#add_meme{
+/* #add_meme{
     padding: 15px;
     border-radius: 3px;
     font-weight: 700;
@@ -75,12 +75,12 @@ li{
     height:50px;
     top: 5px;
     right: 350px;
-}
-
+} */
+/* 
 #add_meme:hover{
     background-color: whitesmoke;
     color: black;
-}
+} */
 
 .main{
     position: absolute;
@@ -95,12 +95,12 @@ li{
     text-align: center
 }
 
-.images img{
+/* .images img{
     width:100%;
     height: auto;
     padding: 10px;
-}
-
+} */
+/* 
 
 .modal-header{
     display: flex;
@@ -126,7 +126,7 @@ li{
 
 .modal-footer div{
     padding: 2px;
-}
+} */
 
 .tagAdder input{
     width: 300px;
@@ -162,14 +162,13 @@ li{
     outline: none;
 }
 
-.searchicon{
-  position: absolute;
-   height: 20px;
-   width: 20px;
-   padding-top: 5px;
-   margin-left: 164px;
-   margin-top: -25px;
-}
+/* .searchicon{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 500px;
+    right: 225px;
+} */
 
 /* #search button:hover > .fa-search{
    color: white;
@@ -182,10 +181,10 @@ li{
 .editDescription input{
     width: 250px;
 }
-
+/* 
 .btnDelete{
-    background-color: red;
-}
+    background-color: blue;
+} */
 
 #logo{
     height: 75px;
