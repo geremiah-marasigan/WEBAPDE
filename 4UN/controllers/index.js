@@ -20,19 +20,30 @@ router.get("/", (req, resp) => {
     var user = {
         username
     }
-    // var user_cookie = req.cookies.user
-    // var user_parsed 
-    // if(user_cookie){
-    //   user_parsed = JSON.parse(user_cookie)
-    // }
-    // var uname = user_parsed['username']
+    
+    var col1 = []
+    var col2 = []
+    var col3 = []
+    
+    Meme.getPublic().then((publicmemes)=>{
+        for(let x = 0; x<a.length; x++)
+            if(x % 3 === 0)
+                col1.push(publicmemes[x])
+            else if (x % 3 === 1)
+                col2.push(publicmemes[x])
+            else   
+                col3.push(publicmemes[x])
+    }, (err)=>{
+       console.log("Error getting memes: " + err) 
+    })
+    
     
     // User.findSpecific(user_parsed).then((foundUser)=>{
     User.findSpecific(user).then((foundUser)=>{
         if(foundUser){
             resp.render("index.hbs", {
                 user: foundUser,
-                col1: ,
+                col1: [],
                 col2: [],
                 col3: []
             })
