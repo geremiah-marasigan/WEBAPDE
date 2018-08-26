@@ -88,6 +88,13 @@ router.post("/login", urlencoder, (req, resp) => {
             })
             resp.redirect('/')
         }
+          else{
+              var message = "Invalid username / password.";
+              
+              resp.render("login.hbs", {
+                message
+              })
+          }
     })
 
 })
