@@ -69,7 +69,7 @@ exports.findSpecific = function (meme){
 exports.getPublic = function(){
     return new Promise(function(res, rej){
         Meme.find(
-            {"status" :"public"}
+            {status :"Public"}
         ).sort(
             {_id:-1}
         ).limit(12)
