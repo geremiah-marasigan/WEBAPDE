@@ -86,9 +86,7 @@ router.post("/login", urlencoder, (req, resp) => {
             // resp.cookie("user", user_string, {
                 maxAge: 1000 * 60 * 60 * 2
             })
-            resp.render("index.hbs", {
-                newUser
-            })
+            resp.redirect('/')
         }
     })
 
