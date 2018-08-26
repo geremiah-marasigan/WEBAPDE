@@ -52,7 +52,7 @@ exports.updateOne = function(meme,updated){
 exports.findSpecific = function (meme){
     return new Promise(function(res, rej){
         Meme.findOne(
-            {"_id": meme
+            {_id: meme
             }
         ).then((succ)=>{
             console.log("Find successful")
