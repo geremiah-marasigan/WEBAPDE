@@ -10,7 +10,7 @@ const Tag = require("../model/tag.js");
 
 router.use("/user", require("./user"))
 router.use("/tags", require("./tags"))
-router.use("/memes", require("./memes"))
+router.use("/meme", require("./meme"))
 
 router.use(cookieparser())
 

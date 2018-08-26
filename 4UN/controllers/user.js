@@ -92,27 +92,6 @@ router.post("/login", urlencoder, (req, resp) => {
         }
     })
 
-//    var query = User.getAll()
-//    query.exec(function (err, users) {
-//        if (err) {
-//
-//        }
-//        //error
-//        else {
-//            var matchinguser = users.filter((user) => {
-//                if (user.username == username && user.password == password) {
-//
-//                    resp.cookie("username", username, {
-//                        maxAge: 1000 * 60 * 60 * 2
-//                    })
-//
-//                    resp.render("index.hbs", {
-//                        user
-//                    })
-//                }
-//            })
-//        }
-//    })
 })
 
 router.get("/signupPage", (req, resp) => {

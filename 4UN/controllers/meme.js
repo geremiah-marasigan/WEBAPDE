@@ -26,7 +26,7 @@ const upload = multer({
     }
 })
 
-router.post("/upload", upload.single("meme"), urlencoder, (req, resp) => {
+router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
     console.log("POST meme/upload")
 
     var title = req.body.title
@@ -34,12 +34,17 @@ router.post("/upload", upload.single("meme"), urlencoder, (req, resp) => {
     var desc = req.body.desc
     var status = req.body.status
     var image = req.file.filename
-
+    var shared = req.body.shared
+    var tags = req.body.tags
+    var owner = req.cookies.username
     var meme = {
         title,
         owner,
         description: desc,
-        image
+        image,
+        status,
+        shared,
+        tags
     }
 
     Meme.addNewMeme(meme).then(() => {

@@ -163,76 +163,78 @@
         {{/if}}
     </div>
     <!--Uploading a Meme-->
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Upload a Meme</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="title">
-                        <span>Meme Title: </span>
-                        <input id="memeTitle" type="text">
+    <form id = "uploadMeme" action="../meme/uploadMeme" enctype="multipart/form-data" method="post">
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload a Meme</h5>
                     </div>
-                    <br>
-                    <div class="upload-photo">
-                        <span>Choose a photo: </span>
-                        <input type="file" />
-                    </div>
-                    <br/>
-                    <div class="tagAdder">
-                        <span>Add Tags:</span>
-                        <input type="text" placeholder="Separate tags with a comma" />
-                    </div>
-                    <div class="editDescription">
-                        <span>Set Description:</span>
-                        <textarea rows="4" cols="50"></textarea>
+                    <div class="modal-body">
+                        <div class="title">
+                            <span>Meme Title: </span>
+                            <input id="memeTitle" type="text" name="title">
+                        </div>
+                        <br>
+                        <div class="upload-photo">
+                            <span>Choose a photo: </span>
+                            <input type="file" name="meme"/>
+                        </div>
+                        <br/>
+                        <div class="tagAdder">
+                            <span>Add Tags:</span>
+                            <input type="text" name="tags" placeholder="Separate tags with a comma" />
+                        </div>
+                        <div class="editDescription">
+                            <span>Set Description:</span>
+                            <textarea rows="4" cols="50" name="desc"></textarea>
 
+                        </div>
+                        <div class="statusChk">
+                            <input type="checkbox" id="publicChk" name="status">
+                            <label>Public</label>
+                        </div>
+                        <div id="shareUpload">
+                            <span>Share With:</span>
+                            <input type="text" placeholder="Separate with a comma" name="shared"/>
+                        </div>
                     </div>
-                    <div class="statusChk">
-                        <input type="checkbox" id="publicChk" onclick="isPublic()">
-                        <label>Public</label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Upload"/>
+<!--                        <button type="button" class="btn btn-primary" id="uploadbtn">Upload</button>-->
                     </div>
-                    <div id="shareUpload">
-                        <span>Share With:</span>
-                        <input type="text" placeholder="Separate with a comma" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload</button>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </body> 
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
-//        var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
-//        for (let x = 0; x < 3; x++) {
-//
-//            var memeImg = document.createElement("img")
-//            $(memeImg).addClass("meme")
-//            $(memeImg).attr("src", memeURL)
-//            $(memeImg).attr("data-toggle", "modal")
-//            $(memeImg).attr("data-target", "#meme" + x)
-//
-//            $("#column" + x % 3).append(memeImg)
-//
-//            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["search"], ""), x)
-//        }
-//
-//
-//
-//        //Adds remove button on hover and removes on leave
-//        $(".modal-footer .tags .memetag").on('mouseenter', function() {
-//            $(this).find(":button").show();
-//            console.log("in");
-//        }).on('mouseleave', function() {
-//            $(this).find(":button").hide();
-//            console.log("out");
-//        });
+        $("button#uploadbtn").click(function() {
+//            console.log("Upload Pressed")
+//            $.ajax({
+//                url: "../meme/uploadMeme",
+//                method: "post",
+//                enctype: 'multipart/form-data',
+//                processData: false,
+//                contentType: false,
+//                cache: false,
+//                data:{
+//                    title: $("input[name=title]").val(),
+//                    desc: $("input[name=desc]").val(),
+//                    tags: $("input[name=tags]").val().split(","),
+//                    status: $("input[name=status]").val(),
+//                    meme: $("input[name=meme]").val(),
+//                    shared: $("input[name=shared]").val().split(",")
+//                },
+//                success: function(newMeme){
+//                    console.log(newMeme)
+//                }
+//                
+//            })
+        })
     });
 
 </script>
