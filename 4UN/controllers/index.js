@@ -17,9 +17,6 @@ router.use(cookieparser())
 router.get("/", (req, resp) => {
     console.log("GET /");
     var username = req.cookies.username
-    var user = {
-        username
-    }
     
     var col1 = []
     var col2 = []
@@ -39,20 +36,20 @@ router.get("/", (req, resp) => {
     
     
     // User.findSpecific(user_parsed).then((foundUser)=>{
-    User.findSpecific(user).then((foundUser)=>{
+    User.findSpecific(username).then((foundUser)=>{
         if(foundUser){
             resp.render("index.hbs", {
                 user: foundUser,
-                col1: [],
-                col2: [],
-                col3: []
+                col1,
+                col2,
+                col3
             })
             
         } else {
             resp.render("index.hbs", {
-                col1: [],
-                col2: [],
-                col3: []
+                col1,
+                col2,
+                col3
             })  
         }
     })

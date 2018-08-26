@@ -26,16 +26,23 @@ const upload = multer({
     }
 })
 
+router.use(cookieparser())
+
 router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
     console.log("POST meme/upload")
 
     var title = req.body.title
     var owner = req.body.owner
     var desc = req.body.desc
-    var status = req.body.status
+    if(req.body.status == "on"){
+        var status = "Public"
+    }
+    else{
+        var status = "Private"
+    }
     var image = req.file.filename
-    var shared = req.body.shared
-    var tags = req.body.tags
+    var shared = req.body.shared.split(",")
+    var tags = req.body.tags.split(",")
     var owner = req.cookies.username
     var meme = {
         title,
@@ -53,19 +60,23 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
         console.log("Adding Fail: " + err)
     })
 })
-
+router.post("/getMeme",urlencoder,(req,resp)=>{
+    console.log("POST /meme/getMeme")
+    var memeId = req.body.memeid
+    
+    Meme.findSpecific(memeId).then((newdoc)=>{
+        resp.send(newdoc)
+    },(err)=>{
+        
+    })
+})
 // this should be in controller post
 router.get("/photo/:id", (req, res) => {
     console.log("called picture")
     console.log(req.params.id)
-    Post.findOne({
-        _id: req.params.id
-    }).then((doc) => {
-        fs.createReadStream(path.resolve(UPLOAD_PATH, doc.filename)).pipe(res)
-    }, (err) => {
-        console.log(err)
-        res.sendStatus(404)
-    })
+    
+    fs.createReadStream(path.resolve(UPLOAD_PATH, req.params.id)).pipe(res)
+    
 })
 // if passing the img rather than the post id
 // change doc.filename to req.params.id

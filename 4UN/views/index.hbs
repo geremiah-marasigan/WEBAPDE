@@ -75,20 +75,18 @@
                 <div class="col col-lg-3" id="column0">
                     {{#each col1}}
                     <!--                            // this is where to place the meme-->
-                    <button data-toggle="modal" data-target="#modal{{@index}}">
-                        <img src="../user/photo/{{this}}">
-                    </button>
+                    <img class = "memePic" id = "{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}">
                     {{/each}}
                 </div>
                 <div class="col col-lg-3" id="column1">
                     {{#each col2}}
-                    <img src="{{this}}">
+                    <img class = "memePic" id = "{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}">
                     <!--                        // this is where to place the meme -->
                     {{/each}}
                 </div>
                 <div class="col col-lg-3" id="column2">
                     {{#each col3}}
-                    <img src="{{this}}">
+                    <img class = "memePic" id = "{{this._id}}" data-toggle="modal"  src="../meme/photo/{{this.image}}">
                     <!--                        // this is where to place the meme -->
                     {{/each}}
                 </div>
@@ -208,10 +206,90 @@
             </div>
         </div>
     </form>
+    
+    <div class="modal fade" id="modalMeme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        
+                    </h5>
+                    <div class="modal-subheading">By <a id = "ownerName" href="userPage" name="owner"></a></div>
+                </div>
+                <div class="modal-body">
+                    <img class="meme" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
+                    <span class="description">I love pussy</span>
+                    <br/>
+                    <hr>
+                    <div class="tagAdder">
+                        <span>Add Tags:</span>
+                        <input type="text" placeholder="Separate tags with a comma" />
+                        <button type="button" class="btn btn-default">Add</button>
+                    </div>
+                    <div class="editDescription">
+                        <span>Edit Description:</span>
+                        <textarea rows="4" cols="50"></textarea>
+                        <button type="button" class="btn btn-default update-description">Update</button>
+                    </div>
+                    <div class="shareMeme">
+                        <span>Shared With:</span> <br/>
+                        <span>mr_bizcuit</span> <br/>
+                        <span>Jdelbz</span> <br/>
+                        <input type="text" placeholder="Add users to share with" />
+                        <button type="button" class="btn btn-success share-meme">Add</button>
+                    </div>
+                    <div class="deleteMeme">
+                        <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="tags">
+                        <div>Tags: </div>
+                        <div><a href="search">Cute</a>, </div>
+                        <div><a href="search">Hot</a>, </div>
+                        <div><a href="search">Cat</a></div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body> 
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
+        $(document).on("click", "img.memePic", function(){
+            console.log("clicked: "+this.id)
+            $.ajax({
+                url: "../meme/getMeme",
+                method: "post",
+                data:{
+                    memeid: this.id
+                },
+                success: function(newdoc){
+                    var title = document.createTextNode(newdoc.title)
+                    console.log($("h5#exampleModalLabel").val())
+                    $("h5#exampleModalLabel").text(newdoc.title)
+                    if(newdoc.status == "Private"){
+                        var privateSpan = document.createElement("span")
+                        $(privateSpan).addClass("privatestamp")
+                        var spanText = document.createTextNode("PRIVATE")
+                        $(privateSpan).append(spanText)
+                        $("h5#exampleModalLabel").append(privateSpan)
+                    }
+                    else{
+                        if($(".privatestamp")){
+                            $(".privatestamp").remove()
+                            console.log("I have removed private")
+                        }
+                    }
+                    $("#ownerName").text(newdoc.owner)
+                }
+            })
+            $("#modalMeme").modal('show')
+        });
+
+        
         $("button#uploadbtn").click(function() {
 //            console.log("Upload Pressed")
 //            $.ajax({
