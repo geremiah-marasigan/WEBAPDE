@@ -150,6 +150,39 @@ li {
     margin-top: 2px;
 }
 
+.add-tags{
+    position: absolute;
+    right: 20px;
+    top: 564px;
+    width: 75px;
+}
+
+.desc-input{
+   width: 253px;
+}
+.update-description{
+  position:absolute;
+  top: 620px;
+  right: 20px;
+  width: 75px;
+}
+
+.addUsers{
+  position: absolute;
+  top: 670px;
+  right: 20px;
+}
+
+.addUsers button{
+  width: 75px;
+}
+
+.addUsers input{
+  position: absolute;
+  width: 172px;
+  right: 90px;
+}
+
 .deleteMeme{
   position: absolute;
   top: -85px;
@@ -195,6 +228,7 @@ li {
 
 #add_meme{
     padding: 15px;
+    padding-top: 13px;
     border-radius: 5px;
     font-weight: 700;
     border-style: solid;
@@ -263,4 +297,23 @@ input[type=checkbox]:checked ~ .shareUpload {
     padding-left: 3px;
     padding-right: 3px;
     border-radius: 3px;
+}
+
+#memeDesc{
+  margin-bottom: 10px;
+}
+
+#ownerName{
+  background-color: transparent;
+  border-color:transparent;
+  cursor: pointer;
+  color: darkgray;
+  position: absolute;
+  top: 67px;
+  left: 30px;
+}
+
+#ownerName:hover{
+  text-decoration: underline;
+  color: black;
 }

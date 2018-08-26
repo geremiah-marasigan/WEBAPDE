@@ -23,7 +23,6 @@
                         <a href="/" id="logo">
                             <img id="logo" src="../resources/logo.png"/>
                         </a>
-
                         <!--<form method = post action = home>
                             <input type = "image" id = logo src = resources/logo.png>
                         </form>-->
@@ -101,8 +100,8 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">I agree
-
-                                        <span class=p rivatestamp>
+                                    
+                                        <span class = privatestamp>
                                             PRIVATE
                                         </span>
                                     </h5>
@@ -115,21 +114,25 @@
                                     <br/>
                                     <hr>
                                     <div class="tagAdder">
-                                        <span>Add Tags:</span>
+                                        <span>Add Tags: </span>
                                         <input type="text" placeholder="Separate tags with a comma" />
-                                        <button type="button" class="btn btn-default">Add</button>
-                                    </div>
+                                        <button type="button" class="btn btn-default add-tags">Add</button>
+                                    </div><br/>
                                     <div class="editDescription">
                                         <span>Edit Description:</span>
-                                        <input type="text" placeholder="Enter new description here" />
+                                        <input type="text" class = "desc-input" placeholder="" />
                                         <button type="button" class="btn btn-default update-description">Update</button>
-                                    </div>
+                                    </div><br/>
                                     <div class="shareMeme">
+                                      <div class = "addUsers">
+                                        <input type="text" placeholder="Add users to share with" />
+                                        <button type="button" class="btn btn-default share-meme">Add</button><br/>
+                                      </div>
                                         <span>Shared With:</span> <br/>
                                         <span>mr_bizcuit</span> <br/>
                                         <span>Jdelbz</span> <br/>
-                                        <input type="text" placeholder="Add users to share with" />
-                                        <button type="button" class="btn btn-success share-meme">Add</button>
+                                        <span>Test</span> <br/>
+                                        <span>Test</span> <br/>
                                     </div>
                                     <div class="deleteMeme">
                                         <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
@@ -138,9 +141,9 @@
                                 <div class="modal-footer">
                                     <div class="tags">
                                         <div>Tags: </div>
-                                        <div><a href="search">Cute</a>, </div>
+                                        <!-- <div><a href="search">Cute</a>, </div>
                                         <div><a href="search">Hot</a>, </div>
-                                        <div><a href="search">Cat</a></div>
+                                        <div><a href="search">Cat</a></div> -->
                                     </div>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
@@ -203,7 +206,6 @@
             </div>
         </div>
     </form>
-
     <div class="modal fade" id="modalMeme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -216,18 +218,16 @@
                 </div>
                 <div class="modal-body">
                     <img class="meme" id="memeImg" src="" />
-                    <span class="description" id="memeDesc">I love pussy</span>
+                    <span class="description" id="memeDesc"></span>
                     <br/>
-                    <hr>
                     <div class="modal-footer">
                         <div class="tags" id="memeTags">
-                            <div>Tags:</div>
+                            <div>Tags: </div>
                             <div class="memetag"><a href="">NSFW</a></div>
 
                             <div class="memetag"><a href="">Bastos</a></div>
 
                             <div class="memetag"><a href="">Cat</a></div>
-
                         </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -235,7 +235,7 @@
             </div>
         </div>
     </div>
-</body>
+</body> 
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
@@ -275,10 +275,10 @@
                         var tagLink = document.createElement("a")
                         $(tagLink).attr("href","")
                         if(i==newdoc.tags.length-1){
-                            $(tagLink).text(newdoc.tags[i])
+                            $(tagLink).text("#" + newdoc.tags[i])
                         }
                         else{
-                            $(tagLink).text(newdoc.tags[i]+",")
+                            $(tagLink).text("#" + newdoc.tags[i]+",")
                         }
                         $(tagDiv).append(tagLink)
                         $("#memeTags").append(tagDiv)
@@ -287,8 +287,6 @@
             })
             $("#modalMeme").modal('show')
         });
-
-
         $("button#uploadbtn").click(function() {
             //            console.log("Upload Pressed")
             //            $.ajax({
