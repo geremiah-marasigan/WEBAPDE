@@ -26,7 +26,7 @@ router.get("/", (req, resp) => {
     var col3 = []
     
     Meme.getPublic().then((publicmemes)=>{
-        for(let x = 0; x<a.length; x++)
+        for(let x = 0; x<publicmemes.length; x++)
             if(x % 3 === 0)
                 col1.push(publicmemes[x])
             else if (x % 3 === 1)
