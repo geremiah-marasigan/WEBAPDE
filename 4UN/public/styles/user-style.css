@@ -141,7 +141,7 @@ li {
     height: auto;
     padding: 10px;
 }
-
+/* 
 .modal-header{
     display: flex;
     flex-direction: column;
@@ -166,7 +166,7 @@ li {
 
 .modal-footer div{
     padding: 2px;
-}
+} */
 
 #logo{
     height: 75px;
