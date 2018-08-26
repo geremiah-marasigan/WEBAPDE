@@ -41,11 +41,11 @@ exports.getAll = function(){
 exports.login = function (user){
     return new Promise(function(res, rej){
         User.findOne(
-            {"username": user,
-             "password": user
+            {username: user.username,
+             password: user.password
             }
         ).then((founduser)=>{
-            console.log("User " + query + " Found")
+            console.log("User " + user.username + " Found")
             res(founduser)
         }, (err)=>{
             console.log("User not found")
