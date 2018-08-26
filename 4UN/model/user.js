@@ -57,7 +57,7 @@ exports.login = function (user){
 exports.findSpecific = function (user){
     return new Promise(function(res, rej){
         User.findOne(
-            {username: user.username
+            {username: user
             }
         ).then((founduser)=>{
             res(founduser)
