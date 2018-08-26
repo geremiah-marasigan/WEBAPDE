@@ -23,14 +23,14 @@
                         <a href="/" id="logo">
                             <img id="logo" src="../resources/logo.png"/>
                         </a>
-                        
+
                         <!--<form method = post action = home>
                             <input type = "image" id = logo src = resources/logo.png>
                         </form>-->
                     </li>
                     <li>
                         {{#if user}}
-                        <button id = "add_meme" data-toggle="modal" data-target="#uploadModal">ADD A MEME</button>
+                        <button id="add_meme" data-toggle="modal" data-target="#uploadModal">ADD A MEME</button>
                         <div class="dropdown">
                             <button class="btn btn-link dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown">
                                     <img id="profile-pic" src="../user/photo/{{user.profilepicture}}">
@@ -75,25 +75,22 @@
                 <div class="col col-lg-3" id="column0">
                     {{#each col1}}
                     <!--                            // this is where to place the meme-->
-                    <img class = "memePic" id = "{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}">
-                    {{/each}}
+                    <img class="memePic" id="{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}"> {{/each}}
                 </div>
                 <div class="col col-lg-3" id="column1">
                     {{#each col2}}
-                    <img class = "memePic" id = "{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}">
+                    <img class="memePic" id="{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}">
                     <!--                        // this is where to place the meme -->
                     {{/each}}
                 </div>
                 <div class="col col-lg-3" id="column2">
                     {{#each col3}}
-                    <img class = "memePic" id = "{{this._id}}" data-toggle="modal"  src="../meme/photo/{{this.image}}">
+                    <img class="memePic" id="{{this._id}}" data-toggle="modal" src="../meme/photo/{{this.image}}">
                     <!--                        // this is where to place the meme -->
                     {{/each}}
                 </div>
             </div>
-        </div><br/><br/><br/>
-        
-        {{#if user}}
+        </div><br/><br/><br/> {{#if user}}
         <h1>Shared with you</h1>
         <div class="images">
             <div class="row justify-content-md-center">
@@ -104,8 +101,8 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">I agree
-                                    
-                                        <span class = privatestamp>
+
+                                        <span class=p rivatestamp>
                                             PRIVATE
                                         </span>
                                     </h5>
@@ -161,7 +158,7 @@
         {{/if}}
     </div>
     <!--Uploading a Meme-->
-    <form id = "uploadMeme" action="../meme/uploadMeme" enctype="multipart/form-data" method="post">
+    <form id="uploadMeme" action="../meme/uploadMeme" enctype="multipart/form-data" method="post">
         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -176,7 +173,7 @@
                         <br>
                         <div class="upload-photo">
                             <span>Choose a photo: </span>
-                            <input type="file" name="meme"/>
+                            <input type="file" name="meme" />
                         </div>
                         <br/>
                         <div class="tagAdder">
@@ -194,124 +191,125 @@
                         </div>
                         <div id="shareUpload">
                             <span>Share With:</span>
-                            <input type="text" placeholder="Separate with a comma" name="shared"/>
+                            <input type="text" placeholder="Separate with a comma" name="shared" />
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Upload"/>
-<!--                        <button type="button" class="btn btn-primary" id="uploadbtn">Upload</button>-->
+                        <input type="submit" class="btn btn-primary" value="Upload" />
+                        <!--                        <button type="button" class="btn btn-primary" id="uploadbtn">Upload</button>-->
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    
+
     <div class="modal fade" id="modalMeme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        
+
                     </h5>
-                    <div class="modal-subheading">By <a id = "ownerName" href="userPage" name="owner"></a></div>
+                    <div class="modal-subheading">By <a id="ownerName" href="userPage" name="owner"></a></div>
                 </div>
                 <div class="modal-body">
-                    <img class="meme" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" />
-                    <span class="description">I love pussy</span>
+                    <img class="meme" id="memeImg" src="" />
+                    <span class="description" id="memeDesc">I love pussy</span>
                     <br/>
                     <hr>
-                    <div class="tagAdder">
-                        <span>Add Tags:</span>
-                        <input type="text" placeholder="Separate tags with a comma" />
-                        <button type="button" class="btn btn-default">Add</button>
+                    <div class="modal-footer">
+                        <div class="tags" id="memeTags">
+                            <div>Tags:</div>
+                            <div class="memetag"><a href="">NSFW</a></div>
+
+                            <div class="memetag"><a href="">Bastos</a></div>
+
+                            <div class="memetag"><a href="">Cat</a></div>
+
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                    <div class="editDescription">
-                        <span>Edit Description:</span>
-                        <textarea rows="4" cols="50"></textarea>
-                        <button type="button" class="btn btn-default update-description">Update</button>
-                    </div>
-                    <div class="shareMeme">
-                        <span>Shared With:</span> <br/>
-                        <span>mr_bizcuit</span> <br/>
-                        <span>Jdelbz</span> <br/>
-                        <input type="text" placeholder="Add users to share with" />
-                        <button type="button" class="btn btn-success share-meme">Add</button>
-                    </div>
-                    <div class="deleteMeme">
-                        <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="tags">
-                        <div>Tags: </div>
-                        <div><a href="search">Cute</a>, </div>
-                        <div><a href="search">Hot</a>, </div>
-                        <div><a href="search">Cat</a></div>
-                    </div>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-</body> 
+</body>
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
-        $(document).on("click", "img.memePic", function(){
-            console.log("clicked: "+this.id)
+        $(document).on("click", "img.memePic", function() {
+            console.log("clicked: " + this.id)
             $.ajax({
                 url: "../meme/getMeme",
                 method: "post",
-                data:{
+                data: {
                     memeid: this.id
                 },
-                success: function(newdoc){
+                success: function(newdoc) {
                     var title = document.createTextNode(newdoc.title)
                     console.log($("h5#exampleModalLabel").val())
                     $("h5#exampleModalLabel").text(newdoc.title)
-                    if(newdoc.status == "Private"){
+                    if (newdoc.status == "Private") {
                         var privateSpan = document.createElement("span")
                         $(privateSpan).addClass("privatestamp")
                         var spanText = document.createTextNode("PRIVATE")
                         $(privateSpan).append(spanText)
                         $("h5#exampleModalLabel").append(privateSpan)
-                    }
-                    else{
-                        if($(".privatestamp")){
+                    } else {
+                        if ($(".privatestamp")) {
                             $(".privatestamp").remove()
                             console.log("I have removed private")
                         }
                     }
                     $("#ownerName").text(newdoc.owner)
+                    $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
+                    $("#memeDesc").text(newdoc.description)
+                    $("#memeTags").empty()
+                    var taglabel = document.createTextNode("Tags: ")
+                    $("#memeTags").append(taglabel)
+                    for(var i=0; i<newdoc.tags.length; i++){
+                        var tagDiv = document.createElement("div")
+                        $(tagDiv).addClass("memeTag")
+                        var tagLink = document.createElement("a")
+                        $(tagLink).attr("href","")
+                        if(i==newdoc.tags.length-1){
+                            $(tagLink).text(newdoc.tags[i])
+                        }
+                        else{
+                            $(tagLink).text(newdoc.tags[i]+",")
+                        }
+                        $(tagDiv).append(tagLink)
+                        $("#memeTags").append(tagDiv)
+                    }
                 }
             })
             $("#modalMeme").modal('show')
         });
 
-        
+
         $("button#uploadbtn").click(function() {
-//            console.log("Upload Pressed")
-//            $.ajax({
-//                url: "../meme/uploadMeme",
-//                method: "post",
-//                enctype: 'multipart/form-data',
-//                processData: false,
-//                contentType: false,
-//                cache: false,
-//                data:{
-//                    title: $("input[name=title]").val(),
-//                    desc: $("input[name=desc]").val(),
-//                    tags: $("input[name=tags]").val().split(","),
-//                    status: $("input[name=status]").val(),
-//                    meme: $("input[name=meme]").val(),
-//                    shared: $("input[name=shared]").val().split(",")
-//                },
-//                success: function(newMeme){
-//                    console.log(newMeme)
-//                }
-//                
-//            })
+            //            console.log("Upload Pressed")
+            //            $.ajax({
+            //                url: "../meme/uploadMeme",
+            //                method: "post",
+            //                enctype: 'multipart/form-data',
+            //                processData: false,
+            //                contentType: false,
+            //                cache: false,
+            //                data:{
+            //                    title: $("input[name=title]").val(),
+            //                    desc: $("input[name=desc]").val(),
+            //                    tags: $("input[name=tags]").val().split(","),
+            //                    status: $("input[name=status]").val(),
+            //                    meme: $("input[name=meme]").val(),
+            //                    shared: $("input[name=shared]").val().split(",")
+            //                },
+            //                success: function(newMeme){
+            //                    console.log(newMeme)
+            //                }
+            //                
+            //            })
         })
     });
 
