@@ -137,7 +137,7 @@ router.post("/addTags", urlencoder, (req,resp)=>{
         for(let x = 0; x<newTags.length; x++)
             Tag.getTag(newTags[x]).then((suc)=>{
                 if(suc){ //tag exists already
-                    Tag.addMeme(succ.name, newMeme).then((succ)=>{
+                    Tag.addMeme(suc.name, newMeme).then((succ)=>{
                         console.log("Added Meme to Tag Successful")
                     }, (er)=>{
                         console.log("Error in Tag")

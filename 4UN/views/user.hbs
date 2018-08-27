@@ -308,6 +308,7 @@
                         for (var i = 0; i < newdoc.tags.length; i++) {
                             var tagDiv = document.createElement("div")
                             $(tagDiv).addClass("memeTag")
+                            
                             var tagLink = document.createElement("a")
                             $(tagLink).attr("href", "")
                             if (i == newdoc.tags.length - 1) {
@@ -317,12 +318,12 @@
                             }
                             var removeBtn = document.createElement("button")
                             $(removeBtn).addClass("removeBtn")
+                            $(removeBtn).attr("data-id",newdoc.tags[i])
                             $(removeBtn).text("x")
                             $(tagDiv).append(tagLink)
                             $(tagDiv).append(removeBtn)
                             $("#myMemeTags").append(tagDiv)
                         }
-
                     }
                 }
             })
@@ -389,7 +390,17 @@
                 }
             })
         })
-        
+        $(document).on("click",".removeBtn", function(){
+            console.log($(this).attr("data-id"))
+            $.ajax({
+                url: "../meme/removeTag",
+                method: "post",
+                data:{
+                    removeTag: $(this).attr("data-id"),
+                    memeId: $("#myMemePic").attr("data-id")
+                }
+            })
+        })
     });
 
 </script>
