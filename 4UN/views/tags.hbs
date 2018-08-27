@@ -207,6 +207,13 @@
             })
             $("#modalMeme").modal('show')
         });
+         $('#publicChk').change(function(){
+            if(this.checked){
+                $('#shareUpload').hide();
+            } else {
+                $('#shareUpload').show();
+            }
+        })
     });
 
 </script>
