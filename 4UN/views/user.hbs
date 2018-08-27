@@ -32,7 +32,7 @@
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
                                 <a class="dropdown-item profileBox">
                                     <form method=post action="../user/{{user.username}}">
-                                        <input type = submit value="Profile" id="userProfile"/>
+                                        <input type=s ubmit value="Profile" id="userProfile" />
                                     </form>
                                 </a>
                                 <a class="dropdown-item" id="sign-out" href="../user/signout">Sign-Out</a>
@@ -187,14 +187,14 @@
                     <div class="tagAdder">
                         <span>Add Tags:</span>
                         <form action="../meme/addTags" method="post">
-                            <input type="text" class = newTag name="newTag" placeholder="Separate tags with a comma" />
-                            <input id="tagAdder" type="submit" value="Add" class="btn btn-default add-tags" />
+                            <input type="text" class="newTag" name="newTag" placeholder="Separate tags with a comma" />
+                            <input id="tagAdder" type="submit" value="Add" class="btn btn-default" />
                         </form>
                     </div>
                     <div class="editDescription">
                         <span>Edit Description:</span>
                         <form action="../meme/editDesc" method="post">
-                            <textarea rows="4" cols="50" class = descinput name="newDesc"></textarea>
+                            <textarea rows="4" cols="50" class=d escinput id="newDesc"></textarea>
                             <input type="submit" id="descAdder" value="Update" class="btn btn-default update-description" />
                         </form>
                     </div>
@@ -204,13 +204,12 @@
                             <span>mr_bizcuit</span> <br/>
                             <span>Jdelbz</span> <br/>
                         </div>
-                        <div class = addUsers>
+                        <div class=a ddUsers>
                             <form action="../meme/editShared" method="post">
-                                <input type="text" class="newShareInput" name="newShare" placeholder="Add users to share with" />
-                                <input type="submit" value="Add" id="shareAdder" class="btn btn-default share-meme" />
+                                <input type="text" name="newShare" placeholder="Add users to share with" />
+                                <input type="submit" value="Add" id="shareAdder" class="btn btn-success share-meme" />
                             </form>
                         </div>
-                        
                     </div>
                     <div class="deleteMeme">
                         <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
@@ -312,7 +311,7 @@
                         }
                         $("#myName").attr("value", newdoc.owner)
                         $("#myMemePic").attr("src", "../meme/photo/" + newdoc.image)
-                        $("#myMemePic").attr("data-id",newdoc._id)
+                        $("#myMemePic").attr("data-id", newdoc._id)
                         $("#myMemeDesc").text(newdoc.description)
                         $("#myMemeTags").empty()
                         var taglabel = document.createTextNode("Tags: ")
@@ -330,7 +329,7 @@
                             $(tagDiv).append(tagLink)
                             $("#myMemeTags").append(tagDiv)
                         }
-                        
+
                     }
                 }
             })
@@ -340,27 +339,39 @@
                 $("#memeEdit").modal("show")
             }
         });
-        $(document).on("click","#tagAdder",function(e) {
+        $(document).on("click", "#tagAdder", function(e) {
             e.preventDefault()
             $.ajax({
                 url: "../meme/addTags",
                 method: "post",
                 data: {
                     newTags: $("input[name=newTag]").val(),
-                    memeId:  $("#myMemePic").attr("data-id")
+                    memeId: $("#myMemePic").attr("data-id")
                 },
-                success: function(newdoc){
+                success: function(newdoc) {
                     console.log(newdoc)
                 }
             })
         })
-        $("#descAdder").click(function(e){
+        $("#descAdder").click(function(e) {
             e.preventDefault()
             $.ajax({
-                url: "../meme/addTags",
+                url: "../meme/editDesc",
                 method: "post",
-                data:{
-                    newTags: $("input[name=newDesc]").val()
+                data: {
+                    newDesc: $("#newDesc").val(),
+                    memeId: $("#myMemePic").attr("data-id")
+                }
+            })
+        })
+        $("#shareAdder").click(function(e) {
+            e.preventDefault()
+            $.ajax({
+                url: "../meme/addShare",
+                method: "post",
+                data: {
+                    newShare: $("input[name=newShare]").val(),
+                    memeId: $("#myMemePic").attr("data-id")
                 }
             })
         })
