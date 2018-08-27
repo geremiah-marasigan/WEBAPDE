@@ -214,7 +214,7 @@
                         </div>
                     </div>
                     <div class="deleteMeme">
-                        <button type="button" class="btn btn-danger" class="btnDelete">Delete</button>
+                        <button type="button" class="btn btn-danger" id="deleteMeme" class="btnDelete">Delete</button>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -342,6 +342,16 @@
                 $("#memeEdit").modal("show")
             }
         });
+        $(document).on("click", "#deleteMeme", function(e){
+            e.preventDefault()
+            $.ajax({
+                url: "../meme/delete",
+                method: "post",
+                data: {
+                    memeId: $("#myMemePic").attr("data-id")
+                }
+            })
+        })
         $(document).on("click", "#tagAdder", function(e) {
             e.preventDefault()
             $.ajax({

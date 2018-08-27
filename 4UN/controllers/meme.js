@@ -261,8 +261,8 @@ router.get("/photo/:id", (req, res) => {
 // if passing the img rather than the post id
 // change doc.filename to req.params.id
 
-router.post("/delete", (req, res) => {
-    var memeId = req.body.memeid
+router.post("/delete", urlencoder, (req, res) => {
+    var memeId = req.body.memeId
     
     Meme.deleteMe(memeId).then((succ)=>{
         console.log("Delete Meme Sammie")
