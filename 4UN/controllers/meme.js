@@ -56,6 +56,34 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
     Meme.addNewMeme(meme).then((newMeme) => {
         console.log("Added Meme to database")
         console.log(newMeme)
+        
+        for(let x = 0; x<tags.length; x++)
+            Tag.getTag(tags[x]).then((suc)=>{
+                if(suc){ //tag exists already
+                    Tag.addMeme(succ.name, newMeme).then((succ)=>{
+                        console.log("Added Meme to Tag Successful")
+                    }, (er)=>{
+                        console.log("Error in Tag")
+                    })
+                } else { //makes a new tag with the meme
+                    var memes = [newMeme]
+                    var tag = {
+                        name: tags[x],
+                        memes
+                    }
+                    Tag.addTag(tag).then((succc)=>{
+                        console.log("Created a new Tag Successfully")
+                    }, (errr)=>{
+                        console.log("ERROR: " + errr)
+                    })
+                }
+                
+            }, (err)=>{
+                console.log("Error: " + err)
+            })
+        
+        
+        
         User.addPost(owner, newMeme).then(() => {
             console.log("added meme")
             for (var i = 0; i < shared.length; i++) {
