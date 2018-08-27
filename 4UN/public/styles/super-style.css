@@ -308,6 +308,14 @@ input[type=checkbox]:checked ~ .shareUpload {
   margin-bottom: 10px;
 }
 
+.memePic{
+  box-shadow: 0px 5px 10px;
+}
+.memePic:hover{
+  cursor: pointer;  
+  box-shadow: 0px 5px 20px;
+}
+
 #myName{
   background-color: transparent;
   border-color:transparent;

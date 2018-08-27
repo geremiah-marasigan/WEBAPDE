@@ -140,7 +140,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
 router.get("/signout", urlencoder, (req, resp) => {
     resp.clearCookie("username")
     // resp.clearCookie("user")
-    resp.render("index.hbs")
+    resp.redirect("/")
 })
 
 // this should be in controller post
