@@ -126,6 +126,51 @@
         </div>
         
 -->
+    <form id="uploadMeme" action="../meme/uploadMeme" enctype="multipart/form-data" method="post">
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload a Meme</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="title">
+                            <span>Meme Title: </span>
+                            <input id="memeTitle" type="text" name="title">
+                        </div>
+                        <br>
+                        <div class="upload-photo">
+                            <span>Choose a photo: </span>
+                            <input type="file" name="meme" />
+                        </div>
+                        <br/>
+                        <div class="tagAdder">
+                            <span>Add Tags:</span>
+                            <input type="text" name="tags" placeholder="Separate tags with a comma" />
+                        </div>
+                        <div class="editDescription">
+                            <span>Set Description:</span>
+                            <textarea rows="4" cols="50" name="desc"></textarea>
+
+                        </div>
+                        <div class="statusChk">
+                            <input type="checkbox" id="publicChk" name="status">
+                            <label>Public</label>
+                        </div>
+                        <div id="shareUpload">
+                            <span>Share With:</span>
+                            <input type="text" placeholder="Separate with a comma" name="shared" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Upload" />
+                        <!--                        <button type="button" class="btn btn-primary" id="uploadbtn">Upload</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="modal fade" id="modalMeme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

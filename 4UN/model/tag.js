@@ -105,9 +105,7 @@ exports.removeMeme = function (name, meme) {
             multi: true
         })
         
-    })
-    
-    
+    }) 
 }
 
 //just in case
