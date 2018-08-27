@@ -14,7 +14,7 @@ app.set("view-engine", "hbs");
 mongoose.Promise = global.Promise;
 
 //connect to the database
-mongoose.connect("mongodb://4un:r12345@ds133622.mlab.com:33622/memedb", {
+mongoose.connect("mongodb://root:zach0321@ds133262.mlab.com:33262/fourfun", {
     useNewUrlParser: true 
 });
 
