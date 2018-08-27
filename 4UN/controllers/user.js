@@ -63,12 +63,39 @@ router.get("/userPage", (req, resp) => {
     
     console.log("Username is " + username)
     
+    var col1 = []
+    var col2 = []
+    var col3 = []
+    
+    User.getMemes(username).then((Memes)=>{
+        console.log(Memes.posts + " ARRAY")
+        console.log(Memes.posts.length + " length of array")
+        for(var x = 0; x<Memes.posts.length; x++)
+            if(x % 3 === 0){
+                col1.push(Memes.posts[x])
+                console.log(col1)
+            }
+            else if (x % 3 === 1){
+                col2.push(Memes.posts[x])
+                console.log(col2)
+            }
+            else {  
+                col3.push(Memes.posts[x])
+                console.log(col3)
+            }
+    }, (err)=>{
+       console.log("Error getting memes: " + err) 
+    })
+    
     User.findSpecific(username).then((foundUser)=>{
         if(foundUser){
             console.log("userpage " + foundUser)
             resp.render("user.hbs", {
                 user: foundUser,
-                owner: foundUser
+                owner: foundUser,
+                col1,
+                col2,
+                col3
             })
         }
         
@@ -150,9 +177,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         // resp.cookie("user", user_string, {
             maxAge: 1000 * 60 * 60 * 2
         })
-        resp.render("index.hbs", {
-            user
-        })
+        resp.redirect("/")
         
     }, (err)=>{
         console.log("add fail")
