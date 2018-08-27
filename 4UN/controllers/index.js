@@ -73,7 +73,19 @@ router.get("/", (req, resp) => {
 });
 
 router.get("/about",(req,resp)=>{
-    resp.render("about.hbs")
+    var username = req.cookies.username
+    
+    User.findSpecific(username).then((foundUser)=>{
+        if(foundUser){
+            resp.render("about.hbs", {
+                user: foundUser
+            })
+            
+        } else {
+            resp.render("about.hbs", {
+            })  
+        }
+    })
 })
 
 //app.post("/registered", urlencoder, (req, resp)=>{
