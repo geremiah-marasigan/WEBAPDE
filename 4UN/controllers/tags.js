@@ -37,18 +37,22 @@ router.get("/search", urlencoder, (req, resp) => {
     var col2 = []
     var col3 = []
     var error
+    var user
     
     console.log("Tag: " + tag)
     
     //Checks if tag exists first
     Tag.getTag(tag).then((found_tag)=>{
-        if(!(found_tag))
-            error = "No memes with that tag found"
+        console.log("GET tag successful: " + found_tag)
+        if(found_tag===null){
+            error = "No memes found with #" + tag
+            tag = null
+        }
     }, (err)=>{
         console.log("Error getting tag: " + err)
     })
     
-    if(!(error))
+    if(error===null)
         Tag.getMemes(tag).then((found)=>{
             for(let x = 0; x<found.memes.length; x++)
                 if(x % 3 === 0)
@@ -60,31 +64,39 @@ router.get("/search", urlencoder, (req, resp) => {
         }, (err)=>{
             console.log("Error getting tagged memes: " + err)
         })
-    
-    
-    
-    resp.render("tags.hbs", {
-            tag,
-            uname,
-            col1,
-            col2,
-            col3,
-            error
+    console.log("User is " + uname)
+    if(uname)
+        User.findSpecific(uname).then((foundUser)=>{
+            resp.render("tags.hbs", {
+                tag,
+                user: foundUser,
+                col1,
+                col2,
+                col3,
+                error
+            })
+
+        }, (err)=>{
+            console.log("ERROR TAG FINDING USER: " + err)
         })
+    
+    console.log("User is " + JSON.stringify(user))
+    
+    
 //    }
 
 })
 
-router.post("/addNewTag", urlencoder, (req, resp) => {
-    var memeID = 0 //Kyle
-    var meme = {}
-    
-})
-
-router.post("/addToTag", urlencoder, (req, resp) =>{
-    var memeID = 0
-    
-})
+//router.post("/addNewTag", urlencoder, (req, resp) => {
+//    var memeID = 0 //Kyle
+//    var meme = {}
+//    
+//})
+//
+//router.post("/addToTag", urlencoder, (req, resp) =>{
+//    var memeID = 0
+//    
+//})
 
 // always remember to export the router for index.js
 module.exports = router

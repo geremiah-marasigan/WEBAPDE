@@ -25,7 +25,7 @@ exports.getAllNames = function () {
         Tag.find({}, {
             name: 1
         }).then((succ) => {
-            console.log("Get All successful" + memeid)
+            console.log("Get All successful")
             res(succ)
         }, (err) => {
             console.log("Get All Failed")
@@ -43,7 +43,7 @@ exports.getTag = function (tag) {
         Tag.findOne({
             name: tag
         }).then((succ) => {
-            console.log("Get All successful" + memeid)
+            console.log("Get All successful")
             res(succ)
         }, (err) => {
             console.log("Get All Failed")
@@ -63,7 +63,7 @@ exports.getMemes = function (tag) {
             }, {
             memes: 1
         }).then((succ) => {
-            console.log("Get All successful" + memeid)
+            console.log("Get All successful")
             res(succ)
         }, (err) => {
             console.log("Get All Failed")
@@ -84,7 +84,7 @@ exports.addMeme = function (name, meme) {
         }, {
             multi: true
     }).then((succ) => {
-            console.log("Get All successful" + memeid)
+            console.log("Get All successful")
             res(succ)
         }, (err) => {
             console.log("Get All Failed")

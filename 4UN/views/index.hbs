@@ -89,7 +89,9 @@
                     {{/each}}
                 </div>
             </div>
-        </div><br/><br/><br/> {{#if user}}
+        </div><br/><br/><br/>
+        <!--
+        {{#if user}}
         <h1>Shared with you</h1>
         <div class="images">
             <div class="row justify-content-md-center">
@@ -141,9 +143,9 @@
                                 <div class="modal-footer">
                                     <div class="tags">
                                         <div>Tags: </div>
-                                        <!-- <div><a href="search">Cute</a>, </div>
+                                         <div><a href="search">Cute</a>, </div>
                                         <div><a href="search">Hot</a>, </div>
-                                        <div><a href="search">Cat</a></div> -->
+                                        <div><a href="search">Cat</a></div> 
                                     </div>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
@@ -159,6 +161,7 @@
             </div>
         </div>
         {{/if}}
+-->
     </div>
     <!--Uploading a Meme-->
     <form id="uploadMeme" action="../meme/uploadMeme" enctype="multipart/form-data" method="post">
@@ -206,13 +209,15 @@
             </div>
         </div>
     </form>
+    <!--  MEME MODAL  -->
     <div class="modal fade" id="modalMeme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <div class="modal-subheading">By <form method=post action=../user/userProfile>
-                        <input type = submit id="ownerName" name="owner" value=""/>
+                    <div class="modal-subheading">By
+                        <form method=post action=../user/userProfile>
+                            <input type=submit id="ownerName" name="owner" value="" />
                         </form>
                     </div>
                 </div>
@@ -235,10 +240,11 @@
             </div>
         </div>
     </div>
-</body> 
+</body>
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
+
         $(document).on("click", "img.memePic", function() {
             console.log("clicked: " + this.id)
             $.ajax({
@@ -263,22 +269,21 @@
                             console.log("I have removed private")
                         }
                     }
-                    $("#ownerName").attr("value",newdoc.owner)
+                    $("#ownerName").attr("value", newdoc.owner)
                     $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
                     $("#memeDesc").text(newdoc.description)
                     $("#memeTags").empty()
                     var taglabel = document.createTextNode("Tags: ")
                     $("#memeTags").append(taglabel)
-                    for(var i=0; i<newdoc.tags.length; i++){
+                    for (var i = 0; i < newdoc.tags.length; i++) {
                         var tagDiv = document.createElement("div")
                         $(tagDiv).addClass("memeTag")
                         var tagLink = document.createElement("a")
-                        $(tagLink).attr("href","")
-                        if(i==newdoc.tags.length-1){
+                        $(tagLink).attr("href", "")
+                        if (i == newdoc.tags.length - 1) {
                             $(tagLink).text("#" + newdoc.tags[i])
-                        }
-                        else{
-                            $(tagLink).text("#" + newdoc.tags[i]+",")
+                        } else {
+                            $(tagLink).text("#" + newdoc.tags[i] + ",")
                         }
                         $(tagDiv).append(tagLink)
                         $("#memeTags").append(tagDiv)

@@ -75,6 +75,15 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
         console.log("Adding Fail: " + err)
     })
 })
+
+router.post("/addTags", urlencoder, (req,resp)=>{
+    console.log("POST /meme/addTags")
+    
+    console.log(req.body.memeId)
+    console.log(req.body.newTags)
+    console.log(req.body.newTag)
+})
+
 router.post("/getMeme", urlencoder, (req, resp) => {
     console.log("POST /meme/getMeme")
     var memeId = req.body.memeid
