@@ -44,8 +44,10 @@ router.get("/search", urlencoder, (req, resp) => {
     //Checks if tag exists first
     Tag.getTag(tag).then((found_tag)=>{
         console.log("GET tag successful: " + found_tag)
-        if(found_tag===null)
-            error = "No memes with that tag found"
+        if(found_tag===null){
+            error = "No memes found with #" + tag
+            tag = null
+        }
     }, (err)=>{
         console.log("Error getting tag: " + err)
     })
