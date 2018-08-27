@@ -116,7 +116,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     var user = ({
         username,
         password,
-        description,
+        desc,
         profilepicture,
         posts: [],
         shared: []
