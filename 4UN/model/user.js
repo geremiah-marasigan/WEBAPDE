@@ -177,3 +177,57 @@ exports.addNewUser = function(user){
   })
 }
 
+//Finds all users with shared meme
+exports.findShared = function(meme){
+    return new Promise(function(res, rej){
+        User.find({shared: {$elemMatch: {_id: meme}}})
+    }).then((suc)=>{
+        console.log("Find Shared Successful")
+        res(suc)
+    }, (err)=>{
+        console.log("Find shared fail")
+        rej(err)
+    })
+}
+
+exports.findOwner = function(meme){
+    return new Promise(function(res, rej){
+        User.findOne({posts: {$elemMatch: {_id: meme}}})
+    }).then((suc)=>{
+        console.log("Find Owner Successful")
+        res(suc)
+    }, (err)=>{
+        console.log("Find Owner fail")
+        rej(err)
+    })
+}
+
+exports.editShared = function(user, meme){
+    return new Promise(function(res, rej){
+        User.updateOne(
+            {username: user.username},
+            {$set: {"shared.$": meme}}
+        ).then((suc)=>{
+            console.log("Edit shared successful")
+            res(suc)
+        }, (err)=> {
+            console.log("Edit shared unsuccessful")
+            rej(err)
+        })
+    })
+}
+
+exports.editPosts = function(user, meme){
+    return new Promise(function(res, rej){
+        User.updateOne(
+            {username: user.username},
+            {$set: {"posts.$": meme}}
+        ).then((suc)=>{
+            console.log("Edit shared successful")
+            res(suc)
+        }, (err)=> {
+            console.log("Edit shared unsuccessful")
+            rej(err)
+        })
+    })
+}
