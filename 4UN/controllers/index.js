@@ -22,7 +22,7 @@ router.get("/", (req, resp) => {
     var col2 = []
     var col3 = []
     
-    if(username)
+    if(username){
         User.sharedMemes(username).then((sharedMemes)=>{
             for(let x = 0; x<sharedMemes.length; x++)
                 if(x % 3 === 0)
@@ -34,6 +34,7 @@ router.get("/", (req, resp) => {
         }, (err) => {
             console.log("Error getting shared Memes: " + err)
         })
+    }
     
     Meme.getPublic().then((publicmemes)=>{
         for(let x = 0; x<publicmemes.length; x++)
