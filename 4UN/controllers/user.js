@@ -76,11 +76,7 @@ router.post("/login", urlencoder, (req, resp) => {
     User.login(user).then((newUser) => {
         console.log("login " + newUser)
         if (newUser) {
-
-            // var user_string = JSON.stringify(newUser)
-
             resp.cookie("username", username, {
-                // resp.cookie("user", user_string, {
                 maxAge: 1000 * 60 * 60 * 2
             })
             resp.redirect('/')
@@ -125,21 +121,6 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     
     User.findSpecific(username).then((found) => {
         if (found) {
-//            foundOwner = found
-//            User.findSpecific(user).then((found) => {
-//                if (found) {
-//                    foundUser = found
-//                    console.log(foundOwner + " foundOwner")
-//                    console.log(foundUser + " foundUser")
-//                    resp.render("user.hbs", {
-//                        user: foundUser,
-//                        owner: foundOwner,
-//                        col1,
-//                        col2,
-//                        col3
-//                    })
-//                }
-//            })
             var message = "Username already taken";
                 resp.render("signup.hbs", {
                    message
@@ -147,11 +128,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         } else{
                 User.addNewUser(user).then((newUser) => {
                     console.log("add " + newUser)
-
-                    // var user_string = JSON.stringify(user)
-
                     resp.cookie("username", username, {
-                        // resp.cookie("user", user_string, {
                         maxAge: 1000 * 60 * 60 * 2
                     })
                     resp.redirect("/")
@@ -165,7 +142,6 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
 
 router.get("/signout", urlencoder, (req, resp) => {
     resp.clearCookie("username")
-    // resp.clearCookie("user")
     resp.redirect("/")
 })
 
