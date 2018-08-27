@@ -323,6 +323,21 @@ input[type=checkbox]:checked ~ .shareUpload {
   color: black;
 }
 
+#ownerName{
+  background-color: transparent;
+  border-color:transparent;
+  cursor: pointer;
+  color: darkgray;
+  position: absolute;
+  top: 67px;
+  left: 30px;
+}
+
+#ownerName:hover{
+  text-decoration: underline;
+  color: black;
+}
+
 #userProfile{
     background-color: transparent;
     border-color: transparent;
