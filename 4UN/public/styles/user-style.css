@@ -111,7 +111,7 @@ li {
 }
 
 .dropdown:hover{
-    background-color: #323232;
+    background-color: transparent;
 }
 #profile-pic{
     width: 32px;
