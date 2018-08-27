@@ -56,52 +56,6 @@ router.post("/userProfile", urlencoder, (req, resp)=>{
     })
 })
 
-router.post("/:username", (req, resp) => {
-    console.log("GET /user")
-
-    var username = req.params.username
-    
-    console.log("Username is " + username)
-    
-    var col1 = []
-    var col2 = []
-    var col3 = []
-    
-    User.getMemes(username).then((Memes)=>{
-        console.log(Memes.posts + " ARRAY")
-        console.log(Memes.posts.length + " length of array")
-        for(var x = 0; x<Memes.posts.length; x++)
-            if(x % 3 === 0){
-                col1.push(Memes.posts[x])
-                console.log(col1)
-            }
-            else if (x % 3 === 1){
-                col2.push(Memes.posts[x])
-                console.log(col2)
-            }
-            else {  
-                col3.push(Memes.posts[x])
-                console.log(col3)
-            }
-    }, (err)=>{
-       console.log("Error getting memes: " + err) 
-    })
-    
-    User.findSpecific(username).then((foundUser)=>{
-        if(foundUser){
-            console.log("userpage " + foundUser)
-            resp.render("user.hbs", {
-                user: foundUser,
-                owner: foundUser,
-                col1,
-                col2,
-                col3
-            })
-        }
-        
-    })
-})
-
 router.get("/loginPage", (req, resp) => {
     console.log("GET user/login")
     resp.render("login.hbs")
@@ -195,6 +149,53 @@ router.get("/photo/:id", (req, res) => {
     console.log("called picture")
     console.log(req.params.id)
     fs.createReadStream(path.resolve(UPLOAD_PATH, req.params.id)).pipe(res)
+})
+
+
+router.post("/:username", (req, resp) => {
+    console.log("GET /user")
+
+    var username = req.params.username
+    
+    console.log("Username is " + username)
+    
+    var col1 = []
+    var col2 = []
+    var col3 = []
+    
+    User.getMemes(username).then((Memes)=>{
+        console.log(Memes.posts + " ARRAY")
+        console.log(Memes.posts.length + " length of array")
+        for(var x = 0; x<Memes.posts.length; x++)
+            if(x % 3 === 0){
+                col1.push(Memes.posts[x])
+                console.log(col1)
+            }
+            else if (x % 3 === 1){
+                col2.push(Memes.posts[x])
+                console.log(col2)
+            }
+            else {  
+                col3.push(Memes.posts[x])
+                console.log(col3)
+            }
+    }, (err)=>{
+       console.log("Error getting memes: " + err) 
+    })
+    
+    User.findSpecific(username).then((foundUser)=>{
+        if(foundUser){
+            console.log("userpage " + foundUser)
+            resp.render("user.hbs", {
+                user: foundUser,
+                owner: foundUser,
+                col1,
+                col2,
+                col3
+            })
+        }
+        
+    })
 })
 // if passing the img rather than the post id
 // change doc.filename to req.params.id
