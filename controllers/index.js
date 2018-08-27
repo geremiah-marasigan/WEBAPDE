@@ -17,7 +17,7 @@ router.use(cookieparser())
 router.get("/", (req, resp) => {
     console.log("GET /");
     var username = req.cookies.username
-    
+    console.log("sammie");
     var col1 = []
     var col2 = []
     var col3 = []
