@@ -368,6 +368,6 @@ input[type=checkbox]:checked ~ .shareUpload {
     opacity: 0;
 }
 
-.removebtn:hover{
+.memeTag:hover .removebtn{
     opacity: 1;
 }
