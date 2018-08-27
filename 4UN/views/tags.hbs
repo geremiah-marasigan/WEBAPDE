@@ -132,7 +132,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <div class="modal-subheading">By
-                        <form method=post action=../user/userProfile>
+                        <form method=post action=../user/userProfile id="userForm">
                             <input type=submit id="ownerName" name="owner" value="" />
                         </form>
                     </div>
@@ -160,27 +160,53 @@
 <script>
     //Makes sure functions only run when document is ready
     $(document).ready(function() {
-        var memeURL = "https://i.pinimg.com/originals/87/90/60/879060975a331d71de3fbe20d6938c1e.jpg"
-        for (let x = 0; x < 3; x++) {
-
-            var memeImg = document.createElement("img")
-            $(memeImg).addClass("meme")
-            $(memeImg).attr("src", memeURL)
-            $(memeImg).attr("data-toggle", "modal")
-            $(memeImg).attr("data-target", "#meme" + x)
-
-            $("#column" + x % 3).append(memeImg)
-
-            newMemeLoggedOff(new Meme("It's a cat", "mr_bizcuit", "Wow what a cool cat", memeURL, ["Cat"], ["search"], "Public"), x)
-        }
-
-        //Adds remove button on hover and removes on leave
-        $(".modal-footer .tags .memetag").on('mouseenter', function() {
-            $(this).find(":button").show();
-            console.log("in");
-        }).on('mouseleave', function() {
-            $(this).find(":button").hide();
-            console.log("out");
+        $(document).on("click", "img.memePic", function() {
+            console.log("clicked: " + this.id)
+            $.ajax({
+                url: "../meme/getMeme",
+                method: "post",
+                data: {
+                    memeid: this.id
+                },
+                success: function(newdoc) {
+                    var title = document.createTextNode(newdoc.title)
+                    console.log($("h5#exampleModalLabel").val())
+                    $("h5#exampleModalLabel").text(newdoc.title)
+                    if (newdoc.status == "Private") {
+                        var privateSpan = document.createElement("span")
+                        $(privateSpan).addClass("privatestamp")
+                        var spanText = document.createTextNode("PRIVATE")
+                        $(privateSpan).append(spanText)
+                        $("h5#exampleModalLabel").append(privateSpan)
+                    } else {
+                        if ($(".privatestamp")) {
+                            $(".privatestamp").remove()
+                            console.log("I have removed private")
+                        }
+                    }
+                    $("#userForm").attr("action","../user/"+newdoc.owner)
+                    $("#ownerName").attr("value", newdoc.owner)
+                    $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
+                    $("#memeDesc").text(newdoc.description)
+                    $("#memeTags").empty()
+                    var taglabel = document.createTextNode("Tags: ")
+                    $("#memeTags").append(taglabel)
+                    for (var i = 0; i < newdoc.tags.length; i++) {
+                        var tagDiv = document.createElement("div")
+                        $(tagDiv).addClass("memeTag")
+                        var tagLink = document.createElement("a")
+                        $(tagLink).attr("href", "")
+                        if (i == newdoc.tags.length - 1) {
+                            $(tagLink).text("#" + newdoc.tags[i])
+                        } else {
+                            $(tagLink).text("#" + newdoc.tags[i] + ",")
+                        }
+                        $(tagDiv).append(tagLink)
+                        $("#memeTags").append(tagDiv)
+                    }
+                }
+            })
+            $("#modalMeme").modal('show')
         });
     });
 

@@ -139,7 +139,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <div class="modal-subheading">By
-                        <form method=post action=../user/userProfile>
+                        <form method=post action=../user/userProfile id="userForm">
                             <input type=submit id="ownerName" name="owner" value="" />
                         </form>
                     </div>
@@ -174,7 +174,7 @@
                         </span>
                     </h5>
                     <div class="modal-subheading">By
-                        <form method=post action=../user/userProfile>
+                        <form method=post action=../user/userProfile id="myForm">
                             <input type=submit id="myName" name="owner" value="" />
                         </form>
                     </div>
@@ -231,7 +231,6 @@
 
 <script>
     //removes share with if meme is public
-
     $(document).ready(function() {
         $(document).on("click", "img.memePic", function() {
             console.log("clicked: " + this.id)
@@ -256,6 +255,7 @@
                                 console.log("I have removed private")
                             }
                         }
+                        $("#userForm").attr("action","../user/"+newdoc.owner)
                         $("#ownerName").attr("value", newdoc.owner)
                         $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
                         $("#memeDesc").text(newdoc.description)
@@ -291,16 +291,6 @@
                                 console.log(newdoc.shared.length)
                                 for (var i = 0; i < newdoc.shared.length; i++) {
                                     console.log(newdoc.shared[i])
-                                    //                            var formShare = document.createElement("form")
-                                    //                            $(formShare).attr("method","post")
-                                    //                            $(formShare).attr("action","../user/userProfile")
-                                    //                            var inputShare = document.createElement("input")
-                                    //                            $(inputShare).attr("type","submit")
-                                    //                            $(inputShare).attr("id","ownerName")
-                                    //                            $(inputShare).attr("name","owner")
-                                    //                            $(inputShare).attr("value",newdoc.shared[i])
-                                    //                            $(formShare).append(inputShare)
-                                    //                            $("div#myMemeShare").append(formShare)
                                     var spanShare = document.createElement("span")
                                     $(spanShare).text(newdoc.shared[i])
                                     var breakShare = document.createElement("br")
@@ -309,6 +299,7 @@
                                 }
                             }
                         }
+                        $("#myForm").attr("action","../user/"+newdoc.owner)
                         $("#myName").attr("value", newdoc.owner)
                         $("#myMemePic").attr("src", "../meme/photo/" + newdoc.image)
                         $("#myMemePic").attr("data-id", newdoc._id)
