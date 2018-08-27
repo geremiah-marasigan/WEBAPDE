@@ -317,7 +317,11 @@
                             } else {
                                 $(tagLink).text("#" + newdoc.tags[i] + ",")
                             }
+                            var removeBtn = document.createElement("button")
+                            $(removeBtn).addClass("removeBtn")
+                            $(removeBtn).text("x")
                             $(tagDiv).append(tagLink)
+                            $(tagDiv).append(removeBtn)
                             $("#myMemeTags").append(tagDiv)
                         }
 
@@ -354,7 +358,11 @@
                             } else {
                                 $(tagLink).text("#" + newdoc.tags[i] + ",")
                             }
+                            var removeBtn = document.createElement("button")
+                            $(removeBtn).addClass("removeBtn")
+                            $(removeBtn).text("x")
                             $(tagDiv).append(tagLink)
+                            $(tagDiv).append(removeBtn)
                             $("#myMemeTags").append(tagDiv)
                         }
                     $("input[name=newTag]").val("")
@@ -383,14 +391,7 @@
                 }
             })
         })
-        //Adds remove button on hover and removes on leave
-        $(".modal-footer .tags .memetag").on('mouseenter', function() {
-            $(this).find(":button").show();
-            console.log("in");
-        }).on('mouseleave', function() {
-            $(this).find(":button").hide();
-            console.log("out");
-        });
+        
     });
 
 </script>
