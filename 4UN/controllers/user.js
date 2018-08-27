@@ -28,21 +28,21 @@ const upload = multer({
 
 router.use(cookieparser())
 
-router.post("/userProfile", urlencoder, (req, resp)=>{
+router.post("/userProfile", urlencoder, (req, resp) => {
     console.log("POST /user/userProfile")
     var user = req.cookies.username
     var username = req.body.owner
     console.log(username)
     console.log(user)
-    
+
     var foundUser
     var foundOwner
-    
-    User.findSpecific(username).then((found)=>{
-        if(found){
+
+    User.findSpecific(username).then((found) => {
+        if (found) {
             foundOwner = found
-            User.findSpecific(user).then((found)=>{
-            if(found){
+            User.findSpecific(user).then((found) => {
+                if (found) {
                     foundUser = found
                     console.log(foundOwner + " foundOwner")
                     console.log(foundUser + " foundUser")
@@ -67,31 +67,30 @@ router.post("/login", urlencoder, (req, resp) => {
     var username = req.body.uname
     var unhashedpassword = req.body.pword
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
-    
+
     var user = {
         username,
         password
     }
-    
-    User.login(user).then((newUser)=>{
+
+    User.login(user).then((newUser) => {
         console.log("login " + newUser)
-        if(newUser){
-          
-          // var user_string = JSON.stringify(newUser)
-          
+        if (newUser) {
+
+            // var user_string = JSON.stringify(newUser)
+
             resp.cookie("username", username, {
-            // resp.cookie("user", user_string, {
+                // resp.cookie("user", user_string, {
                 maxAge: 1000 * 60 * 60 * 2
             })
             resp.redirect('/')
-        }
-          else{
-              var message = "Invalid username / password.";
-              
-              resp.render("login.hbs", {
+        } else {
+            var message = "Invalid username / password.";
+
+            resp.render("login.hbs", {
                 message
-              })
-          }
+            })
+        }
     })
 
 })
@@ -103,13 +102,13 @@ router.get("/signupPage", (req, resp) => {
 
 router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     console.log("POST user/signup")
-    
+
     var profilepicture
     var username = req.body.uname
     var email = req.body.email
     var unhashedpassword = req.body.pword
     var desc = req.body.sdesc
-    if(req.file){
+    if (req.file) {
         profilepicture = req.file.filename
     }
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
@@ -122,18 +121,18 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         shared: []
     })
 
-    User.addNewUser(user).then((newUser)=>{
+    User.addNewUser(user).then((newUser) => {
         console.log("add " + newUser)
-        
+
         // var user_string = JSON.stringify(user)
-        
+
         resp.cookie("username", username, {
-        // resp.cookie("user", user_string, {
+            // resp.cookie("user", user_string, {
             maxAge: 1000 * 60 * 60 * 2
         })
         resp.redirect("/")
-        
-    }, (err)=>{
+
+    }, (err) => {
         console.log("add fail")
     })
 })
@@ -156,46 +155,55 @@ router.post("/:username", (req, resp) => {
     console.log("GET /user")
 
     var username = req.params.username
-    
+    var user = req.cookies.username
+
     console.log("Username is " + username)
-    
+
     var col1 = []
     var col2 = []
     var col3 = []
-    
-    User.getMemes(username).then((Memes)=>{
+
+    User.getMemes(username).then((Memes) => {
         console.log(Memes.posts + " ARRAY")
         console.log(Memes.posts.length + " length of array")
-        for(var x = 0; x<Memes.posts.length; x++)
-            if(x % 3 === 0){
+        for (var x = 0; x < Memes.posts.length; x++)
+            if (x % 3 === 0) {
                 col1.push(Memes.posts[x])
                 console.log(col1)
             }
-            else if (x % 3 === 1){
-                col2.push(Memes.posts[x])
-                console.log(col2)
-            }
-            else {  
-                col3.push(Memes.posts[x])
-                console.log(col3)
-            }
-    }, (err)=>{
-       console.log("Error getting memes: " + err) 
+        else if (x % 3 === 1) {
+            col2.push(Memes.posts[x])
+            console.log(col2)
+        } else {
+            col3.push(Memes.posts[x])
+            console.log(col3)
+        }
+    }, (err) => {
+        console.log("Error getting memes: " + err)
     })
-    
-    User.findSpecific(username).then((foundUser)=>{
-        if(foundUser){
-            console.log("userpage " + foundUser)
-            resp.render("user.hbs", {
-                user: foundUser,
-                owner: foundUser,
-                col1,
-                col2,
-                col3
+    var foundUser
+    var foundOwner
+
+    User.findSpecific(username).then((found) => {
+        if (found) {
+            foundOwner = found
+            User.findSpecific(user).then((found) => {
+                if (found) {
+                    foundUser = found
+                    console.log(foundOwner + " foundOwner")
+                    console.log(foundUser + " foundUser")
+                    resp.render("user.hbs", {
+                        user: foundUser,
+                        owner: foundOwner,
+                        col1,
+                        col2,
+                        col3
+                    })
+                }
             })
         }
-        
     })
+    
 })
 // if passing the img rather than the post id
 // change doc.filename to req.params.id

@@ -219,7 +219,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <div class="modal-subheading">By
-                        <form method=post action=../user/userProfile>
+                        <form method=post action=../user/userProfile id="userForm">
                             <input type=submit id="ownerName" name="owner" value="" />
                         </form>
                     </div>
@@ -272,6 +272,7 @@
                             console.log("I have removed private")
                         }
                     }
+                    $("#userForm").attr("action","../user/"+newdoc.owner)
                     $("#ownerName").attr("value", newdoc.owner)
                     $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
                     $("#memeDesc").text(newdoc.description)
