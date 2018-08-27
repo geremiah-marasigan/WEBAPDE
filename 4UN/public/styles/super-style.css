@@ -138,7 +138,7 @@ li {
     text-overflow: ellipsis;
     position: absolute;
     bottom: 10px;
-    right: 220px;
+    right: 170px;
 }
 
 #search-input:focus{
@@ -150,7 +150,7 @@ li {
   height: 20px;
   width: 20px;
   top: 25px;
-  right: 220px;
+  right: 170px;
 }
 
 .editDescription {
@@ -211,7 +211,7 @@ li {
     width: 100%;
     position: absolute;
     bottom: 10px;
-    right: 125px;
+    right: 75px;
     text-decoration: none;
 }
 
@@ -251,7 +251,7 @@ li {
     transition: 0.25s ease;
     text-decoration: none;
     color: white;
-    background-color: #77dd77;
+    background-color: rgb(62, 188, 62);
     position: absolute;
     height:50px;
     top: 5px;
