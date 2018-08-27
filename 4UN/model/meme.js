@@ -72,7 +72,7 @@ exports.getPublic = function(){
             {status :"Public"}
         ).sort(
             {_id:-1}
-        ).limit(12)
+        )/*.limit(12)*/
         .then((succ)=>{
             console.log("Get successful")
             res(succ)

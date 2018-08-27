@@ -76,7 +76,7 @@ exports.getMemes = function(user){
             {username: user
             },
             {posts: 1}
-        ).sort({_id:-1}).limit(12).then((memes)=>{
+        ).sort({_id:-1})/*.limit(12)*/.then((memes)=>{
             console.log("Memes Found")
             res(memes)
         }, (err)=>{
@@ -94,7 +94,7 @@ exports.sharedMemes = function(user){
             {username: user
             },
             {shared: 1}
-        ).sort({_id:-1}).limit(12).then((memes)=>{
+        ).sort({_id:-1})/*.limit(12)*/.then((memes)=>{
             console.log("Memes Found")
             res(memes)
         }, (err)=>{
