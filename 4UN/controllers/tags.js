@@ -65,20 +65,22 @@ router.get("/search", urlencoder, (req, resp) => {
     console.log("User is " + uname)
     if(uname)
         User.findSpecific(uname).then((foundUser)=>{
-            if(foundUser)
-                user = foundUser
+            resp.render("tags.hbs", {
+                tag,
+                user: foundUser,
+                col1,
+                col2,
+                col3,
+                error
+            })
+
         }, (err)=>{
             console.log("ERROR TAG FINDING USER: " + err)
         })
     
-    resp.render("tags.hbs", {
-            tag,
-            user,
-            col1,
-            col2,
-            col3,
-            error
-        })
+    console.log("User is " + JSON.stringify(user))
+    
+    
 //    }
 
 })
