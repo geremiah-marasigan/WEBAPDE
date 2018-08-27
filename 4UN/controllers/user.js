@@ -112,7 +112,8 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         profilepicture = req.file.filename
     }
     var password = crypto.createHash("md5").update(unhashedpassword).digest("hex")
-
+    var exists = 0
+    
     var user = ({
         username,
         password,
@@ -121,22 +122,46 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
         posts: [],
         shared: []
     })
+    
+    User.findSpecific(username).then((found) => {
+        if (found) {
+//            foundOwner = found
+//            User.findSpecific(user).then((found) => {
+//                if (found) {
+//                    foundUser = found
+//                    console.log(foundOwner + " foundOwner")
+//                    console.log(foundUser + " foundUser")
+//                    resp.render("user.hbs", {
+//                        user: foundUser,
+//                        owner: foundOwner,
+//                        col1,
+//                        col2,
+//                        col3
+//                    })
+//                }
+//            })
+            var message = "Username already taken";
+                resp.render("signup.hbs", {
+                   message
+            }) 
+        } else{
+                User.addNewUser(user).then((newUser) => {
+                    console.log("add " + newUser)
 
-    User.addNewUser(user).then((newUser) => {
-        console.log("add " + newUser)
+                    // var user_string = JSON.stringify(user)
 
-        // var user_string = JSON.stringify(user)
+                    resp.cookie("username", username, {
+                        // resp.cookie("user", user_string, {
+                        maxAge: 1000 * 60 * 60 * 2
+                    })
+                    resp.redirect("/")
 
-        resp.cookie("username", username, {
-            // resp.cookie("user", user_string, {
-            maxAge: 1000 * 60 * 60 * 2
+                }, (err) => {
+                    console.log("add fail")
+                })
+            }
         })
-        resp.redirect("/")
-
-    }, (err) => {
-        console.log("add fail")
     })
-})
 
 router.get("/signout", urlencoder, (req, resp) => {
     resp.clearCookie("username")

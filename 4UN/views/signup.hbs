@@ -40,6 +40,9 @@
                     Short Description:<br/>
                     <textarea rows="4" cols="50" name = "sdesc" id = "sdesc"></textarea>
                 </div>
+                {{#if message}}
+                    <p class = message>{{message}}</p>
+                {{/if}}
                 <input id = "signupSubmit" type="submit" value="Register"><br/><br/>
             </form>
             

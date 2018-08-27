@@ -105,3 +105,10 @@ li{
 #sdesc{
     width: 100%;
 }
+
+.message{
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
