@@ -56,10 +56,10 @@ router.post("/userProfile", urlencoder, (req, resp)=>{
     })
 })
 
-router.get("/userPage", (req, resp) => {
+router.post("/:username", (req, resp) => {
     console.log("GET /user")
 
-    var username = req.cookies.username
+    var username = req.params.username
     
     console.log("Username is " + username)
     

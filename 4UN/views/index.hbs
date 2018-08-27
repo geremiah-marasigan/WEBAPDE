@@ -35,8 +35,11 @@
                                     <img id="profile-pic" src="../user/photo/{{user.profilepicture}}">
                                 </button>
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
-                                <a class="dropdown-item" href="../user/userPage">Profile</a>
-                                <!-- <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a> -->
+                                <a class="dropdown-item profileBox">
+                                    <form method=post action="../user/{{user.username}}">
+                                        <input type = submit value="Profile" id="userProfile"/>
+                                    </form>
+                                </a>
                                 <a class="dropdown-item" id="sign-out" href="../user/signout">Sign-Out</a>
                             </div>
                         </div>
