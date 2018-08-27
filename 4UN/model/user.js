@@ -110,7 +110,7 @@ exports.removedShared = function(user, meme){
         User.findOne(
             {username: user
             } 
-        ).update({}, {$pull: {shared: meme}}, {multi: true}).then((succ)=>{
+        ).update({}, {$pull: {shared: {_id: meme}}}, {multi: true}).then((succ)=>{
             console.log("Remove Successful" + succ)
             res(succ)
         }, (err)=>{
@@ -141,7 +141,7 @@ exports.removePost = function(user, meme){
         User.findOne(
             {username: user
             } 
-        ).update({}, {$pull: {posts: meme}}, {multi: true}).then((succ)=>{
+        ).update({}, {$pull: {posts: {_id:meme}}}, {multi: true}).then((succ)=>{
             console.log("Remove Successful" + succ)
             res(succ)
         }, (err)=>{

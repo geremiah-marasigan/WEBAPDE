@@ -261,5 +261,45 @@ router.get("/photo/:id", (req, res) => {
 // if passing the img rather than the post id
 // change doc.filename to req.params.id
 
+router.post("/delete", (req, res) => {
+    var memeId = req.body.memeid
+    
+    Meme.deleteMe(memeId).then((succ)=>{
+        console.log("Delete Meme Sammie")
+    }, (err)=>{
+        console.log("Delete Meme Nea: " + err)
+    })
+    
+    Tag.getAllNames().then((names)=>{
+        for(let x = 0; x<names.length; x++)
+            Tag.removeMeme(names[x], memeId).then((succ)=>{
+                console.log("Delete MemeTag Sammie")
+            }, (err)=>{
+                console.log("Delete MemeTag Nea: " + err)
+            })
+    })
+    
+    User.findShared(memeId).then((sharedusers)=>{
+        for(let x = 0; x<sharedusers.length; x++)
+            User.removeShared(sharedusers[x], memeId).then((succ)=>{
+                console.log("Delete MemeShared Sammie")
+            }, (err)=>{
+                console.log("Delete MemeShared Nea: " + err)
+            })
+    }, (err)=>{
+        console.log("Nea error " + err)
+    })
+    
+    User.findOwner(memeId).then((owner)=>{
+        User.removePost(owner, memeId).then((succ)=>{
+            console.log("Delete MemeShared Sammie")
+        }, (err)=>{
+            console.log("Delete MemeShared Nea: " + err)
+        })
+    }, (err)=>{
+        console.log("Nea error " + err)
+    })
+})
+
 // always remember to export the router for index.js
 module.exports = router

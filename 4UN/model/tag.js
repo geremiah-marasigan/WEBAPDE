@@ -99,7 +99,7 @@ exports.removeMeme = function (name, meme) {
             name: name
         }).update({}, {
             $pull: {
-                memes: meme
+                memes: {_id:meme}
             }
         }, {
             multi: true
