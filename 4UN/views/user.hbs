@@ -188,7 +188,7 @@
                         <span>Add Tags:</span>
                         <form action="../meme/addTags" method="post">
                             <input type="text" class="newTag" name="newTag" placeholder="Separate tags with a comma" />
-                            <input id="tagAdder" type="submit" value="Add" class="btn btn-default" />
+                            <input id="tagAdder" type="submit" value="Add" class="btn btn-default add-tags" />
                         </form>
                     </div>
                     <div class="editDescription">
@@ -206,8 +206,8 @@
                         </div>
                         <div class=addUsers>
                             <form action="../meme/editShared" method="post">
-                                <input type="text" name="newShare" placeholder="Add users to share with" />
-                                <input type="submit" value="Add" id="shareAdder" class="btn btn-success share-meme" />
+                                <input type="text" class = "newShareInput" name="newShare" placeholder="Add users to share with" />
+                                <input type="submit" value="Add" id="shareAdder" class="btn btn-default share-meme" />
                             </form>
                         </div>
                     </div>

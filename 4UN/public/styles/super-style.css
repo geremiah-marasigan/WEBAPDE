@@ -151,7 +151,7 @@ li {
 }
 .add-tags{
     position: absolute;
-    top: 490px;
+    top: 470px;
     right: 20px;
     width: 75px;
 }
@@ -161,7 +161,7 @@ li {
 }
 .update-description{
   position:absolute;
-  top: 565px;
+  top: 542px;
   right: 20px;
   width: 75px;
 }
@@ -177,7 +177,7 @@ li {
 .share-meme{
   position: absolute;
   width: 75px;
-  top: 675px;
+  top: 652px;
   right: 20px;
 }
 
@@ -185,7 +185,7 @@ li {
   position: absolute;
   width: 172px;
   right: 111px;
-  top: 680px;
+  top: 655px;
 }
 
 .deleteMeme{
