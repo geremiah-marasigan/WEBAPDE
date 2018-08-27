@@ -189,20 +189,30 @@ router.post("/:username", (req, resp) => {
     User.findSpecific(username).then((found) => {
         if (found) {
             foundOwner = found
-            User.findSpecific(user).then((found) => {
-                if (found) {
-                    foundUser = found
-                    console.log(foundOwner + " foundOwner")
-                    console.log(foundUser + " foundUser")
-                    resp.render("user.hbs", {
-                        user: foundUser,
-                        owner: foundOwner,
-                        col1,
-                        col2,
-                        col3
-                    })
-                }
-            })
+            if(user){
+                User.findSpecific(user).then((found) => {
+                    if (found) {
+                        foundUser = found
+                        console.log(foundOwner + " foundOwner")
+                        console.log(foundUser + " foundUser")
+                        resp.render("user.hbs", {
+                            user: foundUser,
+                            owner: foundOwner,
+                            col1,
+                            col2,
+                            col3
+                        })
+                    }
+                })
+            }
+            else{
+                resp.render("user.hbs", {
+                            owner: foundOwner,
+                            col1,
+                            col2,
+                            col3
+                        })
+            }
         }
     })
     
