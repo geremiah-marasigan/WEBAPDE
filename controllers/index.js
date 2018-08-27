@@ -15,6 +15,7 @@ router.use("/meme", require("./meme"))
 router.use(cookieparser())
 
 router.get("/", (req, resp) => {
+    console.log("sammie");
     console.log("GET /");
     var username = req.cookies.username
     console.log("sammie");
