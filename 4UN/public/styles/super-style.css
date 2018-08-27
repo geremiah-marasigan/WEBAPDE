@@ -200,10 +200,10 @@ li {
     right: 125px;
     text-decoration: none;
 }
-/* 
+
 .dropdown:hover {
-    background-color: #0e1111;
-} */
+    background-color: transparent;
+} 
 
 #sign_up{
     padding: 15px;
@@ -316,4 +316,12 @@ input[type=checkbox]:checked ~ .shareUpload {
 #ownerName:hover{
   text-decoration: underline;
   color: black;
+}
+
+#userProfile{
+    background-color: transparent;
+    border-color: transparent;
+    position: absolute;
+    left: 15px;
+    top: 3px;
 }
