@@ -150,7 +150,6 @@
                     <br/>
                     <div class="modal-footer">
                         <div class="tags" id="memeTags">
-                            <div>Tags: </div>
                             <div class="memetag"><a href="">NSFW</a></div>
 
                             <div class="memetag"><a href="">Bastos</a></div>
@@ -194,7 +193,7 @@
                     <div class="editDescription">
                         <span>Edit Description:</span>
                         <form action="../meme/editDesc" method="post">
-                            <textarea rows="4" cols="50" class=d escinput id="newDesc"></textarea>
+                            <textarea rows="4" cols="50" class=desc-input id="newDesc"></textarea>
                             <input type="submit" id="descAdder" value="Update" class="btn btn-default update-description" />
                         </form>
                     </div>
@@ -217,7 +216,6 @@
                 </div>
                 <div class="modal-footer">
                     <div class="tags" id="myMemeTags">
-                        <div>Tags: </div>
                         <div><a href="search">Cute</a>, </div>
                         <div><a href="search">Hot</a>, </div>
                         <div><a href="search">Cat</a></div>
@@ -260,8 +258,8 @@
                         $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
                         $("#memeDesc").text(newdoc.description)
                         $("#memeTags").empty()
-                        var taglabel = document.createTextNode("Tags: ")
-                        $("#memeTags").append(taglabel)
+//                        var taglabel = document.createTextNode("Tags: ")
+//                        $("#memeTags").append(taglabel)
                         for (var i = 0; i < newdoc.tags.length; i++) {
                             var tagDiv = document.createElement("div")
                             $(tagDiv).addClass("memeTag")
@@ -305,8 +303,8 @@
                         $("#myMemePic").attr("data-id", newdoc._id)
                         $("#myMemeDesc").text(newdoc.description)
                         $("#myMemeTags").empty()
-                        var taglabel = document.createTextNode("Tags: ")
-                        $("#myMemeTags").append(taglabel)
+//                        var taglabel = document.createTextNode("Tags: ")
+//                        $("#myMemeTags").append(taglabel)
                         for (var i = 0; i < newdoc.tags.length; i++) {
                             var tagDiv = document.createElement("div")
                             $(tagDiv).addClass("memeTag")

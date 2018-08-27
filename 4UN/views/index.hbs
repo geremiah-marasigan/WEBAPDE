@@ -230,7 +230,6 @@
                     <br/>
                     <div class="modal-footer">
                         <div class="tags" id="memeTags">
-                            <div>Tags: </div>
                             <div class="memetag"><a href="">NSFW</a></div>
 
                             <div class="memetag"><a href="">Bastos</a></div>
@@ -277,8 +276,8 @@
                     $("#memeImg").attr("src", "../meme/photo/" + newdoc.image)
                     $("#memeDesc").text(newdoc.description)
                     $("#memeTags").empty()
-                    var taglabel = document.createTextNode("Tags: ")
-                    $("#memeTags").append(taglabel)
+//                    var taglabel = document.createTextNode("Tags: ")
+//                    $("#memeTags").append(taglabel)
                     for (var i = 0; i < newdoc.tags.length; i++) {
                         var tagDiv = document.createElement("div")
                         $(tagDiv).addClass("memeTag")
