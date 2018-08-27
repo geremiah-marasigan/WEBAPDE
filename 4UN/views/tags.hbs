@@ -240,11 +240,9 @@
                         $(tagDiv).addClass("memeTag")
                         var tagLink = document.createElement("a")
                         $(tagLink).attr("href", "")
-                        if (i == newdoc.tags.length - 1) {
-                            $(tagLink).text("#" + newdoc.tags[i])
-                        } else {
-                            $(tagLink).text("#" + newdoc.tags[i] + ",")
-                        }
+                        
+                        $(tagLink).text("#" + newdoc.tags[i])
+                        
                         $(tagDiv).append(tagLink)
                         $("#memeTags").append(tagDiv)
                     }

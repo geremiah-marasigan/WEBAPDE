@@ -307,8 +307,12 @@ input[type=checkbox]:checked ~ .shareUpload {
     border: 1px solid black;
     font-style: normal;
     font-size: 15;
+    
+    position: absolute;
     padding-left: 3px;
     padding-right: 3px;
+    margin-left:10px;
+    top: 37px;
     border-radius: 3px;
 }
 
