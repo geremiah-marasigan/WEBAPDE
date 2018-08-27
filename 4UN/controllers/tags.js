@@ -44,7 +44,7 @@ router.get("/search", urlencoder, (req, resp) => {
     //Checks if tag exists first
     Tag.getTag(tag).then((found_tag)=>{
         console.log("GET tag successful: " + found_tag)
-        if(found_tag===null){
+        if(found_tag==null){
             error = "No memes found with #" + tag
             tag = null
         }
@@ -52,20 +52,24 @@ router.get("/search", urlencoder, (req, resp) => {
         console.log("Error getting tag: " + err)
     })
     
-    if(error===null)
+    if(error==null){
+        console.log("error is null")
         Tag.getMemes(tag).then((found)=>{
+            console.log(found.memes)
+            console.log(found.memes.length)
             for(let x = 0; x<found.memes.length; x++)
-                if(x % 3 === 0)
+                if(x % 3 == 0)
                     col1.push(found.memes[x])
-                else if (x % 3 === 1)
+                else if (x % 3 == 1)
                     col2.push(found.memes[x])
                 else
                     col3.push(found.memes[x])
         }, (err)=>{
             console.log("Error getting tagged memes: " + err)
         })
+    }
     console.log("User is " + uname)
-    if(uname)
+    if(uname){
         User.findSpecific(uname).then((foundUser)=>{
             resp.render("tags.hbs", {
                 tag,
@@ -75,12 +79,19 @@ router.get("/search", urlencoder, (req, resp) => {
                 col3,
                 error
             })
-
         }, (err)=>{
             console.log("ERROR TAG FINDING USER: " + err)
         })
-    
-    console.log("User is " + JSON.stringify(user))
+    }
+    else{
+        resp.render("tags.hbs", {
+                tag,
+                col1,
+                col2,
+                col3,
+                error
+            })
+    }
     
     
 //    }

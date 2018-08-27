@@ -299,6 +299,7 @@
         $('#publicChk').change(function(){
             if(this.checked){
                 $('#shareUpload').hide();
+                $("input[name=shared]").val("")
             } else {
                 $('#shareUpload').show();
             }
