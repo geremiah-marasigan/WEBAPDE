@@ -107,7 +107,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     var username = req.body.uname
     var email = req.body.email
     var unhashedpassword = req.body.pword
-    var desc = req.body.sdesc
+    var desc = req.body.sdesc + ""
     if (req.file) {
         profilepicture = req.file.filename
     }
@@ -116,7 +116,7 @@ router.post("/signup", upload.single("ppic"), urlencoder, (req, resp) => {
     var user = ({
         username,
         password,
-        desc,
+        description: desc,
         profilepicture,
         posts: [],
         shared: []
