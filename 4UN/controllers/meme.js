@@ -60,7 +60,7 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
         for(let x = 0; x<tags.length; x++)
             Tag.getTag(tags[x]).then((suc)=>{
                 if(suc){ //tag exists already
-                    Tag.addMeme(succ.name, newMeme).then((succ)=>{
+                    Tag.addMeme(suc.name, newMeme).then((succ)=>{
                         console.log("Added Meme to Tag Successful")
                     }, (er)=>{
                         console.log("Error in Tag")
@@ -81,8 +81,6 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
             }, (err)=>{
                 console.log("Error: " + err)
             })
-        
-        
         
         User.addPost(owner, newMeme).then(() => {
             console.log("added meme")
