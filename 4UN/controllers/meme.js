@@ -93,7 +93,7 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
                     console.log("Adding to shared: " + err)
                 })
             }
-            resp.redirect("/")
+            resp.redirect("back")
         }, (err) => {
             console.log("Adding to user failed: " + err)
         })
