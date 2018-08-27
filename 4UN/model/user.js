@@ -73,7 +73,7 @@ exports.findSpecific = function (user){
 exports.getMemes = function(user){
     return new Promise(function(res, rej){
         User.findOne(
-            {username: user.username
+            {username: user
             },
             {posts: 1}
         ).sort({_id:-1}).limit(12).then((memes)=>{
@@ -91,7 +91,7 @@ exports.getMemes = function(user){
 exports.sharedMemes = function(user){
     return new Promise(function(res, rej){
         User.findOne(
-            {username: user.username
+            {username: user
             },
             {shared: 1}
         ).sort({_id:-1}).limit(12).then((memes)=>{
@@ -108,7 +108,7 @@ exports.sharedMemes = function(user){
 exports.removedShared = function(user, meme){
     return new Promise(function(res, rej){
         User.findOne(
-            {username: user.username
+            {username: user
             } 
         ).update({}, {$pull: {shared: meme}}, {multi: true}).then((succ)=>{
             console.log("Remove Successful" + succ)
@@ -123,7 +123,7 @@ exports.removedShared = function(user, meme){
 exports.updateShared = function(user, meme){
     return new Promise(function(res, rej){
         User.findOne(
-            {username: user.username
+            {username: user
             } 
         ).update({}, {$addToSet: {shared: meme}}, {multi: true}).then((succ)=>{
             console.log("Added Shared successful")
@@ -139,7 +139,7 @@ exports.updateShared = function(user, meme){
 exports.removePost = function(user, meme){
     return new Promise(function(res, rej){
         User.findOne(
-            {username: user.username
+            {username: user
             } 
         ).update({}, {$pull: {posts: meme}}, {multi: true}).then((succ)=>{
             console.log("Remove Successful" + succ)

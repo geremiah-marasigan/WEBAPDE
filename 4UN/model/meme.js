@@ -80,9 +80,7 @@ exports.getPublic = function(){
             console.log("Get Failed")
             rej(err)
         })
-        
     })
-    
      
 }
 
@@ -117,3 +115,10 @@ exports.addNewMeme = function(meme){
     })
   })
 }
+
+//for logged in users, get public memes AND those shared to you
+//exports.getAvailableMemes = function(username){
+//    return new Promise(function(res, rej){
+//        Meme.find()
+//    })
+//}
