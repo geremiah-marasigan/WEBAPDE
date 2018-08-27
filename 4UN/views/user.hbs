@@ -284,25 +284,26 @@
                             var spanText = document.createTextNode("PRIVATE")
                             $(privateSpan).append(spanText)
                             $("h5#memeTitle").append(privateSpan)
+                            $("#myMemeShare").empty()
+                            console.log(newdoc.shared.length)
+                            for (var i = 0; i < newdoc.shared.length; i++) {
+                                console.log(newdoc.shared[i])
+                                var spanShare = document.createElement("span")
+                                $(spanShare).text(newdoc.shared[i])
+                                var breakShare = document.createElement("br")
+                                var unShare = document.createElement("button")
+                                $(unShare).addClass("unShareBtn")
+                                $(unShare).attr("data-id",newdoc.shared[i])
+                                $(unShare).text("x")
+                                $("div#myMemeShare").append(spanShare)
+                                $("div#myMemeShare").append(unShare)
+                                $("div#myMemeShare").append(breakShare)
+                            }
                         } else {
                             if ($(".privatestamp")) {
                                 $(".privatestamp").remove()
                                 console.log("I have removed private")
-                                $("#myMemeShare").empty()
-                                console.log(newdoc.shared.length)
-                                for (var i = 0; i < newdoc.shared.length; i++) {
-                                    console.log(newdoc.shared[i])
-                                    var spanShare = document.createElement("span")
-                                    $(spanShare).text(newdoc.shared[i])
-                                    var breakShare = document.createElement("br")
-                                    var unShare = document.createElement("button")
-                                    $(unShare).addClass("unShareBtn")
-                                    $(unShare).attr("data-id",newdoc.shared[i])
-                                    $(unShare).text("x")
-                                    $("div#myMemeShare").append(spanShare)
-                                    $("div#myMemeShare").append(unShare)
-                                    $("div#myMemeShare").append(breakShare)
-                                }
+                                $("div.shareMeme").hide()
                             }
                         }
                         $("#myForm").attr("action","../user/"+newdoc.owner)
