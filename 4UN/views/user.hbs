@@ -345,8 +345,8 @@
                 success: function(newdoc) {
                     console.log(newdoc)
                     $("#myMemeTags").empty()
-                        var taglabel = document.createTextNode("Tags: ")
-                        $("#myMemeTags").append(taglabel)
+//                        var taglabel = document.createTextNode("Tags: ")
+//                        $("#myMemeTags").append(taglabel)
                         for (var i = 0; i < newdoc.tags.length; i++) {
                             var tagDiv = document.createElement("div")
                             $(tagDiv).addClass("memeTag")
