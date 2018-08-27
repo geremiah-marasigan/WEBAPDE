@@ -268,11 +268,9 @@
                             $(tagDiv).addClass("memeTag")
                             var tagLink = document.createElement("a")
                             $(tagLink).attr("href", "")
-                            if (i == newdoc.tags.length - 1) {
-                                $(tagLink).text("#" + newdoc.tags[i])
-                            } else {
-                                $(tagLink).text("#" + newdoc.tags[i] + ",")
-                            }
+                            
+                            $(tagLink).text("#" + newdoc.tags[i])
+                        
                             $(tagDiv).append(tagLink)
                             $("#memeTags").append(tagDiv)
                         }
@@ -320,11 +318,9 @@
                             
                             var tagLink = document.createElement("a")
                             $(tagLink).attr("href", "")
-                            if (i == newdoc.tags.length - 1) {
-                                $(tagLink).text("#" + newdoc.tags[i])
-                            } else {
-                                $(tagLink).text("#" + newdoc.tags[i] + ",")
-                            }
+                            
+                            $(tagLink).text("#" + newdoc.tags[i])
+                        
                             var removeBtn = document.createElement("button")
                             $(removeBtn).addClass("removeBtn")
                             $(removeBtn).attr("data-id",newdoc.tags[i])
@@ -371,11 +367,9 @@
                             $(tagDiv).addClass("memeTag")
                             var tagLink = document.createElement("a")
                             $(tagLink).attr("href", "")
-                            if (i == newdoc.tags.length - 1) {
-                                $(tagLink).text("#" + newdoc.tags[i])
-                            } else {
-                                $(tagLink).text("#" + newdoc.tags[i] + ",")
-                            }
+                            
+                            $(tagLink).text("#" + newdoc.tags[i])
+                        
                             var removeBtn = document.createElement("button")
                             $(removeBtn).addClass("removeBtn")
                             $(removeBtn).text("x")
@@ -476,11 +470,9 @@
                             $(tagDiv).addClass("memeTag")
                             var tagLink = document.createElement("a")
                             $(tagLink).attr("href", "")
-                            if (i == newdoc.tags.length - 1) {
-                                $(tagLink).text("#" + newdoc.tags[i])
-                            } else {
-                                $(tagLink).text("#" + newdoc.tags[i] + ",")
-                            }
+                            
+                            $(tagLink).text("#" + newdoc.tags[i])
+                        
                             var removeBtn = document.createElement("button")
                             $(removeBtn).addClass("removeBtn")
                             $(removeBtn).text("x")
