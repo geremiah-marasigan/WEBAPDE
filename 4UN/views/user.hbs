@@ -20,9 +20,6 @@
                         <a href="/" id="logo">
                             <img id="logo" src="../resources/logo.png"/>
                         </a>
-                        <!--<form method = post action = home>
-                            <input type = "image" id = logo src = resources/logo.png>
-                        </form>-->
                     </li>
                     <li>
                          {{#if user}}
@@ -33,7 +30,6 @@
                                  </button>
                              <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
                                  <a class="dropdown-item" href="../user/userPage">Profile</a>
-                                 <!-- <a class="dropdown-item" data-toggle="modal" data-target="#uploadModal">Add Meme</a> -->
                                  <a class="dropdown-item" id="sign-out" href="../user/signout">Sign-Out</a>
                              </div>
                          </div>
@@ -47,10 +43,6 @@
                             <div id="search">
                             <form id = search action = ../tags/search method = get>
                                 <input id="search-input" type="text" placeholder="Search Tags" name = "searchinput" />
-                                <!--<a href="main-cat.html" class="submit-button">
-                                    <i class="fa fa-search"></i>
-                                </a>-->
-                                <!-- <input class=submit-button type=submit value=Search> -->
                                 <input class="searchicon" src="../resources/search.png" type="image">
                             </form>
                         </div>
@@ -106,18 +98,11 @@
     </div>
 
     <div class="avatar-div">
-        <img class="user-avatar" alt="Card image cap" src="../user/photo/{{user.profilepicture}}">
+        <img class="user-avatar" alt="Card image cap" src="../user/photo/{{owner.profilepicture}}">
     </div>
-<!--
-    {{#if user}}
-        <div class = editProfile>
-            <a href="">Edit Profile</a>
-        </div>
-    {{/if}}
--->
     <div class="user-body">
-        <h2 class="username">{{user.username}}</h2><br/>
-        <p class="user-description">{{user.description}}</p>
+        <h2 class="username">{{owner.username}}</h2><br/>
+        <p class="user-description">{{owner.description}}</p>
         <h4 class="meme-header">Memes Posted</h4>
         <div class="images">
             <div class="row-justify-content-md-center">

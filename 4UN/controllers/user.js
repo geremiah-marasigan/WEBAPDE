@@ -29,8 +29,32 @@ const upload = multer({
 router.use(cookieparser())
 
 router.post("/userProfile", urlencoder, (req, resp)=>{
+    console.log("POST /user/userProfile")
+    var user = req.cookies.username
     var username = req.body.owner
     console.log(username)
+    console.log(user)
+    
+    var foundUser
+    var foundOwner
+    
+    User.findSpecific(username).then((found)=>{
+        if(found){
+            foundOwner = found
+            User.findSpecific(user).then((found)=>{
+            if(found){
+                    foundUser = found
+                    console.log(foundOwner + " foundOwner")
+                    console.log(foundUser + " foundUser")
+                    resp.render("user.hbs", {
+                        user: foundUser,
+                        owner: foundOwner
+                    })
+                }
+            })
+        }
+    })
+    
 })
 
 router.get("/userPage", (req, resp) => {
@@ -54,7 +78,8 @@ router.get("/userPage", (req, resp) => {
         if(foundUser){
             console.log("userpage " + foundUser)
             resp.render("user.hbs", {
-                user: foundUser
+                user: foundUser,
+                owner: foundUser
             })
         }
         
