@@ -8,7 +8,7 @@ html, body {
 }
 
 nav {
-    background-color: black;
+    background-color: #0e1111;
     top: 0;
     left: 0;
     width: 100%;
@@ -206,4 +206,11 @@ li {
     left: 50%;
     margin-top: 85%;
     z-index: 98;
+}
+
+.modal-footer .tags {
+    float: left;
+    display: flex;
+    width: 100%;
+    margin-left: 0px;
 }
