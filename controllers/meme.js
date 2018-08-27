@@ -93,7 +93,7 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
                     console.log("Adding to shared: " + err)
                 })
             }
-            resp.redirect("back")
+            resp.redirect("/")
         }, (err) => {
             console.log("Adding to user failed: " + err)
         })
@@ -209,6 +209,14 @@ router.post("/removeTag", urlencoder, (req, resp)=>{
         newMeme = foundMeme
         newMeme.tags = foundMeme.tags.filter((e) => e != remove)
         console.log(JSON.stringify(newMeme.tags))
+        Tag.getAllNames().then((names)=>{
+        for(let x = 0; x<names.length; x++)
+            Tag.removeMeme(names[x].name, memeID).then((succ)=>{
+                console.log("Delete MemeTag Sammie")
+            }, (err)=>{
+                console.log("Delete MemeTag Nea: " + err)
+            })
+        })
         Meme.updateOne(memeID, newMeme).then((succ)=>{
             console.log("Update Successful: " + succ)
             resp.send(newMeme)
@@ -231,6 +239,16 @@ router.post("/removeShare", urlencoder, (req, resp)=>{
         newMeme = foundMeme
         newMeme.shared = foundMeme.shared.filter((e) => e != remove)
         console.log(JSON.stringify(newMeme.tags))
+        User.findShared(memeID).then((sharedusers)=>{
+            for(let x = 0; x<sharedusers.length; x++)
+                User.removeShared(sharedusers[x].username, memeID).then((succ)=>{
+                    console.log("Delete MemeShared Sammie")
+                }, (err)=>{
+                    console.log("Delete MemeShared Nea: " + err)
+                })
+        }, (err)=>{
+            console.log("Nea error " + err)
+        })
         Meme.updateOne(memeID, newMeme).then((succ)=>{
             console.log("Update Successful: " + succ)
             resp.send(newMeme)
@@ -258,10 +276,10 @@ router.get("/photo/:id", (req, res) => {
     fs.createReadStream(path.resolve(UPLOAD_PATH, req.params.id)).pipe(res)
 
 })
+
 // if passing the img rather than the post id
 // change doc.filename to req.params.id
-
-router.post("/delete", urlencoder, (req, res) => {
+router.post("/delete", urlencoder, (req, resp) => {
     var memeId = req.body.memeId
     
     Meme.deleteMe(memeId).then((succ)=>{
@@ -278,8 +296,8 @@ router.post("/delete", urlencoder, (req, res) => {
                 console.log("Delete MemeTag Nea: " + err)
             })
     })
-    
     User.findShared(memeId).then((sharedusers)=>{
+        
         for(let x = 0; x<sharedusers.length; x++)
             User.removeShared(sharedusers[x].username, memeId).then((succ)=>{
                 console.log("Delete MemeShared Sammie")
@@ -289,10 +307,10 @@ router.post("/delete", urlencoder, (req, res) => {
     }, (err)=>{
         console.log("Nea error " + err)
     })
-    
     User.findOwner(memeId).then((owner)=>{
         User.removePost(owner.username, memeId).then((succ)=>{
-            console.log("Delete MemeShared Sammie")
+            console.log("Delete MemeShared Fuck Me")
+            resp.send(memeId)
         }, (err)=>{
             console.log("Delete MemeShared Nea: " + err)
         })
