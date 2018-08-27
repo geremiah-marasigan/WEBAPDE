@@ -28,14 +28,16 @@ router.get("/", (req, resp) => {
         console.log("Shared Enter")
         User.sharedMemes(username).then((sharedMemes)=>{
             console.log("Shared memes: " + JSON.stringify(sharedMemes))
-            for(let x = 0; x<sharedMemes.shared.length; x++){
-                if(col % 3 === 0)
-                    col1.push(sharedMemes.shared[x])
-                else if (col % 3 === 1)
-                    col2.push(sharedMemes.shared[x])
-                else
-                    col3.push(sharedMemes.shared[x])
-                col++
+            if(sharedMemes){
+                for(let x = 0; x<sharedMemes.shared.length; x++){
+                    if(col % 3 === 0)
+                        col1.push(sharedMemes.shared[x])
+                    else if (col % 3 === 1)
+                        col2.push(sharedMemes.shared[x])
+                    else
+                        col3.push(sharedMemes.shared[x])
+                    col++
+                }
             }
         }, (err) => {
             console.log("Error getting shared Memes: " + err)

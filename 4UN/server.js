@@ -14,13 +14,13 @@ app.set("view-engine", "hbs");
 mongoose.Promise = global.Promise;
 
 //connect to the database
-mongoose.connect("mongodb://localhost:27017/memedata", {
+mongoose.connect("mongodb://4un:r12345@ds133622.mlab.com:33622/memedb", {
     useNewUrlParser: true 
 });
 
 app.use(require("./controllers"))
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log("Listening to port 3000")
 });
 
