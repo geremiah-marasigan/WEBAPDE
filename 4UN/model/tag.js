@@ -41,7 +41,7 @@ exports.getTag = function (tag) {
     
     return new Promise(function (res, rej) {
         Tag.findOne({
-            "name": tag
+            name: tag
         }).then((succ) => {
             console.log("Get All successful" + memeid)
             res(succ)
@@ -59,7 +59,7 @@ exports.getTag = function (tag) {
 exports.getMemes = function (tag) {
     return new Promise(function (res, rej) {
         Tag.findOne({
-            "name": tag
+            name: tag
             }, {
             memes: 1
         }).then((succ) => {

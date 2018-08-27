@@ -33,32 +33,57 @@ router.get("/search", urlencoder, (req, resp) => {
 
     var tag = req.query.searchinput
     var uname = req.cookies.username
-    // var user_cookie = req.cookies.user
-    // if(user_cookie){
-    // var user_parsed = JSON.parse(user_cookie)
-    // }
+    var col1 = []
+    var col2 = []
+    var col3 = []
+    var error
+    
     console.log("Tag: " + tag)
-//    if (uname) {
-//        var query = User.findSpecific(uname)
-//        query.exec(function (err, user) {
-//            if (err) {
-//
-//            }
-//            //error
-//            else {
-//                resp.render("tags.hbs", {
-//                    tag,
-//                    user
-//                })
-//            }
-//        })
-//    } else {
-        resp.render("tags.hbs", {
+    
+    //Checks if tag exists first
+    Tag.getTag(tag).then((found_tag)=>{
+        if(!(found_tag))
+            error = "No memes with that tag found"
+    }, (err)=>{
+        console.log("Error getting tag: " + err)
+    })
+    
+    if(!(error))
+        Tag.getMemes(tag).then((found)=>{
+            for(let x = 0; x<found.memes.length; x++)
+                if(x % 3 === 0)
+                    col1.push(found.memes[x])
+                else if (x % 3 === 1)
+                    col2.push(found.memes[x])
+                else
+                    col3.push(found.memes[x])
+        }, (err)=>{
+            console.log("Error getting tagged memes: " + err)
+        })
+    
+    
+    
+    resp.render("tags.hbs", {
             tag,
-            uname
+            uname,
+            col1,
+            col2,
+            col3,
+            error
         })
 //    }
 
+})
+
+router.post("/addNewTag", urlencoder, (req, resp) => {
+    var memeID = 0 //Kyle
+    var meme = {}
+    
+})
+
+router.post("/addToTag", urlencoder, (req, resp) =>{
+    var memeID = 0
+    
 })
 
 // always remember to export the router for index.js

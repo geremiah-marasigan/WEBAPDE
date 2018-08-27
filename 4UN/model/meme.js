@@ -36,7 +36,7 @@ exports.deleteMe = function(memeid){
 exports.updateOne = function(meme,updated){
     return new Promise(function(res, rej){
         Meme.findOneAndUpdate({
-            "_id":meme
+            _id:meme
         }, updated).then((succ)=>{
             console.log("Update successful" + memeid)
             res(succ)
