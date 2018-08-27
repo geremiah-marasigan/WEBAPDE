@@ -345,6 +345,11 @@
                 method: "post",
                 data: {
                     memeId: $("#myMemePic").attr("data-id")
+                },
+                success: function(response){
+                    console.log(response)
+                    $("#memeEdit").modal("hide")
+                    $("#" + response).remove()
                 }
             })
         })
@@ -415,7 +420,12 @@
                                     var spanShare = document.createElement("span")
                                     $(spanShare).text(newdoc.shared[i])
                                     var breakShare = document.createElement("br")
+                                    var unShare = document.createElement("button")
+                                    $(unShare).addClass("unShareBtn")
+                                    $(unShare).attr("data-id",newdoc.shared[i])
+                                    $(unShare).text("x")
                                     $("div#myMemeShare").append(spanShare)
+                                    $("div#myMemeShare").append(unShare)
                                     $("div#myMemeShare").append(breakShare)
                                 }
                     $("input[name=newShare]").val("")
