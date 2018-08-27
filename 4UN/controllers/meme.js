@@ -157,26 +157,26 @@ router.post("/addTags", urlencoder, (req,resp)=>{
                 console.log("Error: " + err)
             })
         
-        User.findShared(memeID).then((foundUsers)=>{
-            if(foundUsers)
-                for(let x = 0; x<foundUsers.length; x++)
-                    User.editShared(foundUsers[x], newMeme).then((suc)=>{
-                        console.log("Sammie")
-                    }, (err)=>{
-                        console.log("Nea")
-                    })
-        })
-        
-        User.findOwner(memeID).then((foundOwner)=>{
-            if(foundOwner)
-                User.editPosts(foundOwner, newMeme).then((suc)=>{
-                    console.log("Sammie")
-                }, (err)=>{
-                    console.log("Nea")
-                })
-        }, (err)=>{
-            console.log("Nea: " + err)
-        })
+//        User.findShared(memeID).then((foundUsers)=>{
+//            if(foundUsers)
+//                for(let x = 0; x<foundUsers.length; x++)
+//                    User.editShared(foundUsers[x], newMeme).then((suc)=>{
+//                        console.log("Sammie")
+//                    }, (err)=>{
+//                        console.log("Nea")
+//                    })
+//        })
+//        
+//        User.findOwner(memeID).then((foundOwner)=>{
+//            if(foundOwner)
+//                User.editPosts(foundOwner, newMeme).then((suc)=>{
+//                    console.log("Sammie")
+//                }, (err)=>{
+//                    console.log("Nea")
+//                })
+//        }, (err)=>{
+//            console.log("Nea: " + err)
+//        })
         
         console.log("New Meme is " + JSON.stringify(newMeme))
         Meme.updateOne(memeID, newMeme).then((succ)=>{
