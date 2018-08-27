@@ -32,7 +32,7 @@
                             <div class="dropdown-menu" role="menu" aria-labelledby="user-menu">
                                 <a class="dropdown-item profileBox">
                                     <form method=post action="../user/{{user.username}}">
-                                        <input type=s ubmit value="Profile" id="userProfile" />
+                                        <input type=submit value="Profile" id="userProfile" />
                                     </form>
                                 </a>
                                 <a class="dropdown-item" id="sign-out" href="../user/signout">Sign-Out</a>
@@ -45,7 +45,7 @@
                     <li>
                         <div id="search">
                             <div id="search">
-                                <form id=s earch action=. ./tags/search method=g et>
+                                <form id=search action=../tags/search method=get>
                                     <input id="search-input" type="text" placeholder="Search Tags" name="searchinput" />
                                     <input class="searchicon" src="../resources/search.png" type="image">
                                 </form>
@@ -204,7 +204,7 @@
                             <span>mr_bizcuit</span> <br/>
                             <span>Jdelbz</span> <br/>
                         </div>
-                        <div class=a ddUsers>
+                        <div class=addUsers>
                             <form action="../meme/editShared" method="post">
                                 <input type="text" name="newShare" placeholder="Add users to share with" />
                                 <input type="submit" value="Add" id="shareAdder" class="btn btn-success share-meme" />
@@ -350,6 +350,23 @@
                 },
                 success: function(newdoc) {
                     console.log(newdoc)
+                    $("#myMemeTags").empty()
+                        var taglabel = document.createTextNode("Tags: ")
+                        $("#myMemeTags").append(taglabel)
+                        for (var i = 0; i < newdoc.tags.length; i++) {
+                            var tagDiv = document.createElement("div")
+                            $(tagDiv).addClass("memeTag")
+                            var tagLink = document.createElement("a")
+                            $(tagLink).attr("href", "")
+                            if (i == newdoc.tags.length - 1) {
+                                $(tagLink).text("#" + newdoc.tags[i])
+                            } else {
+                                $(tagLink).text("#" + newdoc.tags[i] + ",")
+                            }
+                            $(tagDiv).append(tagLink)
+                            $("#myMemeTags").append(tagDiv)
+                        }
+                    $("input[name=newTag]").val("")
                 }
             })
         })

@@ -76,10 +76,28 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
     })
 })
 
+router.post("/addShare", urlencoder, (req,resp)=>{
+    console.log("POST /meme/addShare")
+    var memeId = req.body.memeId
+    var share = req.body.newShare.split(",")
+    
+    console.log(share)
+    console.log(memeId)
+})
+
+router.post("/editDesc", urlencoder, (req,resp)=>{
+    console.log("POST /meme/editDesc")
+    var memeId = req.body.memeId
+    var desc = req.body.newDesc
+    
+    console.log(desc)
+    console.log(memeId)
+})
+
 router.post("/addTags", urlencoder, (req,resp)=>{
     console.log("POST /meme/addTags")
     var memeID = req.body.memeId
-    var newTags = req.body.newTags
+    var newTags = req.body.newTags.split(",")
     
     var newMeme
     
@@ -113,10 +131,10 @@ router.post("/addTags", urlencoder, (req,resp)=>{
                 console.log("Error: " + err)
             })
         
-        
         console.log("New Meme is " + JSON.stringify(newMeme))
         Meme.updateOne(memeID, newMeme).then((succ)=>{
             console.log("Update Successful: " + succ)
+            resp.send(newMeme)
         }, (err)=>{
             console.log("ERROR: " + err)
         })
