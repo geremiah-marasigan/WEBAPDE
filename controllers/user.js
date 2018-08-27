@@ -169,7 +169,7 @@ router.post("/:username", (req, resp) => {
         console.log(Memes.posts + " ARRAY")
         console.log(Memes.posts.length + " length of array")
         for (var x = 0; x < Memes.posts.length; x++){
-            if(Memes.posts[x].shared.includes(user)){
+            if(Memes.posts[x].shared.includes(user) || user == username || Memes.posts[x].status == "Public"){
                 if (x % 3 === 0) {
                     col1.push(Memes.posts[x])
                     console.log(col1)
