@@ -98,10 +98,6 @@ li {
     padding: 2px;
 }
 
-.tagAdder input {
-    width: 300px;
-}
-
 /* #search button {
     width: 32px;
     height: 32px;
@@ -150,10 +146,13 @@ li {
     margin-top: 2px;
 }
 
+.newTag{
+    width: 372px;
+}
 .add-tags{
     position: absolute;
+    top: 490px;
     right: 20px;
-    top: 564px;
     width: 75px;
 }
 
@@ -162,25 +161,31 @@ li {
 }
 .update-description{
   position:absolute;
-  top: 620px;
+  top: 565px;
   right: 20px;
   width: 75px;
 }
+/*
 
 .addUsers{
   position: absolute;
   top: 670px;
   right: 20px;
 }
+*/
 
-.addUsers button{
+.share-meme{
+  position: absolute;
   width: 75px;
+  top: 675px;
+  right: 20px;
 }
 
-.addUsers input{
+.newShareInput{
   position: absolute;
   width: 172px;
-  right: 90px;
+  right: 111px;
+  top: 680px;
 }
 
 .deleteMeme{
@@ -303,7 +308,7 @@ input[type=checkbox]:checked ~ .shareUpload {
   margin-bottom: 10px;
 }
 
-#ownerName{
+#myName{
   background-color: transparent;
   border-color:transparent;
   cursor: pointer;
@@ -313,7 +318,7 @@ input[type=checkbox]:checked ~ .shareUpload {
   left: 30px;
 }
 
-#ownerName:hover{
+#myName:hover{
   text-decoration: underline;
   color: black;
 }
