@@ -78,10 +78,57 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
 
 router.post("/addTags", urlencoder, (req,resp)=>{
     console.log("POST /meme/addTags")
+    var memeID = req.body.memeId
+    var newTags = req.body.newTags
+    
+    var newMeme
+    
+    Meme.findSpecific(memeID).then((foundMeme)=>{
+        newMeme = foundMeme
+        console.log(JSON.stringify(newTags))
+        newMeme.tags = newMeme.tags.concat(newTags)
+        
+        for(let x = 0; x<newTags.length; x++)
+            Tag.getTag(newTags[x]).then((suc)=>{
+                if(suc){ //tag exists already
+                    Tag.addMeme(succ.name, newMeme).then((succ)=>{
+                        console.log("Added Meme to Tag Successful")
+                    }, (er)=>{
+                        console.log("Error in Tag")
+                    })
+                } else { //makes a new tag with the meme
+                    var memes = [newMeme]
+                    var tag = {
+                        name: newTags[x],
+                        memes
+                    }
+                    Tag.addTag(tag).then((succc)=>{
+                        console.log("Created a new Tag Successfully")
+                    }, (errr)=>{
+                        console.log("ERROR: " + errr)
+                    })
+                }
+                
+            }, (err)=>{
+                console.log("Error: " + err)
+            })
+        
+        
+        console.log("New Meme is " + JSON.stringify(newMeme))
+        Meme.updateOne(memeID, newMeme).then((succ)=>{
+            console.log("Update Successful: " + succ)
+        }, (err)=>{
+            console.log("ERROR: " + err)
+        })
+    }, (err)=>{
+        console.log("Error why")
+    })
+    
+    
     
     console.log(req.body.memeId)
     console.log(req.body.newTags)
-    console.log(req.body.newTag)
+
 })
 
 router.post("/getMeme", urlencoder, (req, resp) => {

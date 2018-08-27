@@ -38,7 +38,7 @@ exports.updateOne = function(meme,updated){
         Meme.findOneAndUpdate({
             _id:meme
         }, updated).then((succ)=>{
-            console.log("Update successful" + memeid)
+            console.log("Update successful")
             res(succ)
         }, (err)=>{
             console.log("Update Failed")
