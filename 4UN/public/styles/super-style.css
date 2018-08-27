@@ -148,44 +148,42 @@ li {
 
 .newTag{
     width: 372px;
+    height: 32px;
 }
 .add-tags{
-    position: absolute;
-    top: 470px;
-    right: 20px;
     width: 75px;
+    margin-bottom: 7px;
 }
 
 .desc-input{
-   width: 253px;
+   width: 450px;
 }
+
 .update-description{
+/*
   position:absolute;
   top: 542px;
   right: 20px;
-  width: 75px;
-}
-/*
-
-.addUsers{
-  position: absolute;
-  top: 670px;
-  right: 20px;
-}
 */
+  width: 75px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.shareMeme{
+    padding-top: 40px;
+}
 
 .share-meme{
-  position: absolute;
   width: 75px;
-  top: 652px;
-  right: 20px;
+  height: 35px;
+  margin-bottom: 7px;
 }
 
 .newShareInput{
-  position: absolute;
-  width: 172px;
-  right: 111px;
-  top: 655px;
+    width: 172px;
+    height: 30px;
 }
 
 .deleteMeme{
@@ -364,4 +362,12 @@ input[type=checkbox]:checked ~ .shareUpload {
     position: absolute;
     left: 15px;
     top: 3px;
+}
+
+.removebtn{
+    opacity: 0;
+}
+
+.removebtn:hover{
+    opacity: 1;
 }
