@@ -379,6 +379,11 @@
                 data: {
                     newDesc: $("#newDesc").val(),
                     memeId: $("#myMemePic").attr("data-id")
+                },
+                success: function(newdoc){
+                    console.log(newdoc)
+                    $("#myMemeDesc").text(newdoc.description)
+                    $("#newDesc").val("")
                 }
             })
         })

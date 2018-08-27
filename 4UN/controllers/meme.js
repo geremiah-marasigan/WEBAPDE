@@ -116,7 +116,21 @@ router.post("/editDesc", urlencoder, (req,resp)=>{
     var memeId = req.body.memeId
     var desc = req.body.newDesc
     
-    console.log(desc)
+    var newMeme
+    
+    Meme.findSpecific(memeId).then((foundMeme)=>{
+        newMeme = foundMeme
+        newMeme.description = desc
+        console.log(newMeme.description)
+        Meme.updateOne(memeId, newMeme).then((succ)=>{
+            console.log("Update Successful: " + succ)
+            resp.send(newMeme)
+        }, (err)=>{
+            console.log("ERROR: " + err)
+        })
+    })
+    
+    
     console.log(memeId)
 })
 
