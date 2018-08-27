@@ -72,6 +72,9 @@ router.get("/", (req, resp) => {
     })
 });
 
+router.get("/about",(req,resp)=>{
+    resp.render("about.hbs")
+})
 
 //app.post("/registered", urlencoder, (req, resp)=>{
 //    //when they send their info
