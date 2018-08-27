@@ -22,34 +22,40 @@ router.get("/", (req, resp) => {
     var col2 = []
     var col3 = []
     
+    var col = 0
+    
     if(username){
         console.log("Shared Enter")
         User.sharedMemes(username).then((sharedMemes)=>{
             console.log("Shared memes: " + JSON.stringify(sharedMemes))
-            for(let x = 0; x<sharedMemes.shared.length; x++)
-                if(x % 3 === 0)
+            for(let x = 0; x<sharedMemes.shared.length; x++){
+                if(col % 3 === 0)
                     col1.push(sharedMemes.shared[x])
-                else if (x % 3 === 1)
+                else if (col % 3 === 1)
                     col2.push(sharedMemes.shared[x])
                 else
                     col3.push(sharedMemes.shared[x])
+                col++
+            }
         }, (err) => {
             console.log("Error getting shared Memes: " + err)
         })
     }
     
     Meme.getPublic().then((publicmemes)=>{
-        for(let x = 0; x<publicmemes.length; x++)
-            if(x % 3 === 0){
+        for(let x = 0; x<publicmemes.length; x++){
+            if(col % 3 === 0){
                 if(!(col1.includes(publicmemes[x])))
                     col1.push(publicmemes[x])
-            } else if (x % 3 === 1) {
+            } else if (col % 3 === 1) {
                 if(!(col2.includes(publicmemes[x])))
                     col2.push(publicmemes[x])
             } else {  
                 if(!(col3.includes(publicmemes[x])))
                     col3.push(publicmemes[x])
             }
+            col++
+        }
     }, (err)=>{
        console.log("Error getting memes: " + err) 
     })
