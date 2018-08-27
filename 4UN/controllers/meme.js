@@ -104,11 +104,24 @@ router.post("/uploadMeme", upload.single("meme"), urlencoder, (req, resp) => {
 
 router.post("/addShare", urlencoder, (req,resp)=>{
     console.log("POST /meme/addShare")
-    var memeId = req.body.memeId
+    var memeID = req.body.memeId
     var share = req.body.newShare.split(",")
+    var newMeme
     
-    console.log(share)
-    console.log(memeId)
+    Meme.findSpecific(memeID).then((foundMeme)=>{
+        newMeme = foundMeme
+        console.log(JSON.stringify(share))
+        newMeme.shared = newMeme.shared.concat(share)
+        console.log("New Meme is " + JSON.stringify(newMeme))
+        Meme.updateOne(memeID, newMeme).then((succ)=>{
+            console.log("Update Successful: " + succ)
+            resp.send(newMeme)
+        }, (err)=>{
+            console.log("ERROR: " + err)
+        })
+    }, (err)=>{
+        console.log("Error why")
+    })
 })
 
 router.post("/editDesc", urlencoder, (req,resp)=>{
@@ -129,8 +142,6 @@ router.post("/editDesc", urlencoder, (req,resp)=>{
             console.log("ERROR: " + err)
         })
     })
-    
-    
     console.log(memeId)
 })
 
@@ -170,28 +181,6 @@ router.post("/addTags", urlencoder, (req,resp)=>{
             }, (err)=>{
                 console.log("Error: " + err)
             })
-        
-//        User.findShared(memeID).then((foundUsers)=>{
-//            if(foundUsers)
-//                for(let x = 0; x<foundUsers.length; x++)
-//                    User.editShared(foundUsers[x], newMeme).then((suc)=>{
-//                        console.log("Sammie")
-//                    }, (err)=>{
-//                        console.log("Nea")
-//                    })
-//        })
-//        
-//        User.findOwner(memeID).then((foundOwner)=>{
-//            if(foundOwner)
-//                User.editPosts(foundOwner, newMeme).then((suc)=>{
-//                    console.log("Sammie")
-//                }, (err)=>{
-//                    console.log("Nea")
-//                })
-//        }, (err)=>{
-//            console.log("Nea: " + err)
-//        })
-        
         console.log("New Meme is " + JSON.stringify(newMeme))
         Meme.updateOne(memeID, newMeme).then((succ)=>{
             console.log("Update Successful: " + succ)
@@ -202,12 +191,53 @@ router.post("/addTags", urlencoder, (req,resp)=>{
     }, (err)=>{
         console.log("Error why")
     })
-    
-    
-    
     console.log(req.body.memeId)
     console.log(req.body.newTags)
 
+})
+
+router.post("/removeTag", urlencoder, (req, resp)=>{
+    var memeID = req.body.memeId
+    var remove = req.body.removeTag
+    
+    console.log(memeID)
+    console.log(remove)
+    
+    var newMeme
+    
+    Meme.findSpecific(memeID).then((foundMeme)=>{
+        newMeme = foundMeme
+        newMeme.tags = foundMeme.tags.filter((e) => e != remove)
+        console.log(JSON.stringify(newMeme.tags))
+        Meme.updateOne(memeID, newMeme).then((succ)=>{
+            console.log("Update Successful: " + succ)
+            resp.send(newMeme)
+        }, (err)=>{
+            console.log("ERROR: " + err)
+        })
+    })
+})
+
+router.post("/removeShare", urlencoder, (req, resp)=>{
+    var memeID = req.body.memeId
+    var remove = req.body.removeShare
+    
+    console.log(memeID)
+    console.log(remove)
+    
+    var newMeme
+    
+    Meme.findSpecific(memeID).then((foundMeme)=>{
+        newMeme = foundMeme
+        newMeme.shared = foundMeme.shared.filter((e) => e != remove)
+        console.log(JSON.stringify(newMeme.tags))
+        Meme.updateOne(memeID, newMeme).then((succ)=>{
+            console.log("Update Successful: " + succ)
+            resp.send(newMeme)
+        }, (err)=>{
+            console.log("ERROR: " + err)
+        })
+    })
 })
 
 router.post("/getMeme", urlencoder, (req, resp) => {

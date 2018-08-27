@@ -295,7 +295,12 @@
                                     var spanShare = document.createElement("span")
                                     $(spanShare).text(newdoc.shared[i])
                                     var breakShare = document.createElement("br")
+                                    var unShare = document.createElement("button")
+                                    $(unShare).addClass("unShareBtn")
+                                    $(unShare).attr("data-id",newdoc.shared[i])
+                                    $(unShare).text("x")
                                     $("div#myMemeShare").append(spanShare)
+                                    $("div#myMemeShare").append(unShare)
                                     $("div#myMemeShare").append(breakShare)
                                 }
                             }
@@ -395,6 +400,49 @@
                 data: {
                     newShare: $("input[name=newShare]").val(),
                     memeId: $("#myMemePic").attr("data-id")
+                },
+                success: function(newdoc){
+                    console.log(newdoc)
+                    $("#myMemeShare").empty()
+                                console.log(newdoc.shared.length)
+                                for (var i = 0; i < newdoc.shared.length; i++) {
+                                    console.log(newdoc.shared[i])
+                                    var spanShare = document.createElement("span")
+                                    $(spanShare).text(newdoc.shared[i])
+                                    var breakShare = document.createElement("br")
+                                    $("div#myMemeShare").append(spanShare)
+                                    $("div#myMemeShare").append(breakShare)
+                                }
+                    $("input[name=newShare]").val("")
+                }
+            })
+        })
+        $(document).on("click",".unShareBtn", function(){
+            console.log($(this).attr("data-id"))
+            $.ajax({
+                url: "../meme/removeShare",
+                method: "post",
+                data:{
+                    removeShare: $(this).attr("data-id"),
+                    memeId: $("#myMemePic").attr("data-id")
+                },
+                success: function(newdoc){
+                    console.log(newdoc)
+                    $("#myMemeShare").empty()
+                                console.log(newdoc.shared.length)
+                                for (var i = 0; i < newdoc.shared.length; i++) {
+                                    console.log(newdoc.shared[i])
+                                    var spanShare = document.createElement("span")
+                                    $(spanShare).text(newdoc.shared[i])
+                                    var breakShare = document.createElement("br")
+                                    var unShare = document.createElement("button")
+                                    $(unShare).addClass("unShareBtn")
+                                    $(unShare).attr("data-id",newdoc.shared[i])
+                                    $(unShare).text("x")
+                                    $("div#myMemeShare").append(spanShare)
+                                    $("div#myMemeShare").append(unShare)
+                                    $("div#myMemeShare").append(breakShare)
+                                }
                 }
             })
         })
@@ -406,6 +454,29 @@
                 data:{
                     removeTag: $(this).attr("data-id"),
                     memeId: $("#myMemePic").attr("data-id")
+                },
+                success: function(newdoc){
+                    console.log(newdoc)
+                    $("#myMemeTags").empty()
+//                        var taglabel = document.createTextNode("Tags: ")
+//                        $("#myMemeTags").append(taglabel)
+                        for (var i = 0; i < newdoc.tags.length; i++) {
+                            var tagDiv = document.createElement("div")
+                            $(tagDiv).addClass("memeTag")
+                            var tagLink = document.createElement("a")
+                            $(tagLink).attr("href", "")
+                            if (i == newdoc.tags.length - 1) {
+                                $(tagLink).text("#" + newdoc.tags[i])
+                            } else {
+                                $(tagLink).text("#" + newdoc.tags[i] + ",")
+                            }
+                            var removeBtn = document.createElement("button")
+                            $(removeBtn).addClass("removeBtn")
+                            $(removeBtn).text("x")
+                            $(tagDiv).append(tagLink)
+                            $(tagDiv).append(removeBtn)
+                            $("#myMemeTags").append(tagDiv)
+                        }
                 }
             })
         })
