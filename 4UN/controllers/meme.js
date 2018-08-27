@@ -272,7 +272,7 @@ router.post("/delete", urlencoder, (req, res) => {
     
     Tag.getAllNames().then((names)=>{
         for(let x = 0; x<names.length; x++)
-            Tag.removeMeme(names[x], memeId).then((succ)=>{
+            Tag.removeMeme(names[x].name, memeId).then((succ)=>{
                 console.log("Delete MemeTag Sammie")
             }, (err)=>{
                 console.log("Delete MemeTag Nea: " + err)
@@ -281,7 +281,7 @@ router.post("/delete", urlencoder, (req, res) => {
     
     User.findShared(memeId).then((sharedusers)=>{
         for(let x = 0; x<sharedusers.length; x++)
-            User.removeShared(sharedusers[x], memeId).then((succ)=>{
+            User.removeShared(sharedusers[x].username, memeId).then((succ)=>{
                 console.log("Delete MemeShared Sammie")
             }, (err)=>{
                 console.log("Delete MemeShared Nea: " + err)
@@ -291,7 +291,7 @@ router.post("/delete", urlencoder, (req, res) => {
     })
     
     User.findOwner(memeId).then((owner)=>{
-        User.removePost(owner, memeId).then((succ)=>{
+        User.removePost(owner.username, memeId).then((succ)=>{
             console.log("Delete MemeShared Sammie")
         }, (err)=>{
             console.log("Delete MemeShared Nea: " + err)

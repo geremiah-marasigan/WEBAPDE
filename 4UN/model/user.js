@@ -105,12 +105,9 @@ exports.sharedMemes = function(user){
 }
 
 //Remove a selected shared meme
-exports.removedShared = function(user, meme){
+exports.removeShared = function(user, meme){
     return new Promise(function(res, rej){
-        User.findOne(
-            {username: user
-            } 
-        ).update({}, {$pull: {shared: {_id: meme}}}, {multi: true}).then((succ)=>{
+        User.update({username: user}, {$pull: {shared: {_id: meme}}}, {multi: true}).then((succ)=>{
             console.log("Remove Successful" + succ)
             res(succ)
         }, (err)=>{
@@ -138,14 +135,11 @@ exports.updateShared = function(user, meme){
 
 exports.removePost = function(user, meme){
     return new Promise(function(res, rej){
-        User.findOne(
-            {username: user
-            } 
-        ).update({}, {$pull: {posts: {_id:meme}}}, {multi: true}).then((succ)=>{
+        User.update({username: user}, {$pull: {posts: {_id:meme}}}, {multi: true}).then((succ)=>{
             console.log("Remove Successful" + succ)
             res(succ)
         }, (err)=>{
-            console.log("Remove Failed")
+            console.log("Remove Failed: " + err)
             rej(err)
         })  
     })

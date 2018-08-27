@@ -95,14 +95,17 @@ exports.addMeme = function (name, meme) {
 
 exports.removeMeme = function (name, meme) {
     return new Promise(function(res, rej){
-        Tag.findOne({
-            name: name
-        }).update({}, {
+        Tag.update({name: name}, {
             $pull: {
                 memes: {_id:meme}
             }
         }, {
             multi: true
+        }).then((succ)=>{
+            console.log("Delete successful /tags")
+            res(succ)
+        }, (err)=>{
+            rej(err)
         })
         
     }) 
